@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IResource"
+            nameFilter="*"
+            id="com.gerken.xaa.refactor.contribution1">
+         <menu
+               label="Advanced Pattern Authoring"
+               path="additions"
+               id="com.gerken.xaa.refactor.menu1">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               label="Replace Known Tokens"
+               class="com.gerken.xaa.refactor.popup.actions.ReplaceTokens"
+               menubarPath="com.gerken.xaa.refactor.menu1"
+               enablesFor="*"
+               id="com.gerken.xaa.refactor.newAction">
+         </action>
+      </objectContribution>
+   </extension>
+
+</plugin>

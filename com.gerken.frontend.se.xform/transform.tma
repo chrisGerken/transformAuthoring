@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--xtools2_universal_type_manager-->
+<com.ibm.xtools.jet.ui.internal:TransformModelRoot xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.ibm.xtools.jet.ui.internal="com.ibm.xtools.jet.ui.internal.tma" xmlns:com.ibm.xtools.jet.ui.internal.tma="com.ibm.xtools.jet.ui.internal.tma.actions">
+  <ActionsRoot>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create Project: com.shingle.proto (editor)">
+      <exemplarReferences name="com.shingle.proto" Exemplar="//@ExemplarsRoot/@exemplars.0"/>
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:project" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="location" value="" required="false" type="string"/>
+        <attributes name="name" value="{$editor/@editorProjectName}" required="true" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="editorProjectName" replacable="true">
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.controlTags:set" libraryId="org.eclipse.jet.controlTags" content="{$editor/@id}">
+        <attributes name="name" value="editorProjectName" required="true" type="string"/>
+        <attributes name="select" value="editor" required="true" type="xpath"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: (editor) .classpath">
+      <exemplarReferences name=".classpath" Exemplar="//@ExemplarsRoot/@exemplars.0/@children.4"/>
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:file" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="derived" value="" required="false" type="boolean"/>
+        <attributes name="encoding" value="" required="false" type="string"/>
+        <attributes name="path" value="{$editor/@editorProjectName}/.classpath" required="true" type="string"/>
+        <attributes name="replace" value="true" required="false" type="boolean"/>
+        <attributes name="template" value="templates/editor/editor.classpath.jet" required="true" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: (editor) .project">
+      <exemplarReferences name=".project" Exemplar="//@ExemplarsRoot/@exemplars.0/@children.5"/>
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:file" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="derived" value="" required="false" type="boolean"/>
+        <attributes name="encoding" value="" required="false" type="string"/>
+        <attributes name="path" value="{$editor/@editorProjectName}/.project" required="true" type="string"/>
+        <attributes name="replace" value="true" required="false" type="boolean"/>
+        <attributes name="template" value="templates/editor/editor.project.jet" required="true" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: (editor) MANIFEST.MF">
+      <exemplarReferences name="MANIFEST.MF" Exemplar="//@ExemplarsRoot/@exemplars.0/@children.0/@children.0"/>
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:file" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="derived" value="" required="false" type="boolean"/>
+        <attributes name="encoding" value="" required="false" type="string"/>
+        <attributes name="path" value="{$editor/@editorProjectName}/META-INF/MANIFEST.MF" required="true" type="string"/>
+        <attributes name="replace" value="true" required="false" type="boolean"/>
+        <attributes name="template" value="templates/editor/editor.manifest.mf.jet" required="true" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: (editor) build.properties">
+      <exemplarReferences name="build.properties" Exemplar="//@ExemplarsRoot/@exemplars.0/@children.6"/>
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:file" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="derived" value="" required="false" type="boolean"/>
+        <attributes name="encoding" value="" required="false" type="string"/>
+        <attributes name="path" value="{$editor/@editorProjectName}/build.properties" required="true" type="string"/>
+        <attributes name="replace" value="true" required="false" type="boolean"/>
+        <attributes name="template" value="templates/editor/editor.build.properties.jet" required="true" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: (editor) copy.ico">
+      <exemplarReferences name="copy.ico" Exemplar="//@ExemplarsRoot/@exemplars.0/@children.2/@children.0"/>
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:copyFile" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="binary" value="true" required="false" type="boolean"/>
+        <attributes name="replace" value="" required="false" type="boolean"/>
+        <attributes name="src" value="templates/editor/editor.copy.ico" required="true" type="string"/>
+        <attributes name="srcContext" value="" required="false" type="string"/>
+        <attributes name="srcEncoding" value="" required="false" type="string"/>
+        <attributes name="target" value="{$editor/@editorProjectName}/icons/copy.ico" required="true" type="string"/>
+        <attributes name="targetEncoding" value="" required="false" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: (editor) delete.ico">
+      <exemplarReferences name="delete.ico" Exemplar="//@ExemplarsRoot/@exemplars.0/@children.2/@children.1"/>
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:copyFile" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="binary" value="true" required="false" type="boolean"/>
+        <attributes name="replace" value="" required="false" type="boolean"/>
+        <attributes name="src" value="templates/editor/editor.delete.ico" required="true" type="string"/>
+        <attributes name="srcContext" value="" required="false" type="string"/>
+        <attributes name="srcEncoding" value="" required="false" type="string"/>
+        <attributes name="target" value="{$editor/@editorProjectName}/icons/delete.ico" required="true" type="string"/>
+        <attributes name="targetEncoding" value="" required="false" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: (editor) down.ico">
+      <exemplarReferences name="down.ico" Exemplar="//@ExemplarsRoot/@exemplars.0/@children.2/@children.2"/>
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:copyFile" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="binary" value="true" required="false" type="boolean"/>
+        <attributes name="replace" value="" required="false" type="boolean"/>
+        <attributes name="src" value="templates/editor/editor.down.ico" required="true" type="string"/>
+        <attributes name="srcContext" value="" required="false" type="string"/>
+        <attributes name="srcEncoding" value="" required="false" type="string"/>
+        <attributes name="target" value="{$editor/@editorProjectName}/icons/down.ico" required="true" type="string"/>
+        <attributes name="targetEncoding" value="" required="false" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: (editor) edit.ico">
+      <exemplarReferences name="edit.ico" Exemplar="//@ExemplarsRoot/@exemplars.0/@children.2/@children.3"/>
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:copyFile" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="binary" value="true" required="false" type="boolean"/>
+        <attributes name="replace" value="" required="false" type="boolean"/>
+        <attributes name="src" value="templates/editor/editor.edit.ico" required="true" type="string"/>
+        <attributes name="srcContext" value="" required="false" type="string"/>
+        <attributes name="srcEncoding" value="" required="false" type="string"/>
+        <attributes name="target" value="{$editor/@editorProjectName}/icons/edit.ico" required="true" type="string"/>
+        <attributes name="targetEncoding" value="" required="false" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: (editor) shingle.ico">
+      <exemplarReferences name="shingle.ico" Exemplar="//@ExemplarsRoot/@exemplars.0/@children.2/@children.4"/>
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:copyFile" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="binary" value="true" required="false" type="boolean"/>
+        <attributes name="replace" value="" required="false" type="boolean"/>
+        <attributes name="src" value="templates/editor/editor.shingle.ico" required="true" type="string"/>
+        <attributes name="srcContext" value="" required="false" type="string"/>
+        <attributes name="srcEncoding" value="" required="false" type="string"/>
+        <attributes name="target" value="{$editor/@editorProjectName}/icons/shingle.ico" required="true" type="string"/>
+        <attributes name="targetEncoding" value="" required="false" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: (editor) up.ico">
+      <exemplarReferences name="up.ico" Exemplar="//@ExemplarsRoot/@exemplars.0/@children.2/@children.5"/>
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:copyFile" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="binary" value="true" required="false" type="boolean"/>
+        <attributes name="replace" value="" required="false" type="boolean"/>
+        <attributes name="src" value="templates/editor/editor.up.ico" required="true" type="string"/>
+        <attributes name="srcContext" value="" required="false" type="string"/>
+        <attributes name="srcEncoding" value="" required="false" type="string"/>
+        <attributes name="target" value="{$editor/@editorProjectName}/icons/up.ico" required="true" type="string"/>
+        <attributes name="targetEncoding" value="" required="false" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: (editor) plugin.xml">
+      <exemplarReferences name="plugin.xml" Exemplar="//@ExemplarsRoot/@exemplars.0/@children.7"/>
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:file" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="derived" value="" required="false" type="boolean"/>
+        <attributes name="encoding" value="" required="false" type="string"/>
+        <attributes name="path" value="{$editor/@editorProjectName}/plugin.xml" required="true" type="string"/>
+        <attributes name="replace" value="true" required="false" type="boolean"/>
+        <attributes name="template" value="templates/editor/editor.plugin.xml.jet" required="true" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: (editor) Activator.java">
+      <exemplarReferences name="Activator.java" Exemplar="//@ExemplarsRoot/@exemplars.0/@children.3/@children.0/@children.0/@children.0/@children.5"/>
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:file" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="derived" value="" required="false" type="boolean"/>
+        <attributes name="encoding" value="" required="false" type="string"/>
+        <attributes name="path" value="{$editor/@editorProjectName}/src/{$editor/@baseDir}/Activator.java" required="true" type="string"/>
+        <attributes name="replace" value="true" required="false" type="boolean"/>
+        <attributes name="template" value="templates/editor/editor.activator.java.jet" required="true" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: (editor) ConstraintValidator.java">
+      <exemplarReferences name="RootConstraintValidator.java" Exemplar="//@ExemplarsRoot/@exemplars.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.3"/>
+      <schemaElement href="input.ecore#//Type"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:file" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="derived" value="" required="false" type="boolean"/>
+        <attributes name="encoding" value="" required="false" type="string"/>
+        <attributes name="path" value="{$editor/@editorProjectName}/src/{$editor/@constraintDir}/{$type/@validatorClass}.java" required="true" type="string"/>
+        <attributes name="replace" value="true" required="false" type="boolean"/>
+        <attributes name="template" value="templates/type/type.constraint.validator.java.jet" required="true" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: (editor) Domain.java">
+      <exemplarReferences name="FieldTypesEnumeration.java" Exemplar="//@ExemplarsRoot/@exemplars.0/@children.3/@children.0/@children.0/@children.0/@children.1/@children.0"/>
+      <schemaElement href="input.ecore#//Domain"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:file" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="derived" value="" required="false" type="boolean"/>
+        <attributes name="encoding" value="" required="false" type="string"/>
+        <attributes name="path" value="{$editor/@editorProjectName}/src/{$editor/@domainDir}/{$domain/@domainClass}.java" required="true" type="string"/>
+        <attributes name="replace" value="true" required="false" type="boolean"/>
+        <attributes name="template" value="templates/domain/domain.java.jet" required="true" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: (editor) AbstractConstraint.java">
+      <exemplarReferences name="AbstractConstraint.java" Exemplar="//@ExemplarsRoot/@exemplars.0/@children.3/@children.0/@children.0/@children.0/@children.2/@children.0"/>
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:file" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="derived" value="" required="false" type="boolean"/>
+        <attributes name="encoding" value="" required="false" type="string"/>
+        <attributes name="path" value="{$editor/@editorProjectName}/src/{$editor/@editorDir}/AbstractConstraint.java" required="true" type="string"/>
+        <attributes name="replace" value="true" required="false" type="boolean"/>
+        <attributes name="template" value="templates/editor/editor.abstract.constraint.java.jet" required="true" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: (editor) AbstractEnumeration.java">
+      <exemplarReferences name="AbstractEnumeration.java" Exemplar="//@ExemplarsRoot/@exemplars.0/@children.3/@children.0/@children.0/@children.0/@children.2/@children.1"/>
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:file" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="derived" value="" required="false" type="boolean"/>
+        <attributes name="encoding" value="" required="false" type="string"/>
+        <attributes name="path" value="{$editor/@editorProjectName}/src/{$editor/@editorDir}/AbstractEnumeration.java" required="true" type="string"/>
+        <attributes name="replace" value="true" required="false" type="boolean"/>
+        <attributes name="template" value="templates/editor/editor.abstract.enumeration.java.jet" required="true" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: (editor) AbstractIndex.java">
+      <exemplarReferences name="AbstractIndex.java" Exemplar="//@ExemplarsRoot/@exemplars.0/@children.3/@children.0/@children.0/@children.0/@children.2/@children.2"/>
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:file" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="derived" value="" required="false" type="boolean"/>
+        <attributes name="encoding" value="" required="false" type="string"/>
+        <attributes name="path" value="{$editor/@editorProjectName}/src/{$editor/@editorDir}/AbstractIndex.java" required="true" type="string"/>
+        <attributes name="replace" value="true" required="false" type="boolean"/>
+        <attributes name="template" value="templates/editor/editor.abstract.index.java.jet" required="true" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: (editor) AbstractShingle.java">
+      <exemplarReferences name="AbstractShingle.java" Exemplar="//@ExemplarsRoot/@exemplars.0/@children.3/@children.0/@children.0/@children.0/@children.2/@children.3"/>
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:file" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="derived" value="" required="false" type="boolean"/>
+        <attributes name="encoding" value="" required="false" type="string"/>
+        <attributes name="path" value="{$editor/@editorProjectName}/src/{$editor/@editorDir}/AbstractShingle.java" required="true" type="string"/>
+        <attributes name="replace" value="true" required="false" type="boolean"/>
+        <attributes name="template" value="templates/editor/editor.abstract.shingle.java.jet" required="true" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: (editor) ActionsList.java">
+      <exemplarReferences name="ActionsList.java" Exemplar="//@ExemplarsRoot/@exemplars.0/@children.3/@children.0/@children.0/@children.0/@children.2/@children.4"/>
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:file" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="derived" value="" required="false" type="boolean"/>
+        <attributes name="encoding" value="" required="false" type="string"/>
+        <attributes name="path" value="{$editor/@editorProjectName}/src/{$editor/@editorDir}/ActionsList.java" required="true" type="string"/>
+        <attributes name="replace" value="true" required="false" type="boolean"/>
+        <attributes name="template" value="templates/editor/editor.actions.list.java.jet" required="true" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: (editor) ConstraintFailure.java">
+      <exemplarReferences name="ConstraintFailure.java" Exemplar="//@ExemplarsRoot/@exemplars.0/@children.3/@children.0/@children.0/@children.0/@children.2/@children.5"/>
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:file" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="derived" value="" required="false" type="boolean"/>
+        <attributes name="encoding" value="" required="false" type="string"/>
+        <attributes name="path" value="{$editor/@editorProjectName}/src/{$editor/@editorDir}/ConstraintFailure.java" required="true" type="string"/>
+        <attributes name="replace" value="true" required="false" type="boolean"/>
+        <attributes name="template" value="templates/editor/editor.constraint.failure.java.jet" required="true" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: (editor) DataReader.java">
+      <exemplarReferences name="DataReader.java" Exemplar="//@ExemplarsRoot/@exemplars.0/@children.3/@children.0/@children.0/@children.0/@children.2/@children.6"/>
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:file" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="derived" value="" required="false" type="boolean"/>
+        <attributes name="encoding" value="" required="false" type="string"/>
+        <attributes name="path" value="{$editor/@editorProjectName}/src/{$editor/@editorDir}/DataReader.java" required="true" type="string"/>
+        <attributes name="replace" value="true" required="false" type="boolean"/>
+        <attributes name="template" value="templates/editor/editor.data.reader.java.jet" required="true" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: (editor) DataWriter.java">
+      <exemplarReferences name="DataWriter.java" Exemplar="//@ExemplarsRoot/@exemplars.0/@children.3/@children.0/@children.0/@children.0/@children.2/@children.7"/>
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:file" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="derived" value="" required="false" type="boolean"/>
+        <attributes name="encoding" value="" required="false" type="string"/>
+        <attributes name="path" value="{$editor/@editorProjectName}/src/{$editor/@editorDir}/DataWriter.java" required="true" type="string"/>
+        <attributes name="replace" value="true" required="false" type="boolean"/>
+        <attributes name="template" value="templates/editor/editor.data.writer.java.jet" required="true" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: (editor) ErrorList.java">
+      <exemplarReferences name="ErrorList.java" Exemplar="//@ExemplarsRoot/@exemplars.0/@children.3/@children.0/@children.0/@children.0/@children.2/@children.9"/>
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:file" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="derived" value="" required="false" type="boolean"/>
+        <attributes name="encoding" value="" required="false" type="string"/>
+        <attributes name="path" value="{$editor/@editorProjectName}/src/{$editor/@editorDir}/ErrorList.java" required="true" type="string"/>
+        <attributes name="replace" value="true" required="false" type="boolean"/>
+        <attributes name="template" value="templates/editor/editor.error.list.java.jet" required="true" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: (editor) IModelChangedListener.java">
+      <exemplarReferences name="IModelChangedListener.java" Exemplar="//@ExemplarsRoot/@exemplars.0/@children.3/@children.0/@children.0/@children.0/@children.2/@children.10"/>
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:file" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="derived" value="" required="false" type="boolean"/>
+        <attributes name="encoding" value="" required="false" type="string"/>
+        <attributes name="path" value="{$editor/@editorProjectName}/src/{$editor/@editorDir}/IModelChangedListener.java" required="true" type="string"/>
+        <attributes name="replace" value="true" required="false" type="boolean"/>
+        <attributes name="template" value="templates/editor/editor.imodel.changed.listener.java.jet" required="true" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: (editor) ModelAccess.java">
+      <exemplarReferences name="ModelAccess.java" Exemplar="//@ExemplarsRoot/@exemplars.0/@children.3/@children.0/@children.0/@children.0/@children.2/@children.11"/>
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:file" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="derived" value="" required="false" type="boolean"/>
+        <attributes name="encoding" value="" required="false" type="string"/>
+        <attributes name="path" value="{$editor/@editorProjectName}/src/{$editor/@editorDir}/ModelAccess.java" required="true" type="string"/>
+        <attributes name="replace" value="true" required="false" type="boolean"/>
+        <attributes name="template" value="templates/editor/editor.model.access.java.jet" required="true" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: (editor) ShingleEditor.java">
+      <exemplarReferences name="ShingleEditor.java" Exemplar="//@ExemplarsRoot/@exemplars.0/@children.3/@children.0/@children.0/@children.0/@children.2/@children.12"/>
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:file" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="derived" value="" required="false" type="boolean"/>
+        <attributes name="encoding" value="" required="false" type="string"/>
+        <attributes name="path" value="{$editor/@editorProjectName}/src/{$editor/@editorDir}/ShingleEditor.java" required="true" type="string"/>
+        <attributes name="replace" value="true" required="false" type="boolean"/>
+        <attributes name="template" value="templates/editor/editor.shingle.editor.java.jet" required="true" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: (editor) Index.java">
+      <exemplarReferences name="RootIndex.java" Exemplar="//@ExemplarsRoot/@exemplars.0/@children.3/@children.0/@children.0/@children.0/@children.3/@children.3"/>
+      <schemaElement href="input.ecore#//Type"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:file" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="derived" value="" required="false" type="boolean"/>
+        <attributes name="encoding" value="" required="false" type="string"/>
+        <attributes name="path" value="{$editor/@editorProjectName}/src/{$editor/@indexDir}/{$type/@indexClass}.java" required="true" type="string"/>
+        <attributes name="replace" value="true" required="false" type="boolean"/>
+        <attributes name="template" value="templates/type/type.index.java.jet" required="true" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: (editor) Shingle.java">
+      <exemplarReferences name="RootShingle.java" Exemplar="//@ExemplarsRoot/@exemplars.0/@children.3/@children.0/@children.0/@children.0/@children.4/@children.3"/>
+      <schemaElement href="input.ecore#//Type"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:file" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="derived" value="" required="false" type="boolean"/>
+        <attributes name="encoding" value="" required="false" type="string"/>
+        <attributes name="path" value="{$editor/@editorProjectName}/src/{$editor/@shinglesDir}/{$type/@shingleClass}.java" required="true" type="string"/>
+        <attributes name="replace" value="true" required="false" type="boolean"/>
+        <attributes name="template" value="templates/type/type.shingle.java.jet" required="true" type="string"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="editorPackage" replacable="true">
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.controlTags:set" libraryId="org.eclipse.jet.controlTags" content="{$editor/@id}.editor">
+        <attributes name="name" value="editorPackage" required="true" type="string"/>
+        <attributes name="select" value="editor" required="true" type="xpath"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="editorDir" replacable="true">
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.controlTags:set" libraryId="org.eclipse.jet.controlTags" content="{translate($editor/@editorPackage,'.','/')}">
+        <attributes name="name" value="editorDir" required="true" type="string"/>
+        <attributes name="select" value="editor" required="true" type="xpath"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="basePackage" replacable="true">
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.controlTags:set" libraryId="org.eclipse.jet.controlTags" content="{$editor/@id}">
+        <attributes name="name" value="basePackage" required="true" type="string"/>
+        <attributes name="select" value="editor" required="true" type="xpath"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="baseDir" replacable="true">
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.controlTags:set" libraryId="org.eclipse.jet.controlTags" content="{translate($editor/@basePackage,'.','/')}">
+        <attributes name="name" value="baseDir" required="true" type="string"/>
+        <attributes name="select" value="editor" required="true" type="xpath"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="domainPackage" replacable="true">
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.controlTags:set" libraryId="org.eclipse.jet.controlTags" content="{$editor/@id}.domain">
+        <attributes name="name" value="domainPackage" required="true" type="string"/>
+        <attributes name="select" value="editor" required="true" type="xpath"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="domainDir" replacable="true">
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.controlTags:set" libraryId="org.eclipse.jet.controlTags" content="{translate($editor/@domainPackage,'.','/')}">
+        <attributes name="name" value="domainDir" required="true" type="string"/>
+        <attributes name="select" value="editor" required="true" type="xpath"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="domainClass" replacable="true">
+      <schemaElement href="input.ecore#//Domain"/>
+      <ContainerTag name="org.eclipse.jet.controlTags:set" libraryId="org.eclipse.jet.controlTags" content="{uppercaseFirst($domain/@name)}Domain">
+        <attributes name="name" value="domainClass" required="true" type="string"/>
+        <attributes name="select" value="domain" required="true" type="xpath"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="constraintPackage" replacable="true">
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.controlTags:set" libraryId="org.eclipse.jet.controlTags" content="{$editor/@basePackage}.constraint">
+        <attributes name="name" value="constraintPackage" required="true" type="string"/>
+        <attributes name="select" value="editor" required="true" type="xpath"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="constraintDir" replacable="true">
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.controlTags:set" libraryId="org.eclipse.jet.controlTags" content="{translate($editor/@constraintPackage,'.','/')}">
+        <attributes name="name" value="constraintDir" required="true" type="string"/>
+        <attributes name="select" value="editor" required="true" type="xpath"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="validatorClass" replacable="true">
+      <schemaElement href="input.ecore#//Type"/>
+      <ContainerTag name="org.eclipse.jet.controlTags:set" libraryId="org.eclipse.jet.controlTags" content="{uppercaseFirst($type/@name)}ConstraintValidator">
+        <attributes name="name" value="validatorClass" required="true" type="string"/>
+        <attributes name="select" value="type" required="true" type="xpath"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="indexPackage" replacable="true">
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.controlTags:set" libraryId="org.eclipse.jet.controlTags" content="{$editor/@basePackage}.index">
+        <attributes name="name" value="indexPackage" required="true" type="string"/>
+        <attributes name="select" value="editor" required="true" type="xpath"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="indexDir" replacable="true">
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.controlTags:set" libraryId="org.eclipse.jet.controlTags" content="{translate($editor/@indexPackage,'.','/')}">
+        <attributes name="name" value="indexDir" required="true" type="string"/>
+        <attributes name="select" value="editor" required="true" type="xpath"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="indexClass" replacable="true">
+      <schemaElement href="input.ecore#//Type"/>
+      <ContainerTag name="org.eclipse.jet.controlTags:set" libraryId="org.eclipse.jet.controlTags" content="{uppercaseFirst($type/@name)}Index">
+        <attributes name="name" value="indexClass" required="true" type="string"/>
+        <attributes name="select" value="type" required="true" type="xpath"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="shinglesPackage" replacable="true">
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.controlTags:set" libraryId="org.eclipse.jet.controlTags" content="{$editor/@basePackage}.shingles">
+        <attributes name="name" value="shinglesPackage" required="true" type="string"/>
+        <attributes name="select" value="editor" required="true" type="xpath"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="shinglesDir" replacable="true">
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.controlTags:set" libraryId="org.eclipse.jet.controlTags" content="{translate($editor/@shinglesPackage,'.','/')}">
+        <attributes name="name" value="shinglesDir" required="true" type="string"/>
+        <attributes name="select" value="editor" required="true" type="xpath"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="shingleClass" replacable="true">
+      <schemaElement href="input.ecore#//Type"/>
+      <ContainerTag name="org.eclipse.jet.controlTags:set" libraryId="org.eclipse.jet.controlTags" content="{uppercaseFirst($type/@name)}Shingle">
+        <attributes name="name" value="shingleClass" required="true" type="string"/>
+        <attributes name="select" value="type" required="true" type="xpath"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="shingleGetterMethod" replacable="true">
+      <schemaElement href="input.ecore#//Type"/>
+      <ContainerTag name="org.eclipse.jet.controlTags:set" libraryId="org.eclipse.jet.controlTags" content="get{uppercaseFirst($type/@name)}Shingle">
+        <attributes name="name" value="shingleGetterMethod" required="true" type="string"/>
+        <attributes name="select" value="type" required="true" type="xpath"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="widgetVar" replacable="true">
+      <schemaElement href="input.ecore#//Field"/>
+      <ContainerTag name="org.eclipse.jet.controlTags:set" libraryId="org.eclipse.jet.controlTags" content="text_{$field/@name}">
+        <attributes name="name" value="widgetVar" required="true" type="string"/>
+        <attributes name="select" value="field" required="true" type="xpath"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="indexVar" replacable="true">
+      <schemaElement href="input.ecore#//Type"/>
+      <ContainerTag name="org.eclipse.jet.controlTags:set" libraryId="org.eclipse.jet.controlTags" content="index_{$type/@name}">
+        <attributes name="name" value="indexVar" required="true" type="string"/>
+        <attributes name="select" value="type" required="true" type="xpath"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="listenerClass" replacable="true">
+      <schemaElement href="input.ecore#//Field"/>
+      <ContainerTag name="org.eclipse.jet.controlTags:set" libraryId="org.eclipse.jet.controlTags" content="{uppercaseFirst($field/@kind)}{uppercaseFirst($field/@name)}Listener">
+        <attributes name="name" value="listenerClass" required="true" type="string"/>
+        <attributes name="select" value="field" required="true" type="xpath"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="indexGetterMethod" replacable="true">
+      <schemaElement href="input.ecore#//Type"/>
+      <ContainerTag name="org.eclipse.jet.controlTags:set" libraryId="org.eclipse.jet.controlTags" content="get{uppercaseFirst($type/@name)}Index">
+        <attributes name="name" value="indexGetterMethod" required="true" type="string"/>
+        <attributes name="select" value="type" required="true" type="xpath"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="domainVar" replacable="true">
+      <schemaElement href="input.ecore#//Field"/>
+      <ContainerTag name="org.eclipse.jet.controlTags:set" libraryId="org.eclipse.jet.controlTags" content="domain_{$field/@name}">
+        <attributes name="name" value="domainVar" required="true" type="string"/>
+        <attributes name="select" value="field" required="true" type="xpath"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="shingleVar" replacable="true">
+      <schemaElement href="input.ecore#//Type"/>
+      <ContainerTag name="org.eclipse.jet.controlTags:set" libraryId="org.eclipse.jet.controlTags" content="shingle{uppercaseFirst($type/@name)}">
+        <attributes name="name" value="shingleVar" required="true" type="string"/>
+        <attributes name="select" value="type" required="true" type="xpath"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="level" replacable="true">
+      <schemaElement href="input.ecore#//Type"/>
+      <ContainerTag name="org.eclipse.jet.controlTags:set" libraryId="org.eclipse.jet.controlTags" content="0">
+        <attributes name="name" value="level" required="true" type="string"/>
+        <attributes name="select" value="type" required="true" type="xpath"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="maxLevel" replacable="true">
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.controlTags:set" libraryId="org.eclipse.jet.controlTags" content="4">
+        <attributes name="name" value="maxLevel" required="true" type="string"/>
+        <attributes name="select" value="editor" required="true" type="xpath"/>
+      </ContainerTag>
+    </actions>
+    <actions xsi:type="com.ibm.xtools.jet.ui.internal.tma:ContainerTagAction" name="Create File: M2M Snippets">
+      <schemaElement href="input.ecore#//Editor"/>
+      <ContainerTag name="org.eclipse.jet.workspaceTags:file" libraryId="org.eclipse.jet.workspaceTags" content="">
+        <attributes name="derived" value="" required="false" type="boolean"/>
+        <attributes name="encoding" value="" required="false" type="string"/>
+        <attributes name="path" value="{$editor/@editorProjectName}/snippets/m2m.txt" required="true" type="string"/>
+        <attributes name="replace" value="true" required="false" type="boolean"/>
+        <attributes name="template" value="templates/editor/m2m.snippets.jet" required="true" type="string"/>
+      </ContainerTag>
+    </actions>
+  </ActionsRoot>
+  <ExemplarsRoot>
+    <exemplars xsi:type="com.ibm.xtools.jet.ui.internal.tma:ProjectExemplar" ExemplarReference="//@ActionsRoot/@actions.0/@exemplarReferences.0" path="/com.shingle.proto">
+      <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FolderExemplar" path="/com.shingle.proto/META-INF">
+        <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" ExemplarReference="//@ActionsRoot/@actions.4/@exemplarReferences.0" path="/com.shingle.proto/META-INF/MANIFEST.MF"/>
+      </children>
+      <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FolderExemplar" path="/com.shingle.proto/bin">
+        <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FolderExemplar" path="/com.shingle.proto/bin/com">
+          <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FolderExemplar" path="/com.shingle.proto/bin/com/shingle">
+            <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FolderExemplar" path="/com.shingle.proto/bin/com/shingle/proto">
+              <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FolderExemplar" path="/com.shingle.proto/bin/com/shingle/proto/constraint"/>
+              <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FolderExemplar" path="/com.shingle.proto/bin/com/shingle/proto/domain"/>
+              <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FolderExemplar" path="/com.shingle.proto/bin/com/shingle/proto/editor"/>
+              <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FolderExemplar" path="/com.shingle.proto/bin/com/shingle/proto/index"/>
+              <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FolderExemplar" path="/com.shingle.proto/bin/com/shingle/proto/shingles"/>
+            </children>
+          </children>
+        </children>
+      </children>
+      <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FolderExemplar" path="/com.shingle.proto/icons">
+        <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" ExemplarReference="//@ActionsRoot/@actions.6/@exemplarReferences.0" path="/com.shingle.proto/icons/copy.ico"/>
+        <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" ExemplarReference="//@ActionsRoot/@actions.7/@exemplarReferences.0" path="/com.shingle.proto/icons/delete.ico"/>
+        <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" ExemplarReference="//@ActionsRoot/@actions.8/@exemplarReferences.0" path="/com.shingle.proto/icons/down.ico"/>
+        <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" ExemplarReference="//@ActionsRoot/@actions.9/@exemplarReferences.0" path="/com.shingle.proto/icons/edit.ico"/>
+        <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" ExemplarReference="//@ActionsRoot/@actions.10/@exemplarReferences.0" path="/com.shingle.proto/icons/shingle.ico"/>
+        <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" ExemplarReference="//@ActionsRoot/@actions.11/@exemplarReferences.0" path="/com.shingle.proto/icons/up.ico"/>
+      </children>
+      <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FolderExemplar" path="/com.shingle.proto/src">
+        <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FolderExemplar" path="/com.shingle.proto/src/com">
+          <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FolderExemplar" path="/com.shingle.proto/src/com/shingle">
+            <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FolderExemplar" path="/com.shingle.proto/src/com/shingle/proto">
+              <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FolderExemplar" path="/com.shingle.proto/src/com/shingle/proto/constraint">
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" path="/com.shingle.proto/src/com/shingle/proto/constraint/AttributeConstraintValidator.java"/>
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" path="/com.shingle.proto/src/com/shingle/proto/constraint/ExtensionConstraintValidator.java"/>
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" path="/com.shingle.proto/src/com/shingle/proto/constraint/NestedConstraintValidator.java"/>
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" ExemplarReference="//@ActionsRoot/@actions.14/@exemplarReferences.0" path="/com.shingle.proto/src/com/shingle/proto/constraint/RootConstraintValidator.java"/>
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" path="/com.shingle.proto/src/com/shingle/proto/constraint/TagConstraintValidator.java"/>
+              </children>
+              <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FolderExemplar" path="/com.shingle.proto/src/com/shingle/proto/domain">
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" ExemplarReference="//@ActionsRoot/@actions.15/@exemplarReferences.0" path="/com.shingle.proto/src/com/shingle/proto/domain/FieldTypesEnumeration.java"/>
+              </children>
+              <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FolderExemplar" path="/com.shingle.proto/src/com/shingle/proto/editor">
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" ExemplarReference="//@ActionsRoot/@actions.16/@exemplarReferences.0" path="/com.shingle.proto/src/com/shingle/proto/editor/AbstractConstraint.java"/>
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" ExemplarReference="//@ActionsRoot/@actions.17/@exemplarReferences.0" path="/com.shingle.proto/src/com/shingle/proto/editor/AbstractEnumeration.java"/>
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" ExemplarReference="//@ActionsRoot/@actions.18/@exemplarReferences.0" path="/com.shingle.proto/src/com/shingle/proto/editor/AbstractIndex.java"/>
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" ExemplarReference="//@ActionsRoot/@actions.19/@exemplarReferences.0" path="/com.shingle.proto/src/com/shingle/proto/editor/AbstractShingle.java"/>
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" ExemplarReference="//@ActionsRoot/@actions.20/@exemplarReferences.0" path="/com.shingle.proto/src/com/shingle/proto/editor/ActionsList.java"/>
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" ExemplarReference="//@ActionsRoot/@actions.21/@exemplarReferences.0" path="/com.shingle.proto/src/com/shingle/proto/editor/ConstraintFailure.java"/>
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" ExemplarReference="//@ActionsRoot/@actions.22/@exemplarReferences.0" path="/com.shingle.proto/src/com/shingle/proto/editor/DataReader.java"/>
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" ExemplarReference="//@ActionsRoot/@actions.23/@exemplarReferences.0" path="/com.shingle.proto/src/com/shingle/proto/editor/DataWriter.java"/>
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" path="/com.shingle.proto/src/com/shingle/proto/editor/DoNothingValidator.java"/>
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" ExemplarReference="//@ActionsRoot/@actions.24/@exemplarReferences.0" path="/com.shingle.proto/src/com/shingle/proto/editor/ErrorList.java"/>
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" ExemplarReference="//@ActionsRoot/@actions.25/@exemplarReferences.0" path="/com.shingle.proto/src/com/shingle/proto/editor/IModelChangedListener.java"/>
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" ExemplarReference="//@ActionsRoot/@actions.26/@exemplarReferences.0" path="/com.shingle.proto/src/com/shingle/proto/editor/ModelAccess.java"/>
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" ExemplarReference="//@ActionsRoot/@actions.27/@exemplarReferences.0" path="/com.shingle.proto/src/com/shingle/proto/editor/ShingleEditor.java"/>
+              </children>
+              <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FolderExemplar" path="/com.shingle.proto/src/com/shingle/proto/index">
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" path="/com.shingle.proto/src/com/shingle/proto/index/AttributeIndex.java"/>
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" path="/com.shingle.proto/src/com/shingle/proto/index/ExtensionIndex.java"/>
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" path="/com.shingle.proto/src/com/shingle/proto/index/NestedIndex.java"/>
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" ExemplarReference="//@ActionsRoot/@actions.28/@exemplarReferences.0" path="/com.shingle.proto/src/com/shingle/proto/index/RootIndex.java"/>
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" path="/com.shingle.proto/src/com/shingle/proto/index/TagIndex.java"/>
+              </children>
+              <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FolderExemplar" path="/com.shingle.proto/src/com/shingle/proto/shingles">
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" path="/com.shingle.proto/src/com/shingle/proto/shingles/AttributeShingle.java"/>
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" path="/com.shingle.proto/src/com/shingle/proto/shingles/ExtensionShingle.java"/>
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" path="/com.shingle.proto/src/com/shingle/proto/shingles/NestedShingle.java"/>
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" ExemplarReference="//@ActionsRoot/@actions.29/@exemplarReferences.0" path="/com.shingle.proto/src/com/shingle/proto/shingles/RootShingle.java"/>
+                <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" path="/com.shingle.proto/src/com/shingle/proto/shingles/TagShingle.java"/>
+              </children>
+              <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" ExemplarReference="//@ActionsRoot/@actions.13/@exemplarReferences.0" path="/com.shingle.proto/src/com/shingle/proto/Activator.java"/>
+            </children>
+          </children>
+        </children>
+      </children>
+      <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" ExemplarReference="//@ActionsRoot/@actions.2/@exemplarReferences.0" path="/com.shingle.proto/.classpath"/>
+      <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" ExemplarReference="//@ActionsRoot/@actions.3/@exemplarReferences.0" path="/com.shingle.proto/.project"/>
+      <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" ExemplarReference="//@ActionsRoot/@actions.5/@exemplarReferences.0" path="/com.shingle.proto/build.properties"/>
+      <children xsi:type="com.ibm.xtools.jet.ui.internal.tma:FileExemplar" ExemplarReference="//@ActionsRoot/@actions.12/@exemplarReferences.0" path="/com.shingle.proto/plugin.xml"/>
+    </exemplars>
+  </ExemplarsRoot>
+  <rootSchemaElementType href="input.ecore#//Root"/>
+  <ReplacePairRoot>
+    <replacePairs findText="com.shingle.proto" replaceObject="//@ActionsRoot/@actions.1"/>
+    <replacePairs findText="com.shingle.proto.editor" replaceObject="//@ActionsRoot/@actions.30"/>
+    <replacePairs findText="com/shingle/proto/editor" replaceObject="//@ActionsRoot/@actions.31"/>
+    <replacePairs findText="com.shingle.proto" replaceObject="//@ActionsRoot/@actions.32"/>
+    <replacePairs findText="com/shingle/proto" replaceObject="//@ActionsRoot/@actions.33"/>
+    <replacePairs findText="com.shingle.proto.domain" replaceObject="//@ActionsRoot/@actions.34"/>
+    <replacePairs findText="com/shingle/proto/domain" replaceObject="//@ActionsRoot/@actions.35"/>
+    <replacePairs findText="FieldTypesEnumeration" replaceObject="//@ActionsRoot/@actions.36"/>
+    <replacePairs findText="com.shingle.proto.constraint" replaceObject="//@ActionsRoot/@actions.37"/>
+    <replacePairs findText="com/shingle/proto/constraint" replaceObject="//@ActionsRoot/@actions.38"/>
+    <replacePairs findText="RootConstraintValidator" replaceObject="//@ActionsRoot/@actions.39"/>
+    <replacePairs findText="com.shingle.proto.index" replaceObject="//@ActionsRoot/@actions.40"/>
+    <replacePairs findText="com/shingle/proto/index" replaceObject="//@ActionsRoot/@actions.41"/>
+    <replacePairs findText="RootIndex" replaceObject="//@ActionsRoot/@actions.42"/>
+    <replacePairs findText="com.shingle.proto.shingles" replaceObject="//@ActionsRoot/@actions.43"/>
+    <replacePairs findText="com/shingle/proto/shingles" replaceObject="//@ActionsRoot/@actions.44"/>
+    <replacePairs findText="RootShingle" replaceObject="//@ActionsRoot/@actions.45"/>
+    <replacePairs findText="baseId">
+      <replaceObject href="input.ecore#//Field/name"/>
+    </replacePairs>
+    <replacePairs findText="root">
+      <replaceObject href="input.ecore#//Type/name"/>
+    </replacePairs>
+    <replacePairs findText="root">
+      <replaceObject href="input.ecore#//Type/nounPhrase"/>
+    </replacePairs>
+    <replacePairs findText="{@baseId}">
+      <replaceObject href="input.ecore#//Type/indexLabel"/>
+    </replacePairs>
+    <replacePairs findText="getRootShingle" replaceObject="//@ActionsRoot/@actions.46"/>
+    <replacePairs findText="Roots">
+      <replaceObject href="input.ecore#//Type/shingleLabel"/>
+    </replacePairs>
+    <replacePairs findText="ExtensionIndex" replaceObject="//@ActionsRoot/@actions.42"/>
+    <replacePairs findText="index_Extension" replaceObject="//@ActionsRoot/@actions.48"/>
+    <replacePairs findText="Root">
+      <replaceObject href="input.ecore#//Type/shingleLabel"/>
+    </replacePairs>
+    <replacePairs findText="Base ID">
+      <replaceObject href="input.ecore#//Field/label"/>
+    </replacePairs>
+    <replacePairs findText="text_baseId" replaceObject="//@ActionsRoot/@actions.47"/>
+    <replacePairs findText="TextBaseIdListener" replaceObject="//@ActionsRoot/@actions.49"/>
+    <replacePairs findText="getExtensionIndex" replaceObject="//@ActionsRoot/@actions.50"/>
+    <replacePairs findText="extension">
+      <replaceObject href="input.ecore#//Type/name"/>
+    </replacePairs>
+    <replacePairs findText="AttributeConstraintValidator" replaceObject="//@ActionsRoot/@actions.39"/>
+    <replacePairs findText="ExtensionShingle" replaceObject="//@ActionsRoot/@actions.45"/>
+    <replacePairs findText="shingleRoot" replaceObject="//@ActionsRoot/@actions.52"/>
+    <replacePairs findText="com.shingle.proto">
+      <replaceObject href="input.ecore#//Editor/id"/>
+    </replacePairs>
+    <replacePairs findText="Proto Plug-in">
+      <replaceObject href="input.ecore#//Editor/name"/>
+    </replacePairs>
+    <replacePairs findText="SHINGLE">
+      <replaceObject href="input.ecore#//Editor/provider"/>
+    </replacePairs>
+    <replacePairs findText="1">
+      <replaceObject href="input.ecore#//Pattern/id"/>
+    </replacePairs>
+    <replacePairs findText="xxx from this model">
+      <replaceObject href="input.ecore#//Pattern/desc"/>
+    </replacePairs>
+    <replacePairs findText="xxx">
+      <replaceObject href="input.ecore#//Pattern/desc"/>
+    </replacePairs>
+    <replacePairs findText="x.x.x">
+      <replaceObject href="input.ecore#//Pattern/id"/>
+    </replacePairs>
+    <replacePairs findText="Shingle Editor Prototype">
+      <replaceObject href="input.ecore#//Editor/name"/>
+    </replacePairs>
+    <replacePairs findText="abc">
+      <replaceObject href="input.ecore#//Editor/extension"/>
+    </replacePairs>
+    <replacePairs findText="4" replaceObject="//@ActionsRoot/@actions.54"/>
+    <replacePairs findText="shingleExtension" replaceObject="//@ActionsRoot/@actions.52"/>
+    <replacePairs findText="0" replaceObject="//@ActionsRoot/@actions.53"/>
+    <replacePairs findText="text">
+      <replaceObject href="input.ecore#//Value/key"/>
+    </replacePairs>
+    <replacePairs findText="Text">
+      <replaceObject href="input.ecore#//Value/displayText"/>
+    </replacePairs>
+    <replacePairs findText="xxxx">
+      <replaceObject href="input.ecore#//Query/queryExpression"/>
+    </replacePairs>
+  </ReplacePairRoot>
+  <SchemaTypeVarRoot>
+    <SchemaTypeVars var="root">
+      <type href="input.ecore#//Root"/>
+    </SchemaTypeVars>
+    <SchemaTypeVars var="editor">
+      <type href="input.ecore#//Editor"/>
+    </SchemaTypeVars>
+    <SchemaTypeVars var="type">
+      <type href="input.ecore#//Type"/>
+    </SchemaTypeVars>
+    <SchemaTypeVars var="domain">
+      <type href="input.ecore#//Domain"/>
+    </SchemaTypeVars>
+    <SchemaTypeVars var="field">
+      <type href="input.ecore#//Field"/>
+    </SchemaTypeVars>
+    <SchemaTypeVars var="constraint">
+      <type href="input.ecore#//Constraint"/>
+    </SchemaTypeVars>
+    <SchemaTypeVars var="pattern">
+      <type href="input.ecore#//Pattern"/>
+    </SchemaTypeVars>
+    <SchemaTypeVars var="value">
+      <type href="input.ecore#//Value"/>
+    </SchemaTypeVars>
+    <SchemaTypeVars var="query">
+      <type href="input.ecore#//Query"/>
+    </SchemaTypeVars>
+  </SchemaTypeVarRoot>
+</com.ibm.xtools.jet.ui.internal:TransformModelRoot>

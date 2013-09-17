@@ -1,0 +1,171 @@
+package <c:get select="$editor/@editorPackage" />;
+
+import java.util.ArrayList;
+import java.util.Vector;
+
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathFactory;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+public class ModelAccess {  
+
+	private static ModelAccess instance = null;
+	
+	private static String CF_KEY = "ConstraintFailure";
+	
+	private ModelAccess() {
+		super();
+	}
+
+	public static ModelAccess getInstance() { 
+		if (instance == null) { instance = new ModelAccess(); }
+		return instance;
+	}
+	
+	public Node[] getNodes(Node sourceNode, String xpathExpresion) {
+		if (sourceNode == null) { return new Node[0]; }
+		try {
+			XPathFactory factory = XPathFactory.newInstance();
+			XPath xpath = factory.newXPath();
+			NodeList nodes = (NodeList) xpath.evaluate(xpathExpresion,sourceNode,XPathConstants.NODESET);
+			Vector<Node> v = new Vector<Node>();
+			for(int itr = 0; itr < nodes.getLength(); itr++) {
+				Node node = nodes.item(itr);
+				if (node.getNodeType() == Node.ELEMENT_NODE) {
+					v.addElement(node);
+				}
+			}
+			Node result[] = new Node[v.size()];
+			v.copyInto(result);
+			return result;
+		} catch (Exception e) {}
+		return new Node[0];
+	}
+	
+	public String getAttribute(Node sourceNode, String xpathAttributeExpression) {
+		try {
+			XPathFactory factory = XPathFactory.newInstance();
+			XPath xpath = factory.newXPath();
+			NodeList nodes = (NodeList) xpath.evaluate(xpathAttributeExpression,sourceNode,XPathConstants.NODESET);
+			for(int itr = 0; itr < nodes.getLength(); itr++) {
+				Node node = nodes.item(itr);
+				if (node.getNodeType() == Node.ATTRIBUTE_NODE) {
+					return String.valueOf(node.getNodeValue());
+				}
+			}
+		} catch (Exception e) {}
+		return "";
+	}
+	
+	public String bind(Node sourceNode,String pattern) {
+		String buffer = pattern;
+		int i = buffer.indexOf("{");
+		while (i > -1) {
+			int j = buffer.indexOf("}",i);
+			
+			if (j > -1) {
+				String prev = buffer.substring(0,i);
+				String attrExpr   = buffer.substring(i+1,j);
+				String after  = buffer.substring(j+1);
+				buffer = prev + getAttribute(sourceNode,attrExpr) + after;
+				i = buffer.indexOf("{");
+			} else {
+				i = -1;
+			}
+		}
+		return buffer;
+	}
+
+	public void setAttribute(Node sourceNode, String attributeName, String value) {
+		if (sourceNode == null) { return; }
+		try { ((Element) sourceNode).setAttribute(attributeName, value); }
+		catch (Throwable t) {
+			System.out.println(t);
+		}
+	}
+	
+	public void moveUp(Node sourceNode, Node previousNode) {
+		Node parentNode = sourceNode.getParentNode();
+		parentNode.removeChild(sourceNode);
+		parentNode.insertBefore(sourceNode,previousNode);	
+	}
+	
+	public void moveDown(Node sourceNode, Node nextNode) {
+		Node parentNode = sourceNode.getParentNode();
+		parentNode.removeChild(nextNode);
+		parentNode.insertBefore(nextNode,sourceNode);			
+	}
+
+	public Node copyNode(Node sourceNode) {
+		Element newNode = sourceNode.getOwnerDocument().createElement(sourceNode.getNodeName());
+		Node parentNode = sourceNode.getParentNode();
+		parentNode.insertBefore(newNode,sourceNode);					
+		parentNode.removeChild(sourceNode);
+		parentNode.insertBefore(sourceNode,newNode);
+		return newNode;
+	}
+
+	public void removeNode(Node sourceNode) {
+		Node parentNode = sourceNode.getParentNode();
+		parentNode.removeChild(sourceNode);					
+	}
+	
+	public Node newNode(Node sourceNode, String childName) {
+		Element newNode = sourceNode.getOwnerDocument().createElement(childName);
+		sourceNode.appendChild(newNode);
+		return newNode;
+	}
+	
+	public void setFailures(Node targetNode, ArrayList<ConstraintFailure> cf) {
+		targetNode.setUserData(CF_KEY,cf,null);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<ConstraintFailure> getFailures(Node targetNode) {
+		ArrayList<ConstraintFailure> cf = null;
+		cf = (ArrayList<ConstraintFailure>) targetNode.getUserData(CF_KEY);
+		if (cf == null) {
+			cf = new ArrayList<ConstraintFailure>();
+		}
+		return cf;
+	}
+	
+	public void clearFailures(Node targetNode) {
+		setFailures(targetNode,new ArrayList<ConstraintFailure>());
+	}
+	
+	public void addFailure(Node targetNode, ConstraintFailure cf) {
+		ArrayList<ConstraintFailure> cfs = getFailures(targetNode);
+		cfs.add(cf);
+		setFailures(targetNode,cfs);
+	}
+	
+	public ArrayList<ConstraintFailure> failuresAtOrUnder(Node targetNode) {
+
+		if (targetNode == null) { return new ArrayList<ConstraintFailure>(); }
+		
+		ArrayList<ConstraintFailure> cf = new ArrayList<ConstraintFailure>();
+		failuresAtOrUnder(targetNode,cf);
+		
+		return cf;
+	}
+	
+	public ArrayList<ConstraintFailure> failuresAtOrUnder(Node node, ArrayList<ConstraintFailure> cf) {
+
+		cf.addAll(getFailures(node));
+		
+		NodeList nlist = node.getChildNodes();
+		for (int i = 0; i < nlist.getLength(); i++) {
+			Node kid = nlist.item(i);
+			failuresAtOrUnder(kid,cf);
+		}
+
+		return cf;
+	}
+	
+}

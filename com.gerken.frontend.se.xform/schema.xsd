@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:complexType name="Root">
+		<xsd:sequence>
+			<xsd:element name="editor" type="Editor" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Editor">
+		<xsd:sequence>
+			<xsd:element name="type" type="Type" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+			<xsd:element name="domain" type="Domain" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+			<xsd:element name="pattern" type="Pattern" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="name" type="xsd:string" use="required"></xsd:attribute>
+		<xsd:attribute name="id" type="xsd:string" use="required"></xsd:attribute>
+		<xsd:attribute name="provider" type="xsd:string" use="required"></xsd:attribute>
+		<xsd:attribute name="extension" type="xsd:string" use="required"></xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="Type">
+		<xsd:sequence>
+			<xsd:element name="field" type="Field" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="name" type="xsd:string" use="required"></xsd:attribute>
+		<xsd:attribute name="nounPhrase" type="xsd:string" use="required"></xsd:attribute>
+		<xsd:attribute name="indexLabel" type="xsd:string" use="required"></xsd:attribute>
+		<xsd:attribute name="shingleLabel" type="xsd:string" use="required"></xsd:attribute>
+		<xsd:attribute name="parent" type="xsd:string" use="required"></xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="Domain">
+		<xsd:sequence>
+			<xsd:element name="value" type="Value" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+			<xsd:element name="query" type="Query" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="name" type="xsd:string" use="required"></xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="Pattern">
+		<xsd:attribute name="desc" type="xsd:string" use="required"></xsd:attribute>
+		<xsd:attribute name="id" type="xsd:string" use="required"></xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="Field">
+		<xsd:sequence>
+			<xsd:element name="constraint" type="Constraint" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="name" type="xsd:string" use="required"></xsd:attribute>
+		<xsd:attribute name="label" type="xsd:string" use="required"></xsd:attribute>
+		<xsd:attribute name="kind" type="xsd:string" use="required"></xsd:attribute>
+		<xsd:attribute name="domain" type="xsd:string" use="required"></xsd:attribute>
+		<xsd:attribute name="text" type="xsd:string" use="required"></xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="Constraint">
+		<xsd:attribute name="kind" type="xsd:string" use="required"></xsd:attribute>
+		<xsd:attribute name="levels" type="xsd:string" use="required"></xsd:attribute>
+		<xsd:attribute name="ifPresent" type="xsd:string" use="required"></xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="Value">
+		<xsd:attribute name="key" type="xsd:string" use="required"></xsd:attribute>
+		<xsd:attribute name="displayText" type="xsd:string" use="required"></xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="Query">
+		<xsd:attribute name="queryExpression" type="xsd:string" use="required"></xsd:attribute>
+		<xsd:attribute name="fromRoot" type="xsd:string" use="required"></xsd:attribute>
+		<xsd:attribute name="keyExpression" type="xsd:string" use="required"></xsd:attribute>
+		<xsd:attribute name="valueExpression" type="xsd:string" use="required"></xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:element name="root" type="Root"></xsd:element>
+
+</xsd:schema>

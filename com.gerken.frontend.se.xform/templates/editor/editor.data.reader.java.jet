@@ -1,0 +1,92 @@
+package <c:get select="$editor/@editorPackage" />;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.Hashtable;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+<c:iterate select="$editor/type" var="type">
+import <c:get select="$editor/@constraintPackage" />.<c:get select="$type/@validatorClass" />;
+</c:iterate>
+
+public class DataReader {
+
+	private static DataReader instance = null;
+	
+	private Hashtable<String,AbstractConstraint> validators = new Hashtable<String, AbstractConstraint>();
+	
+	private DataReader() {
+	}
+
+	public static DataReader getInstance() {
+		if (instance == null) {
+			instance = new DataReader();
+			instance.loadValidators();
+		}
+		return instance;
+	}
+
+	public Document buildModel(String content) throws Exception {
+		return readData(new ByteArrayInputStream(content.getBytes()));
+	}
+
+	public Document readData(InputStream is) throws Exception {
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder parser = factory.newDocumentBuilder();
+		Document newDocument = parser.parse(is);
+		newDocument.normalize();
+		validate(newDocument);
+		return newDocument;
+	}
+
+	public Document buildEmptyModel() {
+		try { 
+			Document newDocument = buildModel("<root></root>");
+			validate(newDocument);
+			return newDocument; 
+		} catch (Throwable t) { return null; }
+	}
+
+	
+	public void validate(Document doc) {
+		NodeList nlist = doc.getChildNodes();
+		for (int i = 0; i < nlist.getLength(); i++) {
+			Node kid = nlist.item(i);
+			if (kid.getNodeType() == Node.ELEMENT_NODE) {
+				validate((Element)kid);
+			}
+		}
+	}
+	
+	public void validate(Element element) {
+		
+		String name = element.getNodeName();
+		AbstractConstraint validator = validators.get(name);
+		if (validator == null) { return; }
+		validator.validate(element, null);
+		
+		NodeList nlist = element.getChildNodes();
+		for (int i = 0; i < nlist.getLength(); i++) {
+			Node kid = nlist.item(i);
+			int nodeType = kid.getNodeType();
+			if (nodeType == Node.ELEMENT_NODE) {
+				validate((Element)kid);
+			} 
+		}		
+	}
+	
+	private void loadValidators() {
+<c:iterate select="$editor/type" var="type">
+		validators.put("<c:get select="$type/@name" />", new <c:get select="$type/@validatorClass" />());
+</c:iterate>
+	}
+	
+}

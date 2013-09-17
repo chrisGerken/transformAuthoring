@@ -1,0 +1,31 @@
+<c:if test="not($model/type[@name=name($current)])">
+<c:addElement name="type" select="$model" var="type"  />
+<c:set select="$type" name="name"><c:get select="name($current)" /></c:set>
+<c:if test="not($type/@name = 'root')">
+<c:set select="$type" name="parent"><c:get select="name($current/..)" /></c:set>
+</c:if>
+</c:if>
+
+<c:setVariable select="$model/type[@name=name($current)]" var="type"/>
+
+<c:iterate select="$current/attribute::*" var="attr">
+<c:if test="not($type/field[@name=name($attr)])" >
+<c:addElement name="field" select="$type" var="field" />
+<c:set select="$field" name="name"><c:get select="name($attr)" /></c:set>
+<c:set select="$field" name="kind">text</c:set>
+<c:if test="contains($attr,'|')" >
+	<c:stringTokens name="token" string="{$attr}" delimitedBy="|">
+		<c:addElement select="$field" name="value" var="value"/>
+		<c:set select="$value" name="key"><c:get select="$token/@value" /></c:set>    
+	</c:stringTokens>
+	<c:set select="$field" name="kind">combo</c:set>
+</c:if>
+<c:if test="$attr = 'true'" >
+	<c:set select="$field" name="kind">checkbox</c:set>
+</c:if>
+</c:if>
+</c:iterate>
+
+<c:iterate select="$current/*" var="current">
+<c:include template="templates/recurse.jet"/>
+</c:iterate>

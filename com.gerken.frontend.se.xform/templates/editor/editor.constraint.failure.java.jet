@@ -1,0 +1,51 @@
+package <c:get select="$editor/@editorPackage" />;
+
+import org.w3c.dom.Node;
+
+public class ConstraintFailure {
+
+	private Node 	targetNode;
+	private int		severity;
+	private String 	message;
+	private String  shingleLabel;
+	
+	public static int CONSTRAINT_INFO	 = 2;
+	public static int CONSTRAINT_WARNING = 3;
+	public static int CONSTRAINT_ERROR 	 = 4;
+	
+	public ConstraintFailure(Node targetNode, int severity, String message, String shingleLabel) {
+		this.targetNode = targetNode;
+		this.severity   = severity;
+		this.message    = message;
+		this.shingleLabel = shingleLabel;
+	}
+
+	public Node getTargetNode() {
+		return targetNode;
+	}
+
+	public void setTargetNode(Node targetNode) {
+		this.targetNode = targetNode;
+	}
+
+	public int getSeverity() {
+		return severity;
+	}
+
+	public void setSeverity(int severity) {
+		this.severity = severity;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public String getShingleLabel() {
+		return shingleLabel;
+	}
+
+}

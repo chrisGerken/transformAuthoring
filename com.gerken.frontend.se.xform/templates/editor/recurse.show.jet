@@ -1,0 +1,7 @@
+<c:if test="$type/@parent">
+<c:setVariable select="$type" var="current" />
+<c:setVariable select="$editor/type[@name=$type/@parent]" var="type" />
+<c:include template="templates/editor/recurse.show.jet" restoreNames="current,type" />
+<c:setVariable select="$current" var="type" />
+</c:if>
+			stackLayout[<c:get select="$type/@level" />].topControl = <c:get select="$type/@shingleVar" />.getShingle();

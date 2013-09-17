@@ -1,0 +1,46 @@
+package <c:get select="$editor/@domainPackage" />;
+
+import org.w3c.dom.Node;
+
+import <c:get select="$editor/@editorPackage" />.AbstractEnumeration;
+import <c:get select="$editor/@editorPackage" />.ModelAccess;
+import <c:get select="$editor/@editorPackage" />.ShingleEditor;
+
+import java.util.ArrayList;
+
+public class <c:get select="$domain/@domainClass" /> extends AbstractEnumeration {
+	
+	public <c:get select="$domain/@domainClass" />(ShingleEditor editor) {
+		super(editor);
+	}
+	
+	public void addConstants(ArrayList<String> keys, ArrayList<String> values) {
+
+		Node current;
+		ModelAccess ma = ModelAccess.getInstance();
+
+<c:iterate select="$domain/value" var="value">
+		keys.add("<c:get select="$value/@key" />");
+		values.add("<c:get select="$value/@displayText" />");   
+    
+</c:iterate>
+<c:iterate select="$domain/query" var="query">
+<c:if test="$query/@fromRoot = 'false'">
+		current = getTarget();
+</c:if>		
+<c:if test="$query/@fromRoot = 'true'">
+		current = getEditor.getRoot();
+</c:if>		
+		if (current != null) {
+			Node node[] = ma.getNodes(current,"<c:get select="$query/@queryExpression" />");
+			for (int i = 0; i < node.length; i++) {
+				keys.add(ma.getAttribute(node[i],"<c:get select="$query/@keyExpression" />"));
+				values.add(ma.getAttribute(node[i],"<c:get select="$query/@valueExpression" />"));
+			}
+		}
+    
+</c:iterate>
+
+	}
+	
+}

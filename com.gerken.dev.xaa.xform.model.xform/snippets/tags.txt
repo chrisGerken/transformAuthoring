@@ -1,0 +1,33 @@
+"getter" snippets for defined tokens (input and calculated)
+
+
+Tokens for model
+
+	<c:get select="$model/@name" />
+	<c:get select="$model/@srcProject" />
+
+
+Tokens for root
+
+
+
+Tokens for element
+
+	<c:get select="$element/@name" />
+	<c:get select="$element/@elementJava" />
+
+
+Tokens for property
+
+	<c:get select="$property/@name" />
+	<c:get select="$property/@kind" />
+	<c:get select="$property/@getterMethod" />
+	<c:get select="$property/@setterMethod" />
+
+
+Tokens for nested
+
+	<c:get select="$nested/@name" />
+	<c:get select="$nested/@varName" />
+	<c:get select="$nested/@listVarName" />
+

@@ -1,0 +1,154 @@
+package <c:get select="$editor/@editorPackage" />;
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.SWTException;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.forms.events.IHyperlinkListener;
+import org.eclipse.ui.forms.widgets.ExpandableComposite;
+import org.eclipse.ui.forms.widgets.FormText;
+import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.eclipse.ui.forms.widgets.Section;
+import org.eclipse.ui.forms.widgets.TableWrapData;
+import org.w3c.dom.Node;
+
+
+public abstract class AbstractIndex implements IHyperlinkListener {
+
+	private	Section		section;
+	private FormText 	formText;
+	
+	private Node		selectedElement = null;
+	private Node 		sourceNode;
+	
+	
+	private static String delete_key 	= "img_delete";
+	private static String up_key 		= "img_up";
+	private static String down_key 		= "img_down";
+	private static String copy_key 		= "img_copy";
+	private static String edit_key 		= "img_edits";
+
+	private ShingleEditor	part;
+	
+	public AbstractIndex() {
+	}
+
+	public Section createIndexSection(Composite shingle, FormToolkit toolkit, ShingleEditor part) {
+
+		GridLayout 	gl;
+		GridData 	gd;
+	
+		this.part = part;
+		
+		section = toolkit.createSection(shingle,ExpandableComposite.TITLE_BAR|ExpandableComposite.TWISTIE|ExpandableComposite.EXPANDED); // Section.DESCRIPTION|
+		gl = new GridLayout();
+		gl.numColumns = 1;
+		section.setLayout(gl);
+		gd = new GridData(SWT.FILL,SWT.FILL,true,false);
+		gd.widthHint = ShingleEditor.MAX_WIDTH;
+		gd.verticalAlignment = SWT.BEGINNING;
+		section.setLayoutData(gd);
+		section.setDescription(getDescription());
+		section.setText(getTitle());
+		
+		formText = toolkit.createFormText(section, false);
+		try { 
+			formText.setText(getTextContent(), true, false);
+			formText.setImage(delete_key, getShinglePart().getDeleteImage());
+			formText.setImage(up_key, getShinglePart().getUpImage());
+			formText.setImage(down_key, getShinglePart().getDownImage());
+			formText.setImage(copy_key, getShinglePart().getCopyImage());
+			formText.setImage(edit_key, getShinglePart().getEditImage());
+		} catch (SWTException e) { formText.setText("", false, false); }
+//		text.setImage("page", image);
+		section.setClient(formText);
+
+		formText.addHyperlinkListener(this);
+		
+		formText.setColor(getRedID(),toolkit.getColors().getColor(getRedID()));
+		formText.setColor(getBlueID(),toolkit.getColors().getColor(getBlueID()));
+		formText.setColor(getGreenID(),toolkit.getColors().getColor(getGreenID()));
+		formText.setColor(getYellowID(),toolkit.getColors().getColor(getYellowID()));
+
+		return section;
+	}
+	
+	public String getDeleteKey() {
+		return delete_key;
+	}
+	
+	public String getUpKey() {
+		return up_key;
+	}
+	
+	public String getDownKey() {
+		return down_key;
+	}
+	
+	public String getCopyKey() {
+		return copy_key;
+	}
+	
+	public String getEditKey() {
+		return edit_key;
+	}
+	
+	public void update() {
+		try { formText.setText(getTextContent(), true, false); } 
+		catch (SWTException e) { formText.setText("", false, false); } 
+		getShinglePart().resize();
+	}
+	
+	public abstract String getTitle(); 
+
+	public abstract String getDescription();
+
+	protected abstract String getTextContent();
+
+	public Section getSection() {
+		return section;
+	}
+
+	protected String getYellowID() {
+		return ShingleEditor.YELLOW_ID;
+	}
+
+	protected String getGreenID() {
+		return ShingleEditor.GREEN_ID;
+	}
+
+	protected String getBlueID() {
+		return ShingleEditor.BLUE_ID;
+	}
+
+	protected String getRedID() {
+		return ShingleEditor.RED_ID;
+	}
+
+	public ShingleEditor getShinglePart() {
+		return part;
+	}
+
+	public void setSelectedElement(Node element) {
+		this.selectedElement = element;
+	}
+
+	public Node getSelectedElement() {
+		return selectedElement;
+	}
+
+	public void clearSelectedElement() {
+		this.selectedElement = null;
+	}
+
+	public void setSourceNode(Node sourceNode) {
+		this.sourceNode = sourceNode;
+		update();
+	}
+
+	public Node getSourceNode() {
+		return sourceNode;
+	}
+	
+}

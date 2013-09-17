@@ -1,0 +1,318 @@
+package <c:get select="$editor/@editorPackage" />;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.SashForm;
+import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.custom.StackLayout;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.eclipse.ui.part.EditorPart;
+import org.eclipse.ui.texteditor.DocumentProviderRegistry;
+import org.eclipse.ui.texteditor.IDocumentProvider;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+import <c:get select="$editor/@editorProjectName" />.Activator;
+<c:iterate select="$editor/type" var="type">
+import <c:get select="$editor/@shinglesPackage" />.<c:get select="$type/@shingleClass" />;
+</c:iterate>
+
+public class ShingleEditor extends EditorPart {
+
+	public static int 			MAX_WIDTH = 300;
+
+	private FormToolkit			toolkit;
+	
+	private Composite			shingleContainer;
+	private ScrolledComposite	frame;
+	
+	private Composite			shingleStack[] = new Composite[<c:get select="$editor/@maxLevel" />];
+	private StackLayout			stackLayout[] = new StackLayout[<c:get select="$editor/@maxLevel" />];
+	
+	private ArrayList<Composite> shingles = new ArrayList<Composite>(8);
+	
+	private boolean				dirty = false;
+	private ArrayList<IModelChangedListener> modelChangedListeners = new ArrayList<IModelChangedListener>();
+	
+	private Document			dataModel;
+	
+<c:iterate select="$editor/type" var="type">
+	private <c:get select="$type/@shingleClass" />			<c:get select="$type/@shingleVar" />;
+</c:iterate>
+	
+	public static String 		RED_ID 		= "shingle_red";
+	public static String 		BLUE_ID 	= "shingle_blue";
+	public static String 		GREEN_ID 	= "shingle_green";
+	public static String 		YELLOW_ID 	= "shingle_yellow";
+
+	private Image			 	image_delete;
+	private Image			 	image_up;
+	private Image			 	image_down;
+	private Image			 	image_copy;
+	private Image			 	image_edit;
+
+	public ShingleEditor() {
+	}
+
+	public void doSave(IProgressMonitor monitor) {
+		performSave(true, monitor);
+	}
+
+	public void doSaveAs() {
+	}
+
+	public void init(IEditorSite site, IEditorInput input)
+			throws PartInitException {
+		setSite(site);
+		setInput(input);
+		setPartName(input.getName());
+		loadImages();
+	}
+
+	public boolean isDirty() {
+		return dirty;
+	}
+
+	public boolean isSaveAsAllowed() {
+		return false;
+	}
+
+	public void createPartControl(Composite parent) {
+		
+		toolkit = new FormToolkit(parent.getDisplay());
+		
+		toolkit.getColors().createColor(RED_ID, 200, 20, 20);
+		toolkit.getColors().createColor(BLUE_ID, 20, 20, 200);
+		toolkit.getColors().createColor(GREEN_ID, 20, 200, 20);
+		toolkit.getColors().createColor(YELLOW_ID, 200, 200, 20);
+
+		GridLayout gl;
+		GridData   gd;
+		
+		frame = new ScrolledComposite(parent,SWT.H_SCROLL|SWT.V_SCROLL);
+		gl = new GridLayout();
+		gl.numColumns = 1;
+		frame.setLayout(gl);
+		gd = new GridData(SWT.FILL,SWT.FILL,true,true);
+		frame.setLayoutData(gd);	
+		frame.getHorizontalBar().setPageIncrement(305);
+		toolkit.adapt(frame);
+		
+		shingleContainer = new SashForm(frame,SWT.HORIZONTAL);
+		gl = new GridLayout();
+		gl.numColumns = 8;
+		shingleContainer.setLayout(gl);
+		gd = new GridData(SWT.FILL,SWT.FILL,true,true);
+		shingleContainer.setLayoutData(gd);
+		toolkit.adapt(shingleContainer);
+
+		for (int i = 0; i < <c:get select="$editor/@maxLevel" />; i++) {
+			shingleStack[i] = toolkit.createComposite(shingleContainer);
+			stackLayout[i] = new StackLayout();
+			shingleStack[i].setLayout(stackLayout[i]);
+			gd = new GridData(ShingleEditor.MAX_WIDTH,SWT.DEFAULT);
+			gd.verticalAlignment = SWT.BEGINNING;
+			shingleStack[i].setLayoutData(gd);
+		}
+		
+		frame.setContent(shingleContainer); 
+		 
+<c:iterate select="$editor/type" var="type">
+		<c:get select="$type/@shingleVar" /> = new <c:get select="$type/@shingleClass" />();
+		<c:get select="$type/@shingleVar" />.createShingle(shingleStack[<c:get select="$type/@level" />], toolkit, this);
+		shingles.add(<c:get select="$type/@shingleVar" />.getShingle());
+		
+</c:iterate>
+
+		<c:get select="$editor/type[not(@parent)]/@shingleVar" />.setSourceNode(getRoot());
+		showShingle("<c:get select="$editor/type[not(@parent)]/@name" />");
+		
+		resize();
+	}
+
+	public void resize() {
+//		shingleContainer.layout(true,true);
+		for (int i = 0; i < <c:get select="$editor/@maxLevel" />; i++) {
+			shingleStack[i].layout(true,true);
+		}
+		shingleContainer.setSize(shingleContainer.computeSize(SWT.DEFAULT,SWT.DEFAULT));
+//		frame.layout(true);
+	}
+<c:iterate select="$editor/type" var="type">
+	
+	public <c:get select="$type/@shingleClass" /> <c:get select="$type/@shingleGetterMethod" />() {
+		return <c:get select="$type/@shingleVar" />;
+	}
+</c:iterate>		
+	
+	public void showShingle(String name) {
+	
+		int visibleStacks = 0;
+<c:iterate select="$editor/type" var="type">		
+
+		if (name.equals("<c:get select="$type/@name" />")) {
+<c:include template="templates/editor/recurse.show.jet" restoreNames="type" />		
+			<c:get select="$type/@shingleVar" />.setFocus();
+			visibleStacks = <c:get select="number($type/@level) + 1" />;
+		}		
+</c:iterate>		
+	
+		for (int i = 0; i < <c:get select="$editor/@maxLevel" />; i++) {
+			shingleStack[i].setVisible(i<visibleStacks);
+		}
+		
+		resize();
+		
+		Rectangle bounds = shingleStack[visibleStacks-1].getBounds();
+		Point origin = frame.getOrigin();
+		Rectangle clientArea = frame.getClientArea();
+		
+		int scrollAmount = 0;
+		boolean mustScroll = false;
+		if (clientArea.width > bounds.width) {
+			// shingle can fit
+			if (bounds.x+bounds.width>clientArea.width) {
+				// shingle is over the right side.  Shift left
+				mustScroll = true;
+				scrollAmount = bounds.x + bounds.width - clientArea.width - 5;
+			}
+			if (bounds.x < 5) {
+				// shingle is over the left side.  Shift right
+				mustScroll = true;
+				scrollAmount = 5 - bounds.x;
+			}
+		} else {
+			mustScroll = true;
+			scrollAmount = 5 - bounds.x;
+		}
+		if (mustScroll) {
+			frame.setOrigin(new Point(origin.x+scrollAmount,0));
+		}
+	}
+
+	public Document getModel() {
+		if (dataModel == null) {
+			dataModel = buildModel();
+			if (dataModel.getDocumentElement().getNodeName() != "root") {
+				dataModel = DataReader.getInstance().buildEmptyModel();
+			}
+		}
+		return dataModel;
+	}
+	
+	public Element getRoot() {
+		return getModel().getDocumentElement();
+	}
+
+	private Document buildModel() {
+		Document newDoc = null;
+		if (getEditorInput() instanceof IFileEditorInput) {
+			try {
+				IFileEditorInput modelFile = (IFileEditorInput)getEditorInput();
+				IFile ifile = modelFile.getFile();
+				InputStream is = ifile.getContents();
+				newDoc = DataReader.getInstance().readData(is);
+			} catch (Exception e) {
+				newDoc = DataReader.getInstance().buildEmptyModel();
+			}
+		}
+		
+		return newDoc;
+	}
+
+	public void setFocus() {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void dispose() {
+		super.dispose();
+		if (toolkit != null) {
+			toolkit.dispose();
+		}
+	}
+
+	public void modelChanged() {
+		dirty = true;
+		
+		Iterator<IModelChangedListener> iter = modelChangedListeners.iterator();
+		while (iter.hasNext()) {
+			iter.next().modelChanged();
+		}
+	}
+	
+	public void addModelChagedListener(IModelChangedListener listener) {
+		modelChangedListeners.add(listener);
+	}
+	
+	protected void performSave(boolean overwrite, IProgressMonitor progressMonitor) {
+
+		try {
+			IFileEditorInput input= (IFileEditorInput) getEditorInput();
+			ByteArrayInputStream is = new ByteArrayInputStream(DataWriter.getInstance().format(getModel()).getBytes());
+			input.getFile().setContents(is,true,true,progressMonitor);
+			dirty = false;
+		} catch (CoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	private void loadImages() {
+
+		image_delete = Activator.getImageDescriptor("icons/delete.ico").createImage();
+		image_up 	= Activator.getImageDescriptor("icons/up.ico").createImage();
+		image_down 	= Activator.getImageDescriptor("icons/down.ico").createImage();
+		image_copy 	= Activator.getImageDescriptor("icons/copy.ico").createImage();
+		image_edit 	= Activator.getImageDescriptor("icons/edit.ico").createImage();
+
+	}
+
+	public Image getDeleteImage() {
+		return image_delete;
+	}
+
+	public Image getUpImage() {
+		return image_up;
+	}
+
+	public Image getDownImage() {
+		return image_down;
+	}
+
+	public Image getCopyImage() {
+		return image_copy;
+	}
+
+	public Image getEditImage() {
+		return image_edit;
+	}
+
+	public AbstractShingle getShingle(String nodeName) {
+<c:iterate select="$editor/type" var="type">
+		if ("<c:get select="$type/@name" />".equals(nodeName)) { return <c:get select="$type/@shingleVar" />; }
+</c:iterate>		
+		return null;
+	}
+}

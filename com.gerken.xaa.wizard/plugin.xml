@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            name="Advanced Xform Authoring"
+            id="com.gerken.xaa.wizard">
+      </category>
+      <wizard
+            name="Capture Eclipse Exemplar"
+            icon="icons/sample.gif"
+            category="com.gerken.xaa.wizard"
+            class="com.gerken.xaa.wizard.refimpl.EclipseExemplarWizard"
+            id="com.gerken.xaa.wizard.refimpl.EclipseExemplarWizard">
+      </wizard>
+      <wizard
+            name="Capture File System Exemplar"
+            icon="icons/sample.gif"
+            category="com.gerken.xaa.wizard"
+            class="com.gerken.xaa.wizard.refimpl.FileSystemExemplarWizard"
+            id="com.gerken.xaa.wizard.refimpl.FileSystemExemplarWizard">
+      </wizard>
+      <wizard
+            name="Capture Rational Project Interchange Exemplar"
+            icon="icons/sample.gif"
+            category="com.gerken.xaa.wizard"
+            class="com.gerken.xaa.wizard.refimpl.ProjectInterchangeExemplarWizard"
+            id="com.gerken.xaa.wizard.refimpl.ProjectInterchangeExemplarWizard">
+      </wizard>
+      <wizard
+            name="Rebuild Using Exemplar Monolith"
+            icon="icons/sample.gif"
+            category="com.gerken.xaa.wizard"
+            class="com.gerken.xaa.wizard.refimpl.MonolithExemplarWizard"
+            id="com.gerken.xaa.wizard.refimpl.MonolithExemplarWizard">
+      </wizard>
+      <wizard
+            name="Xform Model"
+            icon="icons/sample.gif"
+            category="com.gerken.xaa.wizard"
+            class="com.gerken.xaa.wizard.model.XformModelWizard"
+            id="com.gerken.xaa.wizard.model.XformModelWizard">
+      </wizard>
+      <wizard
+            name="Comparison Between Two Exemplars"
+            icon="icons/sample.gif"
+            category="com.gerken.xaa.wizard"
+            class="com.gerken.xaa.wizard.compare.ComapareExemplarWizard"
+            id="com.gerken.xaa.wizard.compare.CompareExemplarWizard">
+      </wizard>
+   </extension>
+
+</plugin>

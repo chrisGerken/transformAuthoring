@@ -1,0 +1,131 @@
+<%@taglib prefix="ws" id="org.eclipse.jet.workspaceTags" %>
+
+<c:if test="not(isVariableDefined(root))">
+    <c:setVariable select="/*" var="root" />
+</c:if>
+
+*******************************
+
+
+
+*** Begin custom model updates for root (3)
+
+*** End custom model updates for root (3)
+
+
+<c:iterate select="$root/model" var="model">
+    <c:set select="$model" name="srcProject">com.gerken.xaa.model</c:set>
+
+    *** Begin custom model updates for model (4)
+
+    *** End custom model updates for model (4)
+
+
+    <c:iterate select="$model/element" var="element">
+        <c:set select="$element" name="elementJava"><c:get select="$element/@name" /></c:set>
+
+        *** Begin custom model updates for element (94)
+
+        *** End custom model updates for element (94)
+
+
+        <c:iterate select="$element/property" var="property">
+            <c:set select="$property" name="getterMethod">get<c:get select="uppercaseFirst($property/@name)" /></c:set>
+            <c:set select="$property" name="setterMethod">set<c:get select="uppercaseFirst($property/@name)" /></c:set>
+
+            *** Begin custom model updates for property (95)
+
+            *** End custom model updates for property (95)
+
+
+            *** Begin custom model post updates for property (95)
+
+            *** End custom model post updates for property (95)
+
+
+        </c:iterate> 
+
+        <c:iterate select="$element/nested" var="nested">
+            <c:set select="$nested" name="varName"><c:get select="lowercaseFirst($nested/@name)" /></c:set>
+            <c:set select="$nested" name="listVarName"><c:get select="$nested/@varName" />List</c:set>
+
+            *** Begin custom model updates for nested (96)
+
+        *** End custom model updates for nested (96)
+
+
+            *** Begin custom model post updates for nested (96)
+
+        *** End custom model post updates for nested (96)
+
+
+        </c:iterate> 
+
+        *** Begin custom model post updates for element (94)
+
+        *** End custom model post updates for element (94)
+
+
+    </c:iterate> 
+
+    *** Begin custom model post updates for model (4)
+
+    *** End custom model post updates for model (4)
+
+
+</c:iterate> 
+
+*** Begin custom model post updates for root (3)
+
+*** End custom model post updates for root (3)
+
+
+
+*******************************
+
+
+
+*** Begin custom generation updates for root (3)
+
+*** End custom generation updates for root (3)
+
+
+<c:iterate select="$root/model" var="model">
+
+    *** Begin custom generation updates for model (4)
+
+    *** End custom generation updates for model (4)
+
+
+    <c:iterate select="$model/element" var="element">
+        <ws:file path="{$model/@srcProject}/src/com/gerken/xaa/model/xform/{$element/@elementJava}.java" template="templates/element/elementJava.jet" replace="true" />
+
+
+        *** Begin custom generation updates for element (94)
+
+        *** End custom generation updates for element (94)
+
+
+        <c:iterate select="$element/property" var="property">
+
+            *** Begin custom generation updates for property (95)
+
+            *** End custom generation updates for property (95)
+
+        </c:iterate> 
+
+        <c:iterate select="$element/nested" var="nested">
+
+            *** Begin custom generation updates for nested (96)
+
+        *** End custom generation updates for nested (96)
+
+        </c:iterate> 
+    </c:iterate> 
+</c:iterate> 
+
+*******************************
+
+<c:if test="isVariableDefined('org.eclipse.jet.resource.project.name')">
+    <ws:file template="templates/dump.jet" path="{$org.eclipse.jet.resource.project.name}/dump.xml"/>
+</c:if>

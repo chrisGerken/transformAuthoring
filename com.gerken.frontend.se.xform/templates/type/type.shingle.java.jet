@@ -1,0 +1,212 @@
+package <c:get select="$editor/@shinglesPackage" />;
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.forms.widgets.ExpandableComposite;
+import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.eclipse.ui.forms.widgets.Section;
+import org.eclipse.ui.forms.widgets.TableWrapData;
+import org.eclipse.ui.forms.widgets.TableWrapLayout;
+
+import <c:get select="$editor/@constraintPackage" />.<c:get select="$type/@validatorClass" />;
+
+import <c:get select="$editor/@editorPackage" />.AbstractConstraint;
+import <c:get select="$editor/@editorPackage" />.AbstractIndex;
+import org.eclipse.ui.forms.widgets.FormText;
+import org.w3c.dom.Node;
+import <c:get select="$editor/@editorPackage" />.AbstractShingle;
+<c:if test="not($type/@parent)" >
+import <c:get select="$editor/@editorPackage" />.ActionsList;
+import <c:get select="$editor/@editorPackage" />.ErrorList;
+</c:if>
+import <c:get select="$editor/@editorPackage" />.ShingleEditor;
+import <c:get select="$editor/@editorPackage" />.ModelAccess;
+<c:iterate select="$editor/type[@parent=$type/@name]" var="child">
+import <c:get select="$editor/@indexPackage" />.<c:get select="$child/@indexClass" />;
+</c:iterate>
+<c:iterate select="$editor/domain" var="domain">
+import <c:get select="$editor/@domainPackage" />.<c:get select="$domain/@domainClass" />;
+</c:iterate>
+
+public class <c:get select="$type/@shingleClass" /> extends AbstractShingle {
+
+<c:iterate select="$type/field" var="field">
+<c:include template="templates/kinds/fields/{$field/@kind}/declare.var.jet"/>
+</c:iterate>
+
+<c:iterate select="$editor/type[@parent=$type/@name]" var="child">
+		private <c:get select="$child/@indexClass" /> <c:get select="$child/@indexVar" />;
+</c:iterate>
+		
+<c:iterate select="$type/field[@domain]" var="field">
+    	private <c:get select="$editor/domain[@name=$field/@domain]/@domainClass" /> <c:get select="$field/@domainVar"/>; 
+</c:iterate>
+		
+<c:if test="not($type/@parent)" >
+		private ErrorList	indexErrors;
+		private ActionsList indexActions;
+</c:if>
+
+	public <c:get select="$type/@shingleClass" />() {
+		super();
+	}
+
+	protected void addFormSections(Composite shingle, FormToolkit toolkit) {
+		
+		Section 	section;
+		GridLayout 	gl;
+		GridData 	gd;
+
+		Label label;		
+		TableWrapData td;
+		
+		section = toolkit.createSection(shingle,ExpandableComposite.TITLE_BAR|ExpandableComposite.TWISTIE|ExpandableComposite.EXPANDED);
+		gl = new GridLayout();
+		gl.numColumns = 2;
+		section.setLayout(gl);
+		gd = new GridData(SWT.FILL,SWT.FILL,true,false);
+		gd.verticalAlignment = SWT.BEGINNING;
+		section.setLayoutData(gd);
+		section.setText("<c:get select="$type/@shingleLabel" />");
+
+		addFillSpace(toolkit,section,2);
+		
+		Composite client = toolkit.createComposite(section);
+		TableWrapLayout layout = new TableWrapLayout();
+		layout.leftMargin = 2;
+		layout.rightMargin = 2;
+		layout.numColumns = 3;
+		client.setLayout(layout);
+		section.setClient(client);		
+
+		label = toolkit.createLabel(client,"");
+		td = new TableWrapData(TableWrapData.LEFT);
+		td.colspan = 3;
+		label.setLayoutData(td);
+		label.setForeground(new Color(section.getDisplay(),200,0,0));
+		setConstraintMessage(label);
+		label.setVisible(false);
+<c:iterate select="$type/field" var="field">
+
+
+		label = toolkit.createLabel(client,"<c:get select="$field/@label" />");
+		td = new TableWrapData(TableWrapData.LEFT);
+		label.setLayoutData(td);
+
+<c:include template="templates/kinds/fields/{$field/@kind}/create.widget.jet"/>
+</c:iterate>
+
+	}
+	
+	public void addIndexSections(Composite shingle, FormToolkit toolkit, ShingleEditor editor) {
+<c:if test="not($type/@parent)" >
+
+		addFillSpace(toolkit,shingle,1);
+		
+		indexActions = new ActionsList();
+		indexActions.createIndexSection(shingle, toolkit, editor);
+</c:if>
+
+		addFillSpace(toolkit,shingle,1);
+<c:iterate select="$editor/type[@parent=$type/@name]" var="child">
+
+		<c:get select="$child/@indexVar" /> = new <c:get select="$child/@indexClass" />();
+		<c:get select="$child/@indexVar" />.createIndexSection(shingle, toolkit, editor);
+</c:iterate>
+<c:if test="not($type/@parent)" >
+
+		addFillSpace(toolkit,shingle,1);
+		
+		indexErrors = new ErrorList();
+		indexErrors.createIndexSection(shingle, toolkit, editor);
+</c:if>
+
+	}
+	
+	protected void fillFields() {
+
+		setFillingFields(true);
+		
+		ModelAccess helper= ModelAccess.getInstance();
+<c:iterate select="$type/field" var="field">
+<c:include template="templates/kinds/fields/{$field/@kind}/set.field.jet"/>
+</c:iterate>
+
+<c:iterate select="$editor/type[@parent=$type/@name]" var="child">
+		<c:get select="$child/@indexVar" />.setSourceNode(getSourceNode());
+</c:iterate>
+
+<c:if test="not($type/@parent)" >
+		indexErrors.setSourceNode(getSourceNode());
+		indexActions.setSourceNode(getSourceNode());
+
+</c:if>
+		updateConstraintMessage();
+		setFillingFields(false);
+	}
+<c:iterate select="$editor/type[@parent=$type/@name]" var="child">
+
+	public <c:get select="$child/@indexClass" /> <c:get select="$child/@indexGetterMethod" />() {
+		return <c:get select="$child/@indexVar" />;
+	}	
+</c:iterate>
+<c:iterate select="$type/field" var="field">
+
+<c:include template="templates/kinds/fields/{$field/@kind}/widget.listener.jet"/>    
+</c:iterate>
+
+	public void onlyExpandIndexFor(String nodeName) {
+		
+<c:iterate select="$editor/type[@parent=$type/@name]" var="child">
+		<c:get select="$child/@indexGetterMethod" />().getSection().setExpanded("<c:get select="$child/@name" />".equals(nodeName));
+</c:iterate>
+		
+	}
+	
+	public AbstractIndex getIndexFor(String nodeName) {
+<c:iterate select="$editor/type[@parent=$type/@name]" var="child">
+		if ("<c:get select="$child/@name" />".equals(nodeName)) { return <c:get select="$child/@indexGetterMethod" />(); }
+</c:iterate>
+		return null;
+	}
+
+	public AbstractConstraint createValidator() {
+		return new <c:get select="$type/@validatorClass" />();
+	}
+
+	public void updateIndexes(Node node) {
+<c:iterate select="$editor/type[@parent=$type/@name]" var="child">
+	
+		<c:get select="$child/@indexGetterMethod" />().setSelectedElement(node);
+		<c:get select="$child/@indexGetterMethod" />().update();
+</c:iterate>
+
+	}
+
+	public AbstractShingle getShingleToLeft() {
+<c:if test="not($type[@parent])">
+		return null;		
+</c:if>
+<c:if test="$type[@parent]">
+		return getEditor().<c:get select="$editor/type[@name=$type/@parent]/@shingleGetterMethod" />();
+</c:if>
+	}
+
+	public void setFocus() {
+<c:if test="$type/field">
+		<c:get select="$type/field[1]/@widgetVar" />.setFocus();
+</c:if>
+	}
+	
+}

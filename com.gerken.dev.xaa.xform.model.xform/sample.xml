@@ -1,0 +1,25 @@
+
+<root>
+
+    <!--  name :  -->
+    <model  name="">
+
+        <!--  name :  -->
+        <element  name="">
+
+            <!--  name :  -->
+            <!--  kind :  -->
+            <property  name=""  kind="">
+
+            </property>
+
+            <!--  name :  -->
+            <nested  name="">
+
+            </nested>
+
+        </element>
+
+    </model>
+
+</root>

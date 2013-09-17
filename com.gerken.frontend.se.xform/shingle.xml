@@ -1,0 +1,12 @@
+<root   name=""  id="" extension=""  provider="" >
+	   <type name=""  parent=""  nounPhrase=""  indexLabel="{@name}"  shingleLabel=""  >
+	       <field  name=""  label=""  kind=""  text=""  domain=""  >
+	           <constraint  kind="" />
+	       </field>
+	   </type>
+	   <domain name="" >
+	   	   <value  displayText=""  key="" />
+	   </domain>
+	   <pattern  id=""  desc=""  />
+
+</root>

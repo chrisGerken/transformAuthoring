@@ -1,0 +1,16 @@
+	protected class <c:get select="$field/@listenerClass" /> implements SelectionListener {
+		public void widgetDefaultSelected(SelectionEvent e) { exec(); }
+		public void widgetSelected(SelectionEvent e) { exec(); }
+		private void exec() {
+			if (isFillingFields()) { return; }
+			String value = String.valueOf(<c:get select="$field/@widgetVar" />.getSelection());
+			if (value==null) {value = ""; }
+			ModelAccess.getInstance().setAttribute(getSourceNode(),"<c:get select="$field/@name" />",value);
+<c:if test="$type/@parent">			
+			getEditor().<c:get select="$editor/type[@name=$type/@parent]/@shingleGetterMethod" />().<c:get select="$type/@indexGetterMethod" />().update();
+</c:if>			
+			getValidator().validate(getSourceNode(),"<c:get select="$field/@name" />");
+			getEditor().modelChanged();
+			updateConstraintMessage();
+		}
+	}

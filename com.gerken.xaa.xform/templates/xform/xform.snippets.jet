@@ -1,0 +1,11 @@
+"getter" snippets for defined tokens (input and calculated)
+
+<c1:iterate select="$xform/group" var="group">
+
+Tokens for <c1:get select="$group/@name"/>
+
+	<c1:iterate select="$group/token" var="token">
+	<c:get select="$<c1:get select="$group/@name"/>/@<c1:get select="$token/@name"/>" />
+	</c1:iterate>
+
+</c1:iterate>

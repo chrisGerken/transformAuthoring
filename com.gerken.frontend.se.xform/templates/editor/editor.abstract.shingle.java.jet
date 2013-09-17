@@ -1,0 +1,149 @@
+package <c:get select="$editor/@editorPackage" />;
+
+import java.util.ArrayList;
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.w3c.dom.Node;
+
+
+public abstract class AbstractShingle {
+
+	private Composite		shingle;
+	private Label			constraintMessage;
+	
+	private Node			sourceNode;
+	private boolean			fillingFields;
+	private AbstractConstraint validator;
+	
+	private ShingleEditor	editor;
+	
+	public AbstractShingle() {
+	}
+
+	public void setSourceNode(Node sourceNode) {
+		this.sourceNode = sourceNode;
+		fillFields();
+	}
+
+	public Node getSourceNode() {
+		return sourceNode;
+	}
+	
+	public Composite createShingle(Composite parent, FormToolkit toolkit, ShingleEditor editor) {
+		this.setEditor(editor);
+		shingle = toolkit.createComposite(parent);
+		GridLayout gl = new GridLayout();
+		gl.numColumns = 1;
+		shingle.setLayout(gl);
+		GridData gd = new GridData(SWT.DEFAULT,SWT.DEFAULT);
+		gd.verticalAlignment = SWT.BEGINNING;
+		shingle.setLayoutData(gd);
+		addContent(toolkit);
+		
+		return shingle;
+	}
+	
+	public void addContent(FormToolkit toolkit) {
+		addFormSections(shingle,toolkit);
+		addIndexSections(shingle,toolkit,editor);
+	}
+
+	public abstract void addIndexSections(Composite shingle2, FormToolkit toolkit, ShingleEditor editor);
+
+	public Composite getShingle() {
+		return shingle;
+	}
+
+	public void setEditor(ShingleEditor editor) {
+		this.editor = editor;
+	}
+
+	public ShingleEditor getEditor() {
+		return editor;
+	}
+
+	protected abstract void addFormSections(Composite shingle, FormToolkit toolkit);
+
+	protected abstract void fillFields();
+
+	public void setFillingFields(boolean fillingFields) {
+		this.fillingFields = fillingFields;
+	}
+
+	public boolean isFillingFields() {
+		return fillingFields;
+	}
+
+	public void setValidator(AbstractConstraint validator) {
+		this.validator = validator;
+	}
+
+	public AbstractConstraint getValidator() {
+		if (validator == null) {
+			validator = createValidator();
+		}
+		return validator;
+	}
+
+	public abstract AbstractConstraint createValidator();
+
+	public void clearFailureDisplay() {
+		getConstraintMessage().setVisible(false);
+	}
+
+	public void displayFirstFailure(String message) {
+		getConstraintMessage().setVisible(true);
+		getConstraintMessage().setText(message);
+		getShingle().layout(true,true);
+	}
+	
+	public String getFirstContraintErrorText() {
+		ArrayList<ConstraintFailure> cf = ModelAccess.getInstance().getFailures(getSourceNode());
+		if (cf.isEmpty()) { return ""; }
+		return cf.get(0).getMessage();
+	}
+
+	public void setConstraintMessage(Label constraintMessage) {
+		this.constraintMessage = constraintMessage;
+	}
+
+	public Label getConstraintMessage() {
+		return constraintMessage;
+	}
+
+	public void updateConstraintMessage() {
+		String message = getFirstContraintErrorText();
+		if (message.length() > 0) {
+			displayFirstFailure(message);
+		} else {
+			clearFailureDisplay();
+		}
+		
+	}
+	
+	public abstract void setFocus();
+
+	public abstract void onlyExpandIndexFor(String nodeName);
+	
+	public abstract AbstractIndex getIndexFor(String nodeName);
+
+	public abstract void updateIndexes(Node node);
+	
+	public abstract AbstractShingle getShingleToLeft();
+	
+	public void addFillSpace(FormToolkit toolkit, Composite section, int columns) {
+		Label label = toolkit.createLabel(section,"");
+		GridData gd = new GridData(ShingleEditor.MAX_WIDTH,SWT.FILL,true,false);
+		gd.horizontalSpan = columns;
+		gd.widthHint = ShingleEditor.MAX_WIDTH;
+		label.setLayoutData(gd);
+		label.setVisible(false);
+	}
+	
+	
+}

@@ -1,0 +1,6 @@
+		if (<c:get select="$field/@domainVar" /> == null) {
+			<c:get select="$field/@domainVar" /> = new <c:get select="$editor/domain[@name=$field/@domain]/@domainClass" />(getEditor());
+		}
+		<c:get select="$field/@domainVar" />.setTarget(getSourceNode());
+		<c:get select="$field/@widgetVar" />.setItems(<c:get select="$field/@domainVar" />.getTexts());		
+		<c:get select="$field/@widgetVar" />.setText(<c:get select="$field/@domainVar" />.textFor(helper.getAttribute(getSourceNode(),"@<c:get select="$field/@name" />")));

@@ -1,0 +1,79 @@
+package <c:get select="$editor/@constraintPackage" />;
+
+import org.w3c.dom.Node;
+
+import <c:get select="$editor/@editorPackage" />.AbstractConstraint;
+import <c:get select="$editor/@editorPackage" />.ModelAccess;
+
+public class <c:get select="$type/@validatorClass" /> extends AbstractConstraint {
+
+	public <c:get select="$type/@validatorClass" />() {
+	}
+
+	public int validate(Node targetNode, String changedAttributeName) {
+		String buffer;
+		ModelAccess access = ModelAccess.getInstance();
+		access.clearFailures(targetNode);
+<c:iterate select="$type/field" var="field">
+		
+<c:if test="$field/constraint">	
+		buffer = access.getAttribute(targetNode,"@<c:get select="$field/@name" />");
+</c:if>	
+<c:iterate select="$field/constraint" var="constraint">	
+<c:choose select="$constraint/@kind">
+<c:when test=" 'java.package' ">
+		if (!validPackageName(buffer)) {
+			Object args[] = { "<c:get select="$field/@label" />" };
+			String message = bind("{0} must be a valid java package name",args);
+			addError(targetNode,message);
+		}
+</c:when>    
+<c:when test=" 'name' ">
+		if (!validName(buffer)) {
+			Object args[] = { "<c:get select="$field/@label" />" };
+			String message = bind("{0} must be a valid name",args);
+			addError(targetNode,message);
+		}
+</c:when>    
+<c:when test=" 'required' ">
+<c:if test="$constraint/@ifPresent">
+		String other = access.getAttribute(targetNode,"@<c:get select="$constraint/@ifPresent" />");
+		if ((other.length() > 0) && !present(buffer)) {
+</c:if>
+<c:if test="not($constraint/@ifPresent)">
+		if (!present(buffer)) {
+</c:if>
+			Object args[] = { "<c:get select="$field/@label" />" };
+			String message = bind("{0} can not be blank",args);
+			addError(targetNode,message);
+		}
+</c:when>    
+<c:when test=" 'number' ">
+		if (!validNumber(buffer)) {
+			Object args[] = { "<c:get select="$field/@label" />" };
+			String message = bind("{0} must be a valid number",args);
+			addError(targetNode,message);
+		}
+</c:when>    
+<c:when test=" 'unique' ">
+		Node node[] = access.getNodes(targetNode,"<c:iterate select="number($constraint/@levels)" var="index">../</c:iterate><c:iterate select="number($constraint/@levels)-1" var="index">*/</c:iterate><c:get select="$type/@name"/>[@<c:get select="$field/@name"/>='"+buffer+"']");
+		if (node.length > 1) {
+			Object args[] = { "<c:get select="$field/@label" />" };
+			String message = bind("{0} must be a unique value",args);
+			addError(targetNode,message);
+		}
+</c:when>    
+</c:choose>
+</c:iterate>		
+		
+</c:iterate>
+		
+		return access.getFailures(targetNode).size();
+		
+	}
+		
+	public String getShingleLabel() {
+		return "<c:get select="$type/@shingleLabel" />";
+	}
+
+}

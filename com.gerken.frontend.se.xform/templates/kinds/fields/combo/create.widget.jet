@@ -1,0 +1,7 @@
+		<c:get select="$field/@widgetVar" /> = new Combo(client,SWT.READ_ONLY);
+		toolkit.adapt(<c:get select="$field/@widgetVar" />);
+		td = new TableWrapData(TableWrapData.FILL_GRAB);
+		td.grabHorizontal = true;
+		td.colspan = 2;
+		<c:get select="$field/@widgetVar" />.setLayoutData(td);
+		<c:get select="$field/@widgetVar" />.addModifyListener(new <c:get select="$field/@listenerClass" />());

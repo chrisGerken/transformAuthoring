@@ -1,0 +1,121 @@
+package <c:get select="$editor/@editorPackage" />;
+
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.forms.events.HyperlinkEvent;
+import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.eclipse.ui.forms.widgets.Section;
+import org.w3c.dom.Node;
+
+public class ErrorList extends AbstractIndex implements IModelChangedListener {
+
+	private Node sourceNode;
+	private ArrayList<ConstraintFailure> cf;
+
+	public ErrorList() {
+		super();
+	}
+
+	@Override
+	public Section createIndexSection(Composite shingle, FormToolkit toolkit,
+			ShingleEditor part) {
+		Section aSection = super.createIndexSection(shingle, toolkit, part);
+		part.addModelChagedListener(this);
+		return aSection;
+	}
+
+	public String getTextContent() {
+
+		StringBuffer sb = new StringBuffer();
+		sb.append("<form>");
+
+		cf = ModelAccess.getInstance().failuresAtOrUnder(getSourceNode());
+
+		if (cf.isEmpty()) {
+			sb.append("<li style=\"text\" >There are no errors in the data.</li>");
+		} else {
+			sb.append("<li style=\"text\" >Use the links below to navigate to data in error.</li>");
+		}
+
+		for (int i = 0; i < cf.size(); i++) {
+			String message = cf.get(i).getMessage();
+			String label   = cf.get(i).getShingleLabel();
+			
+			if (cf.get(i).getSeverity() == ConstraintFailure.CONSTRAINT_ERROR) {
+				message = "<span color=\"" + getRedID() + "\">" + message + "</span>";
+			} else {
+				message = "<span color=\"" + getYellowID() + "\">" + message + "</span>";
+			}
+			sb.append("<li style=\"text\" ><a href=\""+i+"\">");
+			sb.append(label);
+			sb.append("</a>: ");
+			sb.append(message);
+			sb.append("</li>");
+		}
+
+		sb.append("</form>");
+
+		return sb.toString();
+	}
+
+
+	public void linkActivated(HyperlinkEvent e) {
+		String href = e.getHref().toString();
+		int index = Integer.parseInt(href);
+		
+		ArrayList<Node> nodes = new ArrayList<Node>();
+		Node targetNode = cf.get(index).getTargetNode();
+		nodes.add(targetNode);
+		while (!targetNode.getNodeName().equals("root")) {
+			targetNode = targetNode.getParentNode();
+			nodes.add(0,targetNode);
+		}
+		
+		for (int i = 0; i < nodes.size(); i++) {
+			targetNode = nodes.get(i);
+			AbstractShingle shingle = getShinglePart().getShingle(targetNode.getNodeName());
+			shingle.setSourceNode(targetNode);
+			if (i < (nodes.size()-1)) {
+				String name = nodes.get(i+1).getNodeName();
+				shingle.onlyExpandIndexFor(name);
+				shingle.updateIndexes(nodes.get(i+1));
+			} else {
+				shingle.onlyExpandIndexFor("");
+				shingle.updateIndexes(null);
+			}
+		}
+		
+		getShinglePart().showShingle(cf.get(index).getTargetNode().getNodeName());
+		
+	}
+
+	public void linkEntered(HyperlinkEvent e) {}
+ 
+	public void linkExited(HyperlinkEvent e) {}
+	
+
+	public String getDescription() {
+		return "Click to edit";
+	}
+
+	public String getTitle() {
+		return "Model Errors";
+	}
+
+
+	public void setSourceNode(Node sourceNode) {
+		this.sourceNode = sourceNode;
+		update();
+	}
+
+	public Node getSourceNode() {
+		return sourceNode;
+	}
+
+	public void modelChanged() {
+		update();
+	}
+		
+}

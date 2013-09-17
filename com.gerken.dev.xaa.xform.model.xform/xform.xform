@@ -1,0 +1,161 @@
+
+<xform id="2" nextID="97" provider="Gerken Intellectual Properties, LLC" version="0.4.0" xformId="com.gerken.dev.xaa.xform.model.xform">
+	<group id="4" name="model" parentId="3" root="false">
+		<token derived="false" desc="Name of the artifact collection to be generated" formula="" name="name">
+</token>
+		<token derived="true" desc="Token representing the new generated name for project com.gerken.xaa.model" formula="com.gerken.xaa.model" name="srcProject">
+</token>
+		</group>
+	<group id="3" name="root" parentId="" root="true">
+</group>
+	<group id="94" name="element" parentId="4">
+		<token derived="false" desc="" formula="" name="name"/>
+		<createFile binary="false" changeableName="true" folderExpr="/src/com/gerken/xaa/model/xform" id="86" nameExpr="{$element/@elementJava}.java" oPath="src/com/gerken/xaa/model/xform/Group.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="elementJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000082">
+			<folderExpr>src/com/gerken/xaa/model/xform</folderExpr>
+			<nameExpr>{$element/@elementJava}.java</nameExpr>
+			</createFile>
+		<token derived="true" desc="variable for Group" formula="{$element/@name}" name="elementJava"/>
+		</group>
+	<group id="95" name="property" parentId="94">
+		<token derived="false" desc="" formula="" name="name"/>
+		<token derived="false" desc="" formula="" name="kind"/>
+		<token derived="true" desc="" formula="get{uppercaseFirst($property/@name)}" name="getterMethod"/>
+		<token derived="true" desc="" formula="set{uppercaseFirst($property/@name)}" name="setterMethod"/>
+		</group>
+	<ignored>
+		<createProject id="5" locationExpr="" oLocation="" oPath="com.gerken.xaa.model" projectExpr="{$model/@srcProject}" purpose="src">
+</createProject>
+		<createFile binary="false" changeableName="false" folderExpr="" id="6" nameExpr=".classpath" oPath=".classpath" projectExpr="{$model/@srcProject}" projectId="5" purpose="classpath" purposeAsTokenName="false" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000002">
+</createFile>
+		<createFile binary="false" changeableName="false" folderExpr="" id="7" nameExpr=".project" oPath=".project" projectExpr="{$model/@srcProject}" projectId="5" purpose="project" purposeAsTokenName="false" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000003">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="" id="9" nameExpr="tryme.jpage" oPath="tryme.jpage" projectExpr="{$model/@srcProject}" projectId="5" purpose="trymeJpage" purposeAsTokenName="false" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000005">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr=".settings" id="10" nameExpr="org.eclipse.jdt.core.prefs" oPath=".settings/org.eclipse.jdt.core.prefs" projectExpr="{$model/@srcProject}" projectId="5" purpose="orgEclipseJdtCorePrefs" purposeAsTokenName="false" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000006">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="META-INF" id="11" nameExpr="MANIFEST.MF" oPath="META-INF/MANIFEST.MF" projectExpr="{$model/@srcProject}" projectId="5" purpose="manifestMf" purposeAsTokenName="false" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000007">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@adaptorSrcSrcDir}" id="54" nameExpr="EclipseAdaptor.java" oPath="src/com/gerken/xaa/adaptor/EclipseAdaptor.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="eclipseadaptorJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000050">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@adaptorSrcSrcDir}" id="55" nameExpr="FileSystemAdaptor.java" oPath="src/com/gerken/xaa/adaptor/FileSystemAdaptor.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="filesystemadaptorJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000051">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@adaptorSrcSrcDir}" id="56" nameExpr="IExemplarAdaptor.java" oPath="src/com/gerken/xaa/adaptor/IExemplarAdaptor.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="iexemplaradaptorJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000052">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@adaptorSrcSrcDir}" id="57" nameExpr="ProjectInterchangeAdaptor.java" oPath="src/com/gerken/xaa/adaptor/ProjectInterchangeAdaptor.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="projectinterchangeadaptorJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000053">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@adaptorSrcSrcDir}" id="58" nameExpr="ProjectInterchangeResource.java" oPath="src/com/gerken/xaa/adaptor/ProjectInterchangeResource.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="projectinterchangeresourceJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000054">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@modelSrcSrcDir}" id="59" nameExpr="XaaModelPlugin.java" oPath="src/com/gerken/xaa/model/XaaModelPlugin.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="xaamodelpluginJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000055">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@backupSrcSrcDir}" id="60" nameExpr="CreateFile.java" oPath="src/com/gerken/xaa/model/backup/CreateFile.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="createfileJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000056">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@backupSrcSrcDir}" id="61" nameExpr="CreateFolder.java" oPath="src/com/gerken/xaa/model/backup/CreateFolder.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="createfolderJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000057">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@backupSrcSrcDir}" id="62" nameExpr="CreateProject.java" oPath="src/com/gerken/xaa/model/backup/CreateProject.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="createprojectJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000058">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@backupSrcSrcDir}" id="63" nameExpr="Group.java" oPath="src/com/gerken/xaa/model/backup/Group.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="groupJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000059">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@backupSrcSrcDir}" id="64" nameExpr="ModelElement.java" oPath="src/com/gerken/xaa/model/backup/ModelElement.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="modelelementJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000060">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@backupSrcSrcDir}" id="65" nameExpr="NewToken.java" oPath="src/com/gerken/xaa/model/backup/NewToken.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="newtokenJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000061">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@backupSrcSrcDir}" id="66" nameExpr="Replacement.java" oPath="src/com/gerken/xaa/model/backup/Replacement.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="replacementJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000062">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@backupSrcSrcDir}" id="67" nameExpr="Token.java" oPath="src/com/gerken/xaa/model/backup/Token.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="tokenJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000063">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@backupSrcSrcDir}" id="68" nameExpr="Xform.java" oPath="src/com/gerken/xaa/model/backup/Xform.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="xformJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000064">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@managementSrcSrcDir}" id="69" nameExpr="XformAccess.java" oPath="src/com/gerken/xaa/model/management/XformAccess.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="xformaccessJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000065">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@prepareSrcSrcDir}" id="70" nameExpr="Converter.java" oPath="src/com/gerken/xaa/model/prepare/Converter.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="converterJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000066">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@refimplSrcSrcDir}" id="71" nameExpr="ExemplarFile.java" oPath="src/com/gerken/xaa/model/refimpl/ExemplarFile.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="exemplarfileJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000067">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@refimplSrcSrcDir}" id="72" nameExpr="ExemplarProject.java" oPath="src/com/gerken/xaa/model/refimpl/ExemplarProject.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="exemplarprojectJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000068">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@refimplSrcSrcDir}" id="73" nameExpr="ModelElement.java" oPath="src/com/gerken/xaa/model/refimpl/ModelElement.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="modelelementJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000069">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@refimplSrcSrcDir}" id="74" nameExpr="ReferenceImplementation.java" oPath="src/com/gerken/xaa/model/refimpl/ReferenceImplementation.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="referenceimplementationJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000070">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@retiredSrcSrcDir}" id="75" nameExpr="Artifact.java" oPath="src/com/gerken/xaa/model/retired/Artifact.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="artifactJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000071">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@retiredSrcSrcDir}" id="76" nameExpr="File.java" oPath="src/com/gerken/xaa/model/retired/File.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="fileJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000072">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@retiredSrcSrcDir}" id="77" nameExpr="Generation.java" oPath="src/com/gerken/xaa/model/retired/Generation.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="generationJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000073">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@retiredSrcSrcDir}" id="78" nameExpr="ModelElement.java" oPath="src/com/gerken/xaa/model/retired/ModelElement.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="modelelementJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000074">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@retiredSrcSrcDir}" id="79" nameExpr="Project.java" oPath="src/com/gerken/xaa/model/retired/Project.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="projectJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000075">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@retiredSrcSrcDir}" id="80" nameExpr="Replacement.java" oPath="src/com/gerken/xaa/model/retired/Replacement.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="replacementJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000076">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@retiredSrcSrcDir}" id="81" nameExpr="Scope.java" oPath="src/com/gerken/xaa/model/retired/Scope.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="scopeJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000077">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@retiredSrcSrcDir}" id="82" nameExpr="sample.xml" oPath="src/com/gerken/xaa/model/retired/sample.xml" projectExpr="{$model/@srcProject}" projectId="5" purpose="sampleXml" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000078">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@xformSrcSrcDir}" id="83" nameExpr="CreateFile.java" oPath="src/com/gerken/xaa/model/xform/CreateFile.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="createfileJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000079">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@xformSrcSrcDir}" id="84" nameExpr="CreateFolder.java" oPath="src/com/gerken/xaa/model/xform/CreateFolder.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="createfolderJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000080">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@xformSrcSrcDir}" id="85" nameExpr="CreateProject.java" oPath="src/com/gerken/xaa/model/xform/CreateProject.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="createprojectJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000081">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@xformSrcSrcDir}" id="87" nameExpr="Ignored.java" oPath="src/com/gerken/xaa/model/xform/Ignored.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="ignoredJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000083">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@xformSrcSrcDir}" id="88" nameExpr="ModelElement.java" oPath="src/com/gerken/xaa/model/xform/ModelElement.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="modelelementJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000084">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@xformSrcSrcDir}" id="89" nameExpr="NewToken.java" oPath="src/com/gerken/xaa/model/xform/NewToken.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="newtokenJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000085">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@xformSrcSrcDir}" id="90" nameExpr="Replacement.java" oPath="src/com/gerken/xaa/model/xform/Replacement.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="replacementJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000086">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@xformSrcSrcDir}" id="91" nameExpr="Token.java" oPath="src/com/gerken/xaa/model/xform/Token.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="tokenJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000087">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@xformSrcSrcDir}" id="92" nameExpr="Xform.java" oPath="src/com/gerken/xaa/model/xform/Xform.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="xformJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000088">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@persistSrcSrcDir}" id="93" nameExpr="RefImplPersist.java" oPath="src/com/gerken/xaa/persist/RefImplPersist.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="refimplpersistJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000089">
+</createFile>
+		<createFile binary="false" changeableName="true" folderExpr="/src/{$model/@persistSrcSrcDir}" id="94" nameExpr="Resourcer.java" oPath="src/com/gerken/xaa/persist/Resourcer.java" projectExpr="{$model/@srcProject}" projectId="5" purpose="resourcerJava" purposeAsTokenName="true" replace="true" src="com.gerken.dev.xaa.xform.model/refimpl/art000090">
+</createFile>
+		<token derived="false" desc="Token representing the package for com.gerken.xaa.model.refimpl" formula="" name="refimplSrcSrcPkg">
+</token>
+		<token derived="true" desc="Token representing the directory for com.gerken.xaa.model.refimpl" formula="{translate($model/@refimplSrcSrcPkg,&apos;.&apos;,&apos;/&apos;)}" name="refimplSrcSrcDir">
+</token>
+		<token derived="false" desc="Token representing the package for com.gerken.xaa.model.retired" formula="" name="retiredSrcSrcPkg">
+</token>
+		<token derived="true" desc="Token representing the directory for com.gerken.xaa.model.retired" formula="{translate($model/@retiredSrcSrcPkg,&apos;.&apos;,&apos;/&apos;)}" name="retiredSrcSrcDir">
+</token>
+		<token derived="false" desc="Token representing the package for com.gerken.xaa.model.prepare" formula="" name="prepareSrcSrcPkg">
+</token>
+		<token derived="true" desc="Token representing the directory for com.gerken.xaa.model.prepare" formula="{translate($model/@prepareSrcSrcPkg,&apos;.&apos;,&apos;/&apos;)}" name="prepareSrcSrcDir">
+</token>
+		<token derived="false" desc="Token representing the package for com.gerken.xaa.persist" formula="" name="persistSrcSrcPkg">
+</token>
+		<token derived="true" desc="Token representing the directory for com.gerken.xaa.persist" formula="{translate($model/@persistSrcSrcPkg,&apos;.&apos;,&apos;/&apos;)}" name="persistSrcSrcDir">
+</token>
+		<token derived="false" desc="Token representing the package for com.gerken.xaa.model.management" formula="" name="managementSrcSrcPkg">
+</token>
+		<token derived="true" desc="Token representing the directory for com.gerken.xaa.model.management" formula="{translate($model/@managementSrcSrcPkg,&apos;.&apos;,&apos;/&apos;)}" name="managementSrcSrcDir">
+</token>
+		<token derived="false" desc="Token representing the package for com.gerken.xaa.model" formula="" name="modelSrcSrcPkg">
+</token>
+		<token derived="true" desc="Token representing the directory for com.gerken.xaa.model" formula="{translate($model/@modelSrcSrcPkg,&apos;.&apos;,&apos;/&apos;)}" name="modelSrcSrcDir">
+</token>
+		<token derived="false" desc="Token representing the package for com.gerken.xaa.model.backup" formula="" name="backupSrcSrcPkg">
+</token>
+		<token derived="true" desc="Token representing the directory for com.gerken.xaa.model.backup" formula="{translate($model/@backupSrcSrcPkg,&apos;.&apos;,&apos;/&apos;)}" name="backupSrcSrcDir">
+</token>
+		<token derived="false" desc="Token representing the package for com.gerken.xaa.model.xform" formula="" name="xformSrcSrcPkg">
+</token>
+		<token derived="true" desc="Token representing the directory for com.gerken.xaa.model.xform" formula="{translate($model/@xformSrcSrcPkg,&apos;.&apos;,&apos;/&apos;)}" name="xformSrcSrcDir">
+</token>
+		<token derived="false" desc="Token representing the package for com.gerken.xaa.adaptor" formula="" name="adaptorSrcSrcPkg">
+</token>
+		<token derived="true" desc="Token representing the directory for com.gerken.xaa.adaptor" formula="{translate($model/@adaptorSrcSrcPkg,&apos;.&apos;,&apos;/&apos;)}" name="adaptorSrcSrcDir">
+</token>
+		</ignored>
+	<replacement newString="{$element/@elementJava}" oldString="Group"/>
+	<group id="96" name="nested" parentId="94">
+		<token derived="false" desc="" formula="" name="name"/>
+		<token derived="true" desc="" formula="{lowercaseFirst($nested/@name)}" name="varName"/>
+		<token derived="true" desc="" formula="{$nested/@varName}List" name="listVarName"/>
+		</group>
+	</xform>

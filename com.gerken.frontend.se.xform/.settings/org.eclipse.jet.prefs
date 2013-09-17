@@ -1,0 +1,6 @@
+#Sat Apr 11 08:15:51 CDT 2009
+eclipse.preferences.version=1
+org.eclipse.jet.compiledTemplatePackage=com.gerken.frontend.se.xform.compiled
+org.eclipse.jet.compiledTemplateSrcDir=jet2java
+org.eclipse.jet.projectPrefs=true
+org.eclipse.jet.useJava5=true

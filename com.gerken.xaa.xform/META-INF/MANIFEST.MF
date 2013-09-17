@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: com.gerken.xaa.xform
+Bundle-SymbolicName: com.gerken.xaa.xform;singleton:=true
+Bundle-Version: 1.6.5
+Bundle-Vendor: 
+Require-Bundle: org.eclipse.jet
+Bundle-ClassPath: .,bin/
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

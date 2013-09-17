@@ -1,0 +1,26 @@
+<root>
+   <editor  id=""  name="" extension=""  provider="" >
+<c:iterate select="$model/type" var="type">
+	   <type name="<c:get select="$type/@name"/>"  <c:if test="$type/@parent">parent="<c:get select="$type/@parent"/>"  </c:if>nounPhrase=""  indexLabel="{@<c:get select="$type/field/@name"/>}"  shingleLabel=""  >
+<c:iterate select="$type/field" var="field" >	   
+	       <field  name="<c:get select="$field/@name"/>"  label="<c:get select="$field/@name"/>"  kind="<c:get select="$field/@kind" />"<c:if test="$field/@kind='checkbox'">  text="Checkbox Text"</c:if><c:if test="$field/@kind='combo'">  domain="<c:get select="$field/@name" />Values"</c:if>  >
+	           <constraint  kind="required" />
+	           <constraint  kind="name" />
+	           <constraint  kind="java.package" />
+	           <constraint  kind="unique" levels="1"  />
+	       </field>
+</c:iterate>	       
+	   </type>
+</c:iterate>	
+<c:iterate select="$model/type/field[@kind='combo']" var="field" >   
+	   <domain name="<c:get select="$field/@name" />Values" >
+<c:iterate select="$field/value" var="value">
+		    <value  key="<c:get select="$value/@key"/>"  displayText="<c:get select="$value/@key"/>" />
+</c:iterate>	   
+	        <query  desc="" fromRoot="" queryExpression=""  keyExpression=""  valueExpression="" />
+	   </domain>
+</c:iterate>	   
+	   <pattern  id=""  desc=""  />
+   </editor>
+</root>
+

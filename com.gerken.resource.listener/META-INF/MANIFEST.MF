@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Listener
+Bundle-SymbolicName: com.gerken.resource.listener; singleton:=true
+Bundle-Version: 0.8.3
+Bundle-Activator: com.gerken.resource.listener.Activator
+Bundle-Vendor: Gerken Intellectual Properties, LLC
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy

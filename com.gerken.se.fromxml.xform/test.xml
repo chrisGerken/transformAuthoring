@@ -1,0 +1,13 @@
+<root   name=""  id="" extension=""  provider="" >
+	   <type name=""  parent="|"  nounPhrase=""  indexLabel="{@name}"  shingleLabel=""  >
+	       <field  name=""  label=""  kind="text|combo|checkbox"  text=""  domain=""  >
+	           <constraint  kind="" levels="" ifPresent="" />
+	       </field>
+	   </type>
+	   <domain name="" >
+	   	   <value  displayText=""  key="" />
+	        <query  desc="" fromRoot="true" queryExpression=""  keyExpression=""  valueExpression="" />
+	   </domain>
+	   <pattern  id=""  desc=""  />
+
+</root>

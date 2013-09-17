@@ -1,0 +1,16 @@
+<root>
+   <editor  id=""  name="" extension=""  provider="" >
+	   <type name=""  parent=""  nounPhrase=""  indexLabel="{@name}"  shingleLabel=""  >
+	       <field  name=""  label=""  kind="" text=""  domain=""  >
+					<!--  levels (for unique)is the number of DOM levels up for the scope  -->
+					<!--  ifPresent (for required) is the other field whose presence forces required -->	       
+	           <constraint  kind="" levels="" ifPresent="" />
+	       </field>
+	   </type>
+	   <domain name="" >
+	        <value  key=""  displayText="" />
+	        <query  desc="" fromRoot="" queryExpression=""  keyExpression=""  valueExpression="" />
+	   </domain>
+	   <pattern  id=""  desc=""  />
+   </editor>
+</root>

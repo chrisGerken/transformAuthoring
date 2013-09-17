@@ -1,0 +1,165 @@
+<root>
+   <editor  id=""  name="" extension=""  provider="" >
+	   <type name="root"  nounPhrase=""  indexLabel="{@name}"  shingleLabel=""  >
+	       <field  name="name"  label="name"  kind="text"  >
+	           <constraint  kind="required" />
+	           <constraint  kind="name" />
+	           <constraint  kind="java.package" />
+	       </field>
+	       <field  name="id"  label="id"  kind="text"  >
+	           <constraint  kind="required" />
+	           <constraint  kind="name" />
+	           <constraint  kind="java.package" />
+	       </field>
+	       <field  name="extension"  label="extension"  kind="text"  >
+	           <constraint  kind="required" />
+	           <constraint  kind="name" />
+	           <constraint  kind="java.package" />
+	       </field>
+	       <field  name="provider"  label="provider"  kind="text"  >
+	           <constraint  kind="required" />
+	           <constraint  kind="name" />
+	           <constraint  kind="java.package" />
+	       </field>
+	   </type>
+	   <type name="type"  parent="root"  nounPhrase=""  indexLabel="{@name}"  shingleLabel=""  >
+	       <field  name="name"  label="name"  kind="text"  >
+	           <constraint  kind="required" />
+	           <constraint  kind="name" />
+	           <constraint  kind="java.package" />
+	       </field>
+	       <field  name="parent"  label="parent"  kind="combo"  domain="parentValues"  >
+	           <constraint  kind="required" />
+	           <constraint  kind="name" />
+	           <constraint  kind="java.package" />
+	       </field>
+	       <field  name="nounPhrase"  label="nounPhrase"  kind="text"  >
+	           <constraint  kind="required" />
+	           <constraint  kind="name" />
+	           <constraint  kind="java.package" />
+	       </field>
+	       <field  name="indexLabel"  label="indexLabel"  kind="text"  >
+	           <constraint  kind="required" />
+	           <constraint  kind="name" />
+	           <constraint  kind="java.package" />
+	       </field>
+	       <field  name="shingleLabel"  label="shingleLabel"  kind="text"  >
+	           <constraint  kind="required" />
+	           <constraint  kind="name" />
+	           <constraint  kind="java.package" />
+	       </field>
+	   </type>
+	   <type name="field"  parent="type"  nounPhrase=""  indexLabel="{@name}"  shingleLabel=""  >
+	       <field  name="name"  label="name"  kind="text"  >
+	           <constraint  kind="required" />
+	           <constraint  kind="name" />
+	           <constraint  kind="java.package" />
+	       </field>
+	       <field  name="label"  label="label"  kind="text"  >
+	           <constraint  kind="required" />
+	           <constraint  kind="name" />
+	           <constraint  kind="java.package" />
+	       </field>
+	       <field  name="kind"  label="kind"  kind="combo"  domain="kindValues"  >
+	           <constraint  kind="required" />
+	           <constraint  kind="name" />
+	           <constraint  kind="java.package" />
+	       </field>
+	       <field  name="text"  label="text"  kind="text"  >
+	           <constraint  kind="required" />
+	           <constraint  kind="name" />
+	           <constraint  kind="java.package" />
+	       </field>
+	       <field  name="domain"  label="domain"  kind="text"  >
+	           <constraint  kind="required" />
+	           <constraint  kind="name" />
+	           <constraint  kind="java.package" />
+	       </field>
+	   </type>
+	   <type name="constraint"  parent="field"  nounPhrase=""  indexLabel="{@kind}"  shingleLabel=""  >
+	       <field  name="kind"  label="kind"  kind="text"  >
+	           <constraint  kind="required" />
+	           <constraint  kind="name" />
+	           <constraint  kind="java.package" />
+	       </field>
+	       <field  name="levels"  label="levels"  kind="text"  >
+	           <constraint  kind="required" />
+	           <constraint  kind="name" />
+	           <constraint  kind="java.package" />
+	       </field>
+	       <field  name="ifPresent"  label="ifPresent"  kind="text"  >
+	           <constraint  kind="required" />
+	           <constraint  kind="name" />
+	           <constraint  kind="java.package" />
+	       </field>
+	   </type>
+	   <type name="domain"  parent="root"  nounPhrase=""  indexLabel="{@name}"  shingleLabel=""  >
+	       <field  name="name"  label="name"  kind="text"  >
+	           <constraint  kind="required" />
+	           <constraint  kind="name" />
+	           <constraint  kind="java.package" />
+	       </field>
+	   </type>
+	   <type name="value"  parent="domain"  nounPhrase=""  indexLabel="{@displayText}"  shingleLabel=""  >
+	       <field  name="displayText"  label="displayText"  kind="text"  >
+	           <constraint  kind="required" />
+	           <constraint  kind="name" />
+	           <constraint  kind="java.package" />
+	       </field>
+	       <field  name="key"  label="key"  kind="text"  >
+	           <constraint  kind="required" />
+	           <constraint  kind="name" />
+	           <constraint  kind="java.package" />
+	       </field>
+	   </type>
+	   <type name="query"  parent="domain"  nounPhrase=""  indexLabel="{@desc}"  shingleLabel=""  >
+	       <field  name="desc"  label="desc"  kind="text"  >
+	           <constraint  kind="required" />
+	           <constraint  kind="name" />
+	           <constraint  kind="java.package" />
+	       </field>
+	       <field  name="fromRoot"  label="fromRoot"  kind="checkbox"  text="Checkbox Text"  >
+	           <constraint  kind="required" />
+	           <constraint  kind="name" />
+	           <constraint  kind="java.package" />
+	       </field>
+	       <field  name="queryExpression"  label="queryExpression"  kind="text"  >
+	           <constraint  kind="required" />
+	           <constraint  kind="name" />
+	           <constraint  kind="java.package" />
+	       </field>
+	       <field  name="keyExpression"  label="keyExpression"  kind="text"  >
+	           <constraint  kind="required" />
+	           <constraint  kind="name" />
+	           <constraint  kind="java.package" />
+	       </field>
+	       <field  name="valueExpression"  label="valueExpression"  kind="text"  >
+	           <constraint  kind="required" />
+	           <constraint  kind="name" />
+	           <constraint  kind="java.package" />
+	       </field>
+	   </type>
+	   <type name="pattern"  parent="root"  nounPhrase=""  indexLabel="{@id}"  shingleLabel=""  >
+	       <field  name="id"  label="id"  kind="text"  >
+	           <constraint  kind="required" />
+	           <constraint  kind="name" />
+	           <constraint  kind="java.package" />
+	       </field>
+	       <field  name="desc"  label="desc"  kind="text"  >
+	           <constraint  kind="required" />
+	           <constraint  kind="name" />
+	           <constraint  kind="java.package" />
+	       </field>
+	   </type>
+	   <domain name="parentValues" >
+		    <value  key=""  displayText="" />
+	   </domain>
+	   <domain name="kindValues" >
+		    <value  key="text"  displayText="text" />
+		    <value  key="combo"  displayText="combo" />
+		    <value  key="checkbox"  displayText="checkbox" />
+	   </domain>
+	   <pattern  id=""  desc=""  />
+   </editor>
+</root>
+

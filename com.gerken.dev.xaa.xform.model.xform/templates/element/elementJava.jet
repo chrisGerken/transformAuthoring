@@ -1,0 +1,116 @@
+package com.gerken.xaa.model.xform;
+
+<c:userRegion>		// Begin imports<c:initialCode>
+import java.util.ArrayList;
+import java.util.Collection;
+
+import org.w3c.dom.Node;
+</c:initialCode>		// End imports</c:userRegion>
+
+public class <c:get select="$element/@elementJava" /> extends ModelElement {
+	
+<c:iterate select="$element/property" var="property">
+	private <c:get select="$property/@kind" />		<c:get select="$property/@name" />;
+</c:iterate>
+<c:iterate select="$element/nested" var="nested">
+	private ArrayList<<c:get select="$nested/@name" />> <c:get select="$nested/@listVarName" /> = new ArrayList<<c:get select="$nested/@name" />>();
+	private <c:get select="$nested/@name" />[]		<c:get select="$nested/@varName" />;
+</c:iterate>
+
+<c:userRegion>		// Begin custom variables<c:initialCode>
+
+</c:initialCode>		// End custom variables</c:userRegion>
+
+	public <c:get select="$element/@elementJava" />() {
+		super();
+	}
+
+	public <c:get select="$element/@elementJava" />(Node node) {
+<c:iterate select="$element/property" var="property">
+<c:choose select="$property/@kind" >
+<c:when test=" 'String' ">
+		this.<c:get select="$property/@name" /> = getAttr(node,"<c:get select="$property/@name" />");
+</c:when>
+<c:when test=" 'boolean' ">
+		<c:get select="$property/@name" /> = getBooleanAttr(node,"<c:get select="$property/@name" />");
+</c:when>
+</c:choose>
+</c:iterate>
+
+<c:userRegion>		// Begin read custom attributes<c:initialCode>
+
+</c:initialCode>		// End read custom attributes</c:userRegion>
+
+		Node kid[] = getChildren(node);
+		for (int k = 0; k < kid.length; k++) {
+			String name = kid[k].getNodeName();
+<c:iterate select="$element/nested" var="nested">
+			if ("<c:get select="$nested/@varName" />".equals(name)) { add<c:get select="$nested/@name" />(new <c:get select="$nested/@name" />(kid[k])); }
+</c:iterate>
+		}
+	}
+<c:iterate select="$element/property" var="property">
+
+	public <c:get select="$property/@kind" /> <c:get select="$property/@getterMethod" />() {
+		return <c:get select="$property/@name" />;
+	}
+
+	public void <c:get select="$property/@setterMethod" />(<c:get select="$property/@kind" /> <c:get select="$property/@name" />) {
+		this.<c:get select="$property/@name" /> = <c:get select="$property/@name" />;
+	}
+</c:iterate>
+<c:iterate select="$element/nested" var="nested">
+
+	public <c:get select="$nested/@name" />[] get<c:get select="$nested/@name" />Array() {
+		if (<c:get select="$nested/@varName" /> == null) {
+			<c:get select="$nested/@varName" /> = new <c:get select="$nested/@name" />[<c:get select="$nested/@listVarName" />.size()];
+			<c:get select="$nested/@listVarName" />.toArray(<c:get select="$nested/@varName" />);
+		}
+		return <c:get select="$nested/@varName" />;
+	}
+
+	public void add<c:get select="$nested/@name" />(<c:get select="$nested/@name" /> _another) {
+		<c:get select="$nested/@listVarName" />.add(_another);
+		<c:get select="$nested/@varName" /> = null;
+		_another.setParent(this);
+	}
+
+	public void remove<c:get select="$nested/@name" />(<c:get select="$nested/@name" /> child) {
+		<c:get select="$nested/@listVarName" />.remove(child);
+		<c:get select="$nested/@varName" /> = null;
+	}
+</c:iterate>
+
+	public void writeTo(StringBuffer sb) {
+		sb.append("\t<<c:get select="lowercaseFirst($element/@name)" />");
+<c:iterate select="$element/property" var="property">
+		writeAttr(sb,"<c:get select="$property/@name" />",<c:get select="$property/@name" />);
+</c:iterate>
+
+<c:userRegion>		// Begin write custom attributes<c:initialCode>
+
+</c:initialCode>		// End write custom attributes</c:userRegion>
+
+		sb.append(" >\r\n");
+<c:iterate select="$element/nested" var="nested">
+		for (int i = 0; i < get<c:get select="$nested/@name" />Array().length; i++) {
+			get<c:get select="$nested/@name" />Array()[i].writeTo(sb);
+		}
+</c:iterate>
+
+		sb.append("\t\t</<c:get select="lowercaseFirst($element/@name)" />>\r\n");
+	}
+
+	public void removeChild(ModelElement child) {
+<c:iterate select="$element/nested" var="nested">
+		if (child instanceof <c:get select="$nested/@name" />) {
+			remove<c:get select="$nested/@name" />((<c:get select="$nested/@name" />)child);
+		}
+</c:iterate>
+	}
+
+<c:userRegion>		// Begin custom methods<c:initialCode>
+
+</c:initialCode>		// End custom methods</c:userRegion>
+
+}

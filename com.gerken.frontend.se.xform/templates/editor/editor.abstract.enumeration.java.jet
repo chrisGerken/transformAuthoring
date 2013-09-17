@@ -1,0 +1,99 @@
+package <c:get select="$editor/@editorPackage" />;
+
+import java.util.ArrayList;
+import java.util.Vector;
+
+import org.apache.xpath.XPathAPI;
+import org.apache.xpath.objects.XObject;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+
+public abstract class AbstractEnumeration {
+
+	private boolean dynamic = true;
+	private ShingleEditor	 editor;
+	protected String  key[] 	 = null;
+	protected String  text[] 	 = null;
+	private	Node 	target   = null;
+
+	public AbstractEnumeration(ShingleEditor editor) {
+		this.editor = editor;
+	}
+
+	protected ShingleEditor getEditor() {
+		return editor;
+	}
+	
+	public void gatherValues() {
+		ArrayList<String> keys = new ArrayList<String>();
+		ArrayList<String> values = new ArrayList<String>();
+		addConstants(keys,values);
+		key = keys.toArray(new String[0]);
+		text = values.toArray(new String[0]);
+	}
+	
+	public abstract void addConstants(ArrayList<String> keys, ArrayList<String> values);
+
+	public void setTarget(Node target) {
+		this.target = target;
+		key = null;
+		text = null;
+	}
+
+	public Node getTarget() {
+		return target;
+	}
+	
+	public String[] getKeys() {
+		if (dynamic || (key == null)) { gatherValues(); }
+		return key;
+	}
+
+	public String[] getTexts() {
+		if (dynamic || (text == null)) { gatherValues(); }
+		return text;
+	}
+	
+	public String getKey(int index) {
+		return getKeys()[index];
+	}
+	
+	public String getText(int index) {
+		return getTexts()[index];
+	}
+	
+	public int getKeyIndex(String _key) {
+		getKeys();
+		for (int i = 0; i < key.length; i++) {
+			if (key[i].equals(_key)) { return i; }
+		}
+		return -1;
+	}
+	
+	public String textFor(String _key) {
+		int sel = getKeyIndex(_key);
+		if (sel < 0) { return ""; }
+		return getText(sel);
+	}
+	
+	public int size() {
+		return getKeys().length;
+	}
+
+	public Node[] retrieveNodes(Node snode, String expr) {
+		if (snode == null) { return new Node[0]; }
+		return ModelAccess.getInstance().getNodes(snode,expr);
+	}
+	
+	public String retrieveAttribute(Node aNode, String expr) {
+		return ModelAccess.getInstance().getAttribute(aNode,expr);
+	}
+
+	protected void setAttribute(Node node, String name, String value) {
+		if (node == null) { return; }
+		ModelAccess.getInstance().setAttribute(node, name, value);
+	}
+
+}

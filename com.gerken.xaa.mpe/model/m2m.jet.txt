@@ -1,0 +1,73 @@
+*
+* Section: 	Overview.Tool
+* Type:		tool	
+* 
+
+
+
+*
+* Section: 	Problems
+* Type:		problem	
+* 
+
+
+
+*
+* Section: 	Xform.Details
+* Type:		details	
+* 
+
+<c:get select="$root/@xformId" />
+<c:get select="$root/@version" />
+<c:get select="$root/@provider" />
+
+
+*
+* Section: 	Group.Toc
+* Type:		toc	
+* 
+
+
+
+*
+* Section: 	Group.Tree
+* Type:		tree	
+* 
+
+
+
+*
+* Section: 	Group.Tree.Artifact
+* Type:		tree	
+* 
+
+
+
+*
+* Section: 	Replacement.List
+* Type:		list	
+* 
+
+<c:iterate select="$root/replacement" var="replacement" >  
+</c:iterate>
+
+
+*
+* Section: 	Replacement.Details
+* Type:		details	
+* 
+
+<c:get select="$replacement/@oldString" />
+<c:get select="$replacement/@newString" />
+
+
+
+
+*
+* Section: 	Group.Tree.Token
+* Type:		tree	
+* 
+
+
+
+ 

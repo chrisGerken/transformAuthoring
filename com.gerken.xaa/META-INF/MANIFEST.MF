@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Xaa Plug-in
+Bundle-SymbolicName: com.gerken.xaa;singleton:=true
+Bundle-Version: 1.6.5
+Bundle-Activator: com.gerken.xaa.Activator
+Bundle-Vendor: GERKEN
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ com.gerken.xaa.model;bundle-version="1.0.1",
+ org.eclipse.core.resources
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Export-Package: com.gerken.xaa.nature,
+ com.gerken.xaa.sme

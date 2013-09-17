@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.gerken.xaa.feature_1.6.5.jar" id="com.gerken.xaa.feature" version="1.6.5">
+      <category name="Advanced Pattern Authoring Tools"/>
+   </feature>
+   <feature url="features/com.gerken.xaa.xform.feature_1.6.5.jar" id="com.gerken.xaa.xform.feature" version="1.6.5">
+      <category name="Advanced Pattern Authoring Tools"/>
+   </feature>
+   <category-def name="Advanced Pattern Authoring Tools" label="xaa"/>
+</site>

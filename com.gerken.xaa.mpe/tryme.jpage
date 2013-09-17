@@ -1,0 +1,7 @@
+
+
+	String fred = "abcdefghijkabcdefghijk";
+	int offset = fred.indexOf("def");
+	System.out.println(offset);
+	offset = fred.indexOf("def",offset+3);
+	System.out.println(offset);

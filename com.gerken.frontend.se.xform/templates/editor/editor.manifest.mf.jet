@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: <c:get select="$editor/@name" />
+Bundle-SymbolicName: <c:get select="$editor/@id" />;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: <c:get select="$editor/@id" />.Activator
+Bundle-Vendor: <c:get select="$editor/@provider" />
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.forms;bundle-version="3.3.104",
+ org.eclipse.core.resources;bundle-version="3.4.3",
+ org.eclipse.ui.ide;bundle-version="3.4.2",
+ org.eclipse.jet;bundle-version="0.9.5",
+ org.eclipse.ui.editors;bundle-version="3.4.0"
+Eclipse-AutoStart: true

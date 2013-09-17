@@ -1,0 +1,6 @@
+
+
+String path = "aaa/bbbbb/ccc/d/eee/";
+String seg[] = path.split("/");
+seg.length
+	(int) 5

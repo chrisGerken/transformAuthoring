@@ -1,0 +1,83 @@
+package <c:get select="$editor/@editorPackage" />;
+
+import java.text.MessageFormat;
+import java.util.StringTokenizer;
+
+import org.w3c.dom.Node;
+
+public abstract class AbstractConstraint {
+
+	public AbstractConstraint() {
+	}
+
+	public abstract int validate(Node targetNode, String changedAttributeName);
+
+	public String bind(String pattern, Object[] args) {
+		return MessageFormat.format(pattern, args);
+	}
+
+	public void addError(Node targetNode, String message) {
+		ConstraintFailure cf = new ConstraintFailure(targetNode,ConstraintFailure.CONSTRAINT_ERROR,message,getShingleLabel());
+		ModelAccess.getInstance().addFailure(targetNode, cf);
+	}
+
+	public boolean present(String buffer) {
+		return buffer.trim().length() > 0;
+	}
+
+	public boolean validName(String buffer) {
+		if (buffer.length() == 0) {return true; }
+		if (!Character.isJavaIdentifierStart(buffer.charAt(0))) {
+			return false;
+		}
+		for (int i = 1; i < buffer.length(); i++) {
+			if (!Character.isJavaIdentifierPart(buffer.charAt(i))) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public boolean validNumber(String buffer) {
+		if (buffer.length() == 0) {return true; }
+		int start = 0;
+		if (buffer.charAt(0)=='-') {
+			start = 1;
+			if (buffer.length() == 1) {return false; }
+		}
+		for (int i = start; i < buffer.length(); i++) {
+			if (!Character.isDigit(buffer.charAt(i))) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public boolean validPackageName(String buffer) {
+		StringTokenizer st = new StringTokenizer(buffer,".",true);
+		boolean dotNext = false;
+		while (st.hasMoreTokens()) {
+			String level = st.nextToken();
+			if (dotNext) {
+				if (!level.equals(".")) {
+					return false;
+				}
+				dotNext = false;
+			} else {
+				if (!Character.isJavaIdentifierStart(level.charAt(0))) {
+					return false;
+				}
+				for (int i = 1; i < level.length(); i++) {
+					if (!Character.isJavaIdentifierPart(level.charAt(i))) {
+						return false;
+					}
+				}
+				dotNext = true;
+			}
+		}
+		return true;
+	}
+
+	public abstract String getShingleLabel();
+	
+}

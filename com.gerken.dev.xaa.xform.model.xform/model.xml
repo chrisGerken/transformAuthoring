@@ -1,0 +1,96 @@
+
+<root>
+
+    <model>
+
+        <element  name="CreateFile">
+            <property  name="id"  kind="String" />
+            <property  name="projectId"  kind="String" />
+            <property  name="oPath"  kind="String" />
+            <property  name="src"  kind="String" />
+            <property  name="replace"  kind="boolean" />
+            <property  name="binary"  kind="boolean" />
+            <property  name="changeableName"  kind="boolean" />
+            <property  name="purposeAsTokenName"  kind="boolean" />
+            <property  name="purpose"  kind="String" />
+            <property  name="projectExpr"  kind="String" />
+            <property  name="folderExpr"  kind="String" />
+            <property  name="nameExpr"  kind="String" />
+            <nested  name="JavaPkg" />
+        </element>
+
+         <element  name="CreateFolder">
+            <property  name="id"  kind="String" />
+            <property  name="projectId"  kind="String" />
+            <property  name="oPath"  kind="String" />
+            <property  name="purpose"  kind="String" />
+            <property  name="projectExpr"  kind="String" />
+            <property  name="folderExpr"  kind="String" />
+        </element>
+
+         <element  name="CreateProject">
+            <property  name="id"  kind="String" />
+            <property  name="oPath"  kind="String" />
+            <property  name="oLocation"  kind="String" />
+            <property  name="purpose"  kind="String" />
+            <property  name="projectExpr"  kind="String" />
+            <property  name="locationExpr"  kind="String" />
+        </element>
+
+         <element  name="Group">
+            <property  name="name"  kind="String" />
+            <property  name="id"  kind="String" />
+            <property  name="parentId"  kind="String" />
+            <property  name="root"  kind="boolean" />
+            <nested  name="CreateProject" />
+            <nested  name="CreateFolder" />
+            <nested  name="CreateFile" />
+            <nested  name="Token" />
+        </element>
+
+         <element  name="Ignored">
+            <nested  name="CreateProject" />
+            <nested  name="CreateFolder" />
+            <nested  name="CreateFile" />
+            <nested  name="Token" />
+        </element>
+
+         <element  name="NewToken">
+            <property  name="name"  kind="String" />
+            <property  name="formula"  kind="String" />
+            <property  name="group"  kind="String" />
+            <property  name="replaces"  kind="String" />
+            <property  name="derived"  kind="boolean" />
+        </element>
+
+         <element  name="Replacement">
+            <property  name="oldString"  kind="String" />
+            <property  name="newString"  kind="String" />
+        </element>
+
+         <element  name="Token">
+            <property  name="name"  kind="String" />
+            <property  name="id"  kind="String" />
+            <property  name="formula"  kind="String" />
+            <property  name="derived"  kind="boolean" />
+            <property  name="desc"  kind="String" />
+        </element>
+
+         <element  name="JavaPkg">
+            <property  name="name"  kind="String" />
+            <property  name="purpose"  kind="String" />
+        </element>
+
+         <element  name="Xform">
+            <property  name="xformId"  kind="String" />
+            <property  name="id"  kind="String" />
+            <property  name="nextID"  kind="String" />
+            <nested  name="Group" />
+            <nested  name="Replacement" />
+            <nested  name="NewToken" />
+			<nested  name="Ignored" />
+        </element>
+
+    </model>
+
+</root>

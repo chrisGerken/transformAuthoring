@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+
+    <model srcProject="com.gerken.xaa.model">
+
+        <element name="CreateFile" elementJava="CreateFile">
+            <property name="id" kind="String" getterMethod="getId" setterMethod="setId"/>
+            <property name="projectId" kind="String" getterMethod="getProjectId" setterMethod="setProjectId"/>
+            <property name="oPath" kind="String" getterMethod="getOPath" setterMethod="setOPath"/>
+            <property name="src" kind="String" getterMethod="getSrc" setterMethod="setSrc"/>
+            <property name="replace" kind="boolean" getterMethod="getReplace" setterMethod="setReplace"/>
+            <property name="binary" kind="boolean" getterMethod="getBinary" setterMethod="setBinary"/>
+            <property name="changeableName" kind="boolean" getterMethod="getChangeableName" setterMethod="setChangeableName"/>
+            <property name="purposeAsTokenName" kind="boolean" getterMethod="getPurposeAsTokenName" setterMethod="setPurposeAsTokenName"/>
+            <property name="purpose" kind="String" getterMethod="getPurpose" setterMethod="setPurpose"/>
+            <property name="projectExpr" kind="String" getterMethod="getProjectExpr" setterMethod="setProjectExpr"/>
+            <property name="folderExpr" kind="String" getterMethod="getFolderExpr" setterMethod="setFolderExpr"/>
+            <property name="nameExpr" kind="String" getterMethod="getNameExpr" setterMethod="setNameExpr"/>
+            <nested name="JavaPkg" varName="javaPkg" listVarName="javaPkgList"/>
+        </element>
+
+         <element name="CreateFolder" elementJava="CreateFolder">
+            <property name="id" kind="String" getterMethod="getId" setterMethod="setId"/>
+            <property name="projectId" kind="String" getterMethod="getProjectId" setterMethod="setProjectId"/>
+            <property name="oPath" kind="String" getterMethod="getOPath" setterMethod="setOPath"/>
+            <property name="purpose" kind="String" getterMethod="getPurpose" setterMethod="setPurpose"/>
+            <property name="projectExpr" kind="String" getterMethod="getProjectExpr" setterMethod="setProjectExpr"/>
+            <property name="folderExpr" kind="String" getterMethod="getFolderExpr" setterMethod="setFolderExpr"/>
+        </element>
+
+         <element name="CreateProject" elementJava="CreateProject">
+            <property name="id" kind="String" getterMethod="getId" setterMethod="setId"/>
+            <property name="oPath" kind="String" getterMethod="getOPath" setterMethod="setOPath"/>
+            <property name="oLocation" kind="String" getterMethod="getOLocation" setterMethod="setOLocation"/>
+            <property name="purpose" kind="String" getterMethod="getPurpose" setterMethod="setPurpose"/>
+            <property name="projectExpr" kind="String" getterMethod="getProjectExpr" setterMethod="setProjectExpr"/>
+            <property name="locationExpr" kind="String" getterMethod="getLocationExpr" setterMethod="setLocationExpr"/>
+        </element>
+
+         <element name="Group" elementJava="Group">
+            <property name="name" kind="String" getterMethod="getName" setterMethod="setName"/>
+            <property name="id" kind="String" getterMethod="getId" setterMethod="setId"/>
+            <property name="parentId" kind="String" getterMethod="getParentId" setterMethod="setParentId"/>
+            <property name="root" kind="boolean" getterMethod="getRoot" setterMethod="setRoot"/>
+            <nested name="CreateProject" varName="createProject" listVarName="createProjectList"/>
+            <nested name="CreateFolder" varName="createFolder" listVarName="createFolderList"/>
+            <nested name="CreateFile" varName="createFile" listVarName="createFileList"/>
+            <nested name="Token" varName="token" listVarName="tokenList"/>
+        </element>
+
+         <element name="Ignored" elementJava="Ignored">
+            <nested name="CreateProject" varName="createProject" listVarName="createProjectList"/>
+            <nested name="CreateFolder" varName="createFolder" listVarName="createFolderList"/>
+            <nested name="CreateFile" varName="createFile" listVarName="createFileList"/>
+            <nested name="Token" varName="token" listVarName="tokenList"/>
+        </element>
+
+         <element name="NewToken" elementJava="NewToken">
+            <property name="name" kind="String" getterMethod="getName" setterMethod="setName"/>
+            <property name="formula" kind="String" getterMethod="getFormula" setterMethod="setFormula"/>
+            <property name="group" kind="String" getterMethod="getGroup" setterMethod="setGroup"/>
+            <property name="replaces" kind="String" getterMethod="getReplaces" setterMethod="setReplaces"/>
+            <property name="derived" kind="boolean" getterMethod="getDerived" setterMethod="setDerived"/>
+        </element>
+
+         <element name="Replacement" elementJava="Replacement">
+            <property name="oldString" kind="String" getterMethod="getOldString" setterMethod="setOldString"/>
+            <property name="newString" kind="String" getterMethod="getNewString" setterMethod="setNewString"/>
+        </element>
+
+         <element name="Token" elementJava="Token">
+            <property name="name" kind="String" getterMethod="getName" setterMethod="setName"/>
+            <property name="id" kind="String" getterMethod="getId" setterMethod="setId"/>
+            <property name="formula" kind="String" getterMethod="getFormula" setterMethod="setFormula"/>
+            <property name="derived" kind="boolean" getterMethod="getDerived" setterMethod="setDerived"/>
+            <property name="desc" kind="String" getterMethod="getDesc" setterMethod="setDesc"/>
+        </element>
+
+         <element name="JavaPkg" elementJava="JavaPkg">
+            <property name="name" kind="String" getterMethod="getName" setterMethod="setName"/>
+            <property name="purpose" kind="String" getterMethod="getPurpose" setterMethod="setPurpose"/>
+        </element>
+
+         <element name="Xform" elementJava="Xform">
+            <property name="xformId" kind="String" getterMethod="getXformId" setterMethod="setXformId"/>
+            <property name="id" kind="String" getterMethod="getId" setterMethod="setId"/>
+            <property name="nextID" kind="String" getterMethod="getNextID" setterMethod="setNextID"/>
+            <nested name="Group" varName="group" listVarName="groupList"/>
+            <nested name="Replacement" varName="replacement" listVarName="replacementList"/>
+            <nested name="NewToken" varName="newToken" listVarName="newTokenList"/>
+			<nested name="Ignored" varName="ignored" listVarName="ignoredList"/>
+        </element>
+
+    </model>
+
+</root>

@@ -1,0 +1,30 @@
+<c:setVariable select=" ':' " var="colon" /> 
+
+<c:iterate select="$editor/type[not(@parent)]" var="type">
+
+|
+|  Element: <c:get select="$type/@name"/>
+|
+
+<c:iterate select="$type/field" var="field">
+<c<c:get select="$colon" />if test="$<c:get select="$type/@name"/>/@<c:get select="$field/@name"/>"><c:get select="$field/@name"/>="<c<c:get select="$colon" />get select="$<c:get select="$type/@name"/>/@<c:get select="$field/@name"/>"/>"</c<c:get select="$colon" />if>
+    
+</c:iterate>
+    
+</c:iterate>
+
+<c:iterate select="$editor/type[@parent]" var="type">
+
+|
+|  Element: <c:get select="$type/@name"/>
+|
+
+<c<c:get select="$colon" />iterate select="$<c:get select="$type/@parent"/>/<c:get select="$type/@name"/>" var="<c:get select="$type/@name"/>" >
+
+<c:iterate select="$type/field" var="field">
+<c<c:get select="$colon" />if test="$<c:get select="$type/@name"/>/@<c:get select="$field/@name"/>"><c:get select="$field/@name"/>="<c<c:get select="$colon" />get select="$<c:get select="$type/@name"/>/@<c:get select="$field/@name"/>"/>"</c<c:get select="$colon" />if>
+    
+</c:iterate>
+</c<c:get select="$colon" />iterate>
+    
+</c:iterate>

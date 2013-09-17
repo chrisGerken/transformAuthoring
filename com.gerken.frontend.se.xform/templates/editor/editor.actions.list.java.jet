@@ -1,0 +1,106 @@
+package <c:get select="$editor/@editorPackage" />;
+
+import java.util.ArrayList;
+
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.jet.JET2Platform;
+import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.forms.events.HyperlinkEvent;
+import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.eclipse.ui.forms.widgets.Section;
+import org.w3c.dom.Node;
+
+public class ActionsList extends AbstractIndex implements IModelChangedListener {
+
+	private Node sourceNode;
+	private Node target[];
+
+	public ActionsList() {
+		super();
+	}
+
+	@Override
+	public Section createIndexSection(Composite shingle, FormToolkit toolkit,
+			ShingleEditor part) {
+		Section aSection = super.createIndexSection(shingle, toolkit, part);
+		part.addModelChagedListener(this);
+		return aSection;
+	}
+
+	public String getTextContent() {
+
+		StringBuffer sb = new StringBuffer();
+		sb.append("<form>");
+
+		ArrayList<ConstraintFailure> cf = ModelAccess.getInstance().failuresAtOrUnder(getSourceNode());
+
+		if (cf.isEmpty()) {
+			sb.append("<li style=\"text\" >There are no errors in the data.</li>");
+		} else {
+			sb.append("<li style=\"text\" >There are <a href=\"errors\">"+cf.size()+" error(s)</a> in this model.</li>");
+		}
+
+//		sb.append("<li style=\"text\" >There are no actions available.</li>");
+		
+//		sb.append("<li style=\"text\" >  </li>");
+<c:iterate select="$editor/pattern" var="pattern">
+		sb.append("<li style=\"text\" ><a href=\"gen.<c:get select="$pattern/@id" />\">Generate</a> <c:get select="$pattern/@desc" />.</li>");
+</c:iterate>
+		sb.append("</form>");
+
+		return sb.toString();
+	}
+
+
+	public void linkActivated(HyperlinkEvent e) {
+		String href = e.getHref().toString();
+		if ("errors".equals(href)) {
+			getShinglePart().getRootShingle().onlyExpandIndexFor("");
+			return;			
+		}
+<c:iterate select="$editor/pattern" var="pattern">
+		
+		if ("gen.<c:get select="$pattern/@id" />".equals(href)) {
+			ArrayList<ConstraintFailure> cf = ModelAccess.getInstance().failuresAtOrUnder(getSourceNode());
+			boolean proceed = true;
+			if (cf.size() > 0) {
+				proceed = MessageDialog.openConfirm(new Shell(),"Errors Exist in Model","Errors in the model may cause the generation to fail.  Do you wish to continue?");
+				if (!proceed) { return; }
+			}
+			proceed = MessageDialog.openConfirm(new Shell(),"Begin Generation","Generate <c:get select="$pattern/@desc" />?");
+			if (!proceed) { return; }
+			String xmlRepresentation = DataWriter.getInstance().format(getShinglePart().getModel());
+			IStatus status = JET2Platform.runTransformOnString("<c:get select="$pattern/@id" />", xmlRepresentation, new NullProgressMonitor());
+			if ((status.getSeverity() == IStatus.OK) | (status.getSeverity() == IStatus.INFO)) {
+				MessageDialog.openInformation(new Shell(),"Generation was sucessful",status.getMessage());
+			} else {
+				ErrorDialog.openError(new Shell(),"Generation completed with errors",status.getMessage(),status);
+			}
+			return;
+		}
+</c:iterate>		
+
+		
+	}
+	
+	public void linkEntered(HyperlinkEvent e) {}
+ 
+	public void linkExited(HyperlinkEvent e) {}
+	
+	public String getDescription() {
+		return "Dashboard actions";
+	}
+
+	public String getTitle() {
+		return "Summary";
+	}
+
+	public void modelChanged() {
+		update();
+	}
+
+}

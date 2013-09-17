@@ -1,0 +1,1 @@
+		<c:get select="$field/@widgetVar" />.setText(helper.getAttribute(getSourceNode(),"@<c:get select="$field/@name" />"));

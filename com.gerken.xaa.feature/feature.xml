@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.gerken.xaa.feature"
+      label="XAA UI and Framework"
+      version="1.6.5"
+      provider-name="Gerken Intellectual Properties, LLC">
+
+   <description url="http://www.example.com/description">
+      This feature contains the UI and framework for the specification,
+editing and exploitation of information relating to the transformations
+you author.
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      copyright 2011-2, Gerken Intellectual Properties, LLC
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      Gerken Intellectual Properties, LLC grants you a 90-day evaluation
+runtime license for this software on an AS-IS basis without warranty
+on the performance or execution of this software.  You agree
+to not copy, replicate or distribute this software in any way
+other than to make a single backup copy.
+   </license>
+
+   <plugin
+         id="com.gerken.xaa.model"
+         download-size="0"
+         install-size="0"
+         version="1.6.5"
+         unpack="false"/>
+
+   <plugin
+         id="com.gerken.xaa.wizard"
+         download-size="0"
+         install-size="0"
+         version="1.6.5"
+         unpack="false"/>
+
+   <plugin
+         id="com.gerken.xaa.refactor"
+         download-size="0"
+         install-size="0"
+         version="1.6.5"
+         unpack="false"/>
+
+   <plugin
+         id="com.gerken.xaa"
+         download-size="0"
+         install-size="0"
+         version="1.6.5"
+         unpack="false"/>
+
+   <plugin
+         id="com.gerken.xaa.constants"
+         download-size="0"
+         install-size="0"
+         version="1.6.5"
+         unpack="false"/>
+
+   <plugin
+         id="com.gerken.xaa.jet"
+         download-size="0"
+         install-size="0"
+         version="1.6.5"
+         unpack="false"/>
+
+   <plugin
+         id="com.gerken.xaa.mpe"
+         download-size="0"
+         install-size="0"
+         version="1.6.5"/>
+
+</feature>

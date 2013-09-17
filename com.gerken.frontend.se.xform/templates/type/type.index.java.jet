@@ -1,0 +1,128 @@
+package <c:get select="$editor/@indexPackage" />;
+
+import java.util.StringTokenizer;
+
+import org.eclipse.ui.forms.events.HyperlinkEvent;
+import org.w3c.dom.Node;
+
+import <c:get select="$editor/@editorPackage" />.AbstractIndex;
+import <c:get select="$editor/@editorPackage" />.ModelAccess;
+
+public class <c:get select="$type/@indexClass" /> extends AbstractIndex {
+
+	private Node target[];
+
+	public <c:get select="$type/@indexClass" />() {
+		super();
+	}
+
+	public String getTextContent() {
+
+		StringBuffer sb = new StringBuffer();
+		sb.append("<form>");
+
+		target = ModelAccess.getInstance().getNodes(getSourceNode(),"<c:get select="$type/@name" />");
+
+		sb.append("<li style=\"text\" >Create a <a href=\"new.0\">new</a> <c:get select="$type/@nounPhrase" /></li>");
+
+		for (int i = 0; i < target.length; i++) {
+			String label = ModelAccess.getInstance().bind(target[i],"<c:get select="$type/@indexLabel" />");
+			if (label.length() == 0) { label = "[none]"; }
+			if (target[i]==getSelectedElement()) {
+				label= "<b>"+label+"</b>";
+			}
+			sb.append("<li style=\"text\" >");      // bindent=\"5\"
+			sb.append("<a href=\"delete."+i+"\"><img href=\""+getDeleteKey()+"\"/></a> ");
+			sb.append("<a href=\"up."+i+"\"><img href=\""+getUpKey()+"\"/></a> ");
+			sb.append("<a href=\"down."+i+"\"><img href=\""+getDownKey()+"\"/></a> ");
+//			sb.append("<a href=\"copy."+i+"\"><img href=\""+getCopyKey()+"\"/></a> ");
+			sb.append("<a href=\"goto."+i+"\"><img href=\""+getEditKey()+"\"/></a> "); 
+			sb.append("   "+label);
+			sb.append("</li>");
+		}
+
+		sb.append("</form>");
+
+		return sb.toString();
+	}
+
+
+	public void linkActivated(HyperlinkEvent e) {
+		String href = e.getHref().toString();
+		StringTokenizer st = new StringTokenizer(href,".",false);
+		String command = st.nextToken();
+		int index = Integer.parseInt(st.nextToken());
+		
+		if (command.equals("delete")) {
+			Node removedNode = target[index];
+			ModelAccess.getInstance().removeNode(removedNode);
+			getShinglePart().modelChanged();
+			update();
+			if (removedNode == getSelectedElement()) {
+				clearSelectedElement();
+<c:if test="$type/@parent" >
+				getShinglePart().showShingle("<c:get select="$type/@parent" />");
+</c:if>				
+			}
+			return;
+		}
+		if (command.equals("copy")) {
+			Node newNode = ModelAccess.getInstance().copyNode(target[index]);
+			getShinglePart().<c:get select="$type/@shingleGetterMethod" />().getValidator().validate(newNode,null);
+			getShinglePart().showShingle("<c:get select="$type/@name" />");
+			getShinglePart().<c:get select="$type/@shingleGetterMethod" />().setSourceNode(newNode);
+			setSelectedElement(newNode);
+			getShinglePart().modelChanged();
+			update();
+			return;
+		}
+		if (command.equals("new")) {
+			Node newNode = ModelAccess.getInstance().newNode(getSourceNode(),"<c:get select="$type/@name" />");
+			getShinglePart().<c:get select="$type/@shingleGetterMethod" />().getValidator().validate(newNode,null);
+			getShinglePart().<c:get select="$type/@shingleGetterMethod" />().setSourceNode(newNode);
+			getShinglePart().showShingle("<c:get select="$type/@name" />");
+			setSelectedElement(newNode);
+			getShinglePart().modelChanged();
+			update();
+			return;
+		}
+		if (command.equals("up")) {
+			if (index==0) { return;}
+			ModelAccess.getInstance().moveUp(target[index],target[index-1]);
+			getShinglePart().modelChanged();
+			update();
+			return;
+		}
+		if (command.equals("down")) {
+			if (index==(target.length-1)) { return;}
+			ModelAccess.getInstance().moveDown(target[index],target[index+1]);
+			getShinglePart().modelChanged();
+			update();
+			return;
+		}
+		if (command.equals("goto")) {
+			getShinglePart().<c:get select="$type/@shingleGetterMethod" />().setSourceNode(target[index]);
+			getShinglePart().showShingle("<c:get select="$type/@name" />");
+			setSelectedElement(target[index]);
+			return;
+		}
+	}
+
+	public void linkEntered(HyperlinkEvent e) {}
+ 
+	public void linkExited(HyperlinkEvent e) {}
+	
+
+	public String getDescription() {
+		return "";
+	}
+
+	public String getTitle() {
+		return "<c:get select="$type/@shingleLabel" />";
+	}
+	
+	public String getTargetNodeName() {
+		return "<c:get select="$type/@name" />";
+	}
+		
+}

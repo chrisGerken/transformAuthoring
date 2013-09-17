@@ -1,0 +1,6 @@
+		<c:get select="$field/@widgetVar" /> = toolkit.createButton(client,"<c:get select="$field/@text"/>",SWT.CHECK);
+		td = new TableWrapData(TableWrapData.FILL_GRAB);
+		td.grabHorizontal = true;
+		td.colspan = 2;
+		<c:get select="$field/@widgetVar" />.setLayoutData(td);
+		<c:get select="$field/@widgetVar" />.addSelectionListener(new <c:get select="$field/@listenerClass" />());

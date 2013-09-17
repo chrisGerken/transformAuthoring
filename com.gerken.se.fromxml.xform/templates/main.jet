@@ -1,0 +1,12 @@
+<%@taglib prefix="ws" id="org.eclipse.jet.workspaceTags" %>
+
+<c:loadContent var="root">
+    <model/>
+</c:loadContent>
+<c:setVariable select="$root/model" var="model" />
+
+<c:setVariable select="/*" var="current" />
+<c:include template="templates/recurse.jet"/>
+
+<ws:file template="templates/dump.jet" path="{$org.eclipse.jet.resource.project.name}/se.model.{$org.eclipse.jet.resource.name}" replace="false"/>
+

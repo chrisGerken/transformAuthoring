@@ -1,0 +1,1 @@
+		private Combo <c:get select="$field/@widgetVar" />;

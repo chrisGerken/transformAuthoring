@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.jet.xpathFunctions">
+      <function
+            implementation="com.gerkenip.xaa.jet.internal.function.ToJetTagsFunction"
+            maxArgs="1"
+            minArgs="1"
+            name="toJetTags"/>
+   </extension>
+   
+
+
+
+</plugin>

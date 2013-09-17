@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="refimpl"
+         name="Reference Implementation"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="com.gerken.xaa.nature.RefImplNature">
+         </run>
+      </runtime>
+   </extension>
+   <extension
+         id="xform"
+         name="Xform"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="com.gerken.xaa.nature.XformNature">
+         </run>
+      </runtime>
+   </extension>
+
+</plugin>

@@ -1,0 +1,9 @@
+<c:if test="$current/@parent">
+    <c:set select="$current" name="level"><c:get select="number($editor/type[@name=$current/@parent]/@level)+1" /></c:set>
+</c:if>
+<c:if test="not($current/@parent)">
+    <c:set select="$current" name="level">0</c:set>
+</c:if>
+<c:iterate select="$editor/type[@parent=$current/@name]" var="current">    
+<c:include template="templates/editor/recurse.level.jet"/>    
+</c:iterate>    

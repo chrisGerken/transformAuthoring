@@ -1,0 +1,7 @@
+package <c:get select="$editor/@editorPackage" />;
+
+public interface IModelChangedListener {
+
+	public void modelChanged();
+	
+}

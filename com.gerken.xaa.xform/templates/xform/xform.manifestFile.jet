@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: <c1:get select="$xform/@xformProject" />
+Bundle-SymbolicName: <c1:get select="$xform/@xformProject" />;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: 
+Require-Bundle: org.eclipse.jet
+Bundle-ClassPath: .,bin/
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
