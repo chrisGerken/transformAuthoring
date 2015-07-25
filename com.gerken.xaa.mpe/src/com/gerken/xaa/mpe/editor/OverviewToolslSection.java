@@ -36,6 +36,7 @@ public class OverviewToolslSection extends AbstractToolSection implements IHyper
 		String content = "<form>" +
 							"<li style=\"text\" bindent=\"5\"><a href=\"purposes.to.tokens\">Build tokens</a> for selected purposes</li>" +
 							"<li style=\"text\" bindent=\"5\"><a href=\"invoke.xaa.xform\">Generate</a> "+patternId+" xform</li>" +
+							"<li style=\"text\" bindent=\"5\"><a href=\"invoke.xaa.gramar\">Generate</a> "+patternId+" gramar</li>" +
 							"</form>";
 
 		return content;
@@ -57,6 +58,30 @@ public class OverviewToolslSection extends AbstractToolSection implements IHyper
 					// Begin pattern invoke sample.xform
 				String contents = ModelFormatter.getInstance().format(getModel());
 				IStatus status = JET2Platform.runTransformOnString("com.gerken.xaa.xform", contents, new NullProgressMonitor());
+				if ((status.getSeverity() == IStatus.OK) | (status.getSeverity() == IStatus.INFO)) {
+					MessageDialog.openInformation(new Shell(),"Pattern successfully applied",status.getMessage());
+				} else {
+					ErrorDialog.openError(new Shell(),"Pattern applied with errors",status.getMessage(),status);
+				}
+					// End pattern invoke sample.xform
+			} catch (Throwable t) {
+					MessageDialog.openInformation(new Shell(),"Exception thrown",t.toString());
+			}
+			return;
+		}
+
+		if (href.equals("invoke.xaa.gramar")) {
+			if (getPage().getMpeEditor().getConstraintManager().getCurrentProblems().size() > 0) {
+				boolean goon = MessageDialog.openConfirm(new Shell(),"Errors Exist in Model","Errors in the model may cause the generation to fail.  Do you wish to continue?");
+				if (!goon) { return; }
+			}
+			try {
+				String patternId = ModelAccess.getAttribute(getModel(), "/xform/@xformId");
+				boolean goon = MessageDialog.openConfirm(new Shell(),"Begin Generation","Generate "+patternId+" gramar?");
+				if (!goon) { return; }
+					// Begin pattern invoke sample.xform
+				String contents = ModelFormatter.getInstance().format(getModel());
+				IStatus status = JET2Platform.runTransformOnString("com.gerken.xaa.gramar.xform", contents, new NullProgressMonitor());
 				if ((status.getSeverity() == IStatus.OK) | (status.getSeverity() == IStatus.INFO)) {
 					MessageDialog.openInformation(new Shell(),"Pattern successfully applied",status.getMessage());
 				} else {

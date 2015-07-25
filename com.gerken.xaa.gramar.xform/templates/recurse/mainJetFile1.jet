@@ -1,0 +1,34 @@
+<c1:setVariable select="$current" var="target" />
+<c1:iterate select="$target/token[@derived='true']" var="token">
+<c1:if test="$token[@optional='true']">
+<c1:get select="$target/@indent" /><c:if test="not($<c1:get select="$target/@name" />/@<c1:get select="$token/@name" />)">
+    </c1:if><c1:get select="$target/@indent" /><c:set select="$<c1:get select="$target/@name" />" name="<c1:get select="$token/@name" />"><c1:if test="$token/@formula"><c1:get select="toJetTags($token/@formula)" /></c1:if></c:set>
+<c1:if test="$token[@optional='true']">
+<c1:get select="$target/@indent" /></c:if>
+</c1:if>
+</c1:iterate>
+
+<c1:iterate select="$xform/group[@parentId=$target/@id][@impliedSingleton='true']" var="implied" >
+<c1:get select="$target/@indent" /><c:addElement select="$<c1:get select="$target/@name"/>" name="<c1:get select="$implied/@name"/>" />
+
+</c1:iterate>
+<c1:get select="$target/@indent" /><c1:userRegion>*** Begin custom model updates for <c1:get select="$target/@name" /> (<c1:get select="$target/@id" />)<c1:initialCode>
+
+<c1:get select="$target/@indent" /></c1:initialCode>*** End custom model updates for <c1:get select="$target/@name" /> (<c1:get select="$target/@id" />)</c1:userRegion>
+
+<c1:iterate select="$target/token[@isPolymorphicKey='true']" var="token">
+<c1:get select="$target/@indent" /><c:addElement select="$<c1:get select="$target/@name"/>" name="{$<c1:get select="$target/@name"/>/@<c1:get select="$token/@name"/>}" />
+
+</c1:iterate>
+<c1:iterate select="$xform/group[@parentId=$current/@id]" var="current">
+<c1:set select="$current" name="indent"><c1:get select="$target/@indent"/><c1:get select="$tab"/></c1:set>
+<c1:get select="$target/@indent" /><c:iterate select="$<c1:get select="$target/@name" />/<c1:get select="$current/@name" />" var="<c1:get select="$current/@name" />">
+<c1:include template="templates/recurse/mainJetFile1.jet"  restoreNames="target"  />
+<c1:get select="$target/@indent" /></c:iterate> 
+</c1:iterate>
+
+<c1:get select="$target/@indent" /><c1:userRegion>*** Begin custom model post updates for <c1:get select="$target/@name" /> (<c1:get select="$target/@id" />)<c1:initialCode>
+
+<c1:get select="$target/@indent" /></c1:initialCode>*** End custom model post updates for <c1:get select="$target/@name" /> (<c1:get select="$target/@id" />)</c1:userRegion>
+
+

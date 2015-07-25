@@ -1,0 +1,94 @@
+<%@taglib prefix="ws" id="org.eclipse.jet.workspaceTags" %>
+
+<c1:if test="not(isVariableDefined(root))">
+    <c1:setVariable select="/*" var="xform" />
+</c1:if>
+
+	<c1:iterate select="/xform/group[@polymorphicSingleton='true']" var="ps">
+		<c1:set select="/xform/group[@id=$ps/@parentId]/token[@name=$ps/@polymorphicKey]" name="isPolymorphicKey">true</c1:set>
+	</c1:iterate>
+	
+	<c1:set select="$xform" name="xformProject"><c1:get select="$xform/@xformId"/></c1:set>
+
+	<c1:iterate select="$xform/group" var="group">
+
+		<c1:iterate select="$group/createProject" var="createProject">
+		
+			<c1:set select="$createProject" name="name"><c1:get select="$createProject/@projectExpr"/></c1:set>
+
+		</c1:iterate>
+
+		<c1:iterate select="$group/createFolder" var="createFolder">
+		
+			<c1:set select="$createFolder" name="path"><c1:get select="$createFolder/@projectExpr"/><c1:get select="$createFolder/@folderExpr"/></c1:set>
+
+		</c1:iterate>
+
+		<c1:iterate select="$group/createFile" var="createFile">
+		
+			<c1:set select="$createFile" name="path"><c1:get select="$createFile/@projectExpr"/><c1:get select="$createFile/@folderExpr"/>/<c1:get select="$createFile/@nameExpr"/></c1:set>
+			<c1:set select="$createFile" name="template">templates/<c1:get select="$group/@name"/>/<c1:get select="$createFile/@purpose"/>.prod</c1:set>
+			<c1:if test="$createFile/@binary='true'"> 
+				<c1:set select="$createFile" name="template">templates/<c1:get select="$group/@name"/>/<c1:get select="$createFile/@purpose"/></c1:set>
+			</c1:if>
+		</c1:iterate>
+
+		<c1:iterate select="$group/createToken" var="createToken">
+
+		</c1:iterate>
+
+		<c1:iterate select="$group/inputToken" var="inputToken">
+
+		</c1:iterate>
+
+	</c1:iterate>
+
+	<c1:iterate select="$xform/replacement" var="replacement">
+		
+	</c1:iterate>
+
+
+
+
+	<ws:project name="{$xform/@xformProject}"  />
+	<ws:folder  path="{$xform/@xformProject}/jet2java" />
+    <ws:file    path="{$xform/@xformProject}/.project"  template="templates/xform/xform.project.jet"/>
+    <ws:file    path="{$xform/@xformProject}/.classpath"  template="templates/xform/xform.classpath.jet"/>
+    <ws:file    path="{$xform/@xformProject}/build.properties"  template="templates/xform/xform.buildPropertiesFile.jet"/>
+    <ws:file    path="{$xform/@xformProject}/plugin.xml"  template="templates/xform/xform.pluginXmlFile.jet"/>
+    <ws:file    path="{$xform/@xformProject}/sample.xml"  template="templates/xform/xform.sampleXmlFile.jet" replace="true"/>
+    <ws:file    path="{$xform/@xformProject}/settings/org.eclipse.jet.prefs"  template="templates/xform/xform.orgEclipseJetPrefsFile.jet"/>
+    <ws:file    path="{$xform/@xformProject}/META-INF/MANIFEST.MF"  template="templates/xform/xform.manifestFile.jet"/>
+    <ws:file    path="{$xform/@xformProject}/templates/main.prod"  template="templates/xform/xform.mainJetFile.jet" replace="true"/>
+    <ws:file    path="{$xform/@xformProject}/templates/dump.prod"  template="templates/xform/xform.dumpJetFile.jet"/>
+    <ws:file    path="{$xform/@xformProject}/snippets/tags.txt"  template="templates/xform/xform.snippets.jet" replace="true"/>
+
+	<c1:iterate select="$xform/group" var="group">
+
+		<c1:iterate select="$group/createProject" var="createProject">
+
+		</c1:iterate>
+
+		<c1:iterate select="$group/createFolder" var="createFolder">
+
+		</c1:iterate>
+
+		<c1:iterate select="$group/createFile" var="createFile">
+
+		</c1:iterate>
+
+		<c1:iterate select="$group/createToken" var="createToken">
+
+		</c1:iterate>
+
+		<c1:iterate select="$group/inputToken" var="inputToken">
+
+		</c1:iterate>
+
+	</c1:iterate>
+
+
+
+<c1:if test="isVariableDefined('org.eclipse.jet.resource.project.name')">
+    <ws:file template="templates/dump.jet" path="{$org.eclipse.jet.resource.project.name}/dump.xml"/>
+</c1:if>

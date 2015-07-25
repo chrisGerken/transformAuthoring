@@ -1,0 +1,25 @@
+<<%-- --%>%@taglib prefix="ws" id="org.eclipse.jet.workspaceTags" %>
+
+<c:if test="not(isVariableDefined(root))">
+    <c:setVariable select="/*" var="root" />
+</c:if>
+
+*******************************
+
+<c1:setVariable select="$xform/group[@root='true']" var="current" />
+<c1:set select="$current" name="indent"></c1:set>
+<c1:setVariable select=" '    ' " var="tab" />
+<c1:include template="templates/recurse/mainJetFile1.jet"  />
+
+*******************************
+
+<c1:setVariable select="$xform/group[@root='true']" var="current" />
+<c1:set select="$current" name="indent"></c1:set>
+<c1:setVariable select=" '    ' " var="tab" />
+<c1:include template="templates/recurse/mainJetFile2.jet"  />
+
+*******************************
+
+<c:if test="isVariableDefined('org.eclipse.jet.resource.project.name')">
+    <ws:file template="templates/dump.jet" path="{$org.eclipse.jet.resource.project.name}/dump.xml"/>
+</c:if>

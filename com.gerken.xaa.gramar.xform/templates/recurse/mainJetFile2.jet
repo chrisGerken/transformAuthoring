@@ -1,0 +1,33 @@
+<%@taglib prefix="ws1" id="org.eclipse.jet.workspaceTags" %>
+<c1:setVariable select="$current" var="target" />
+
+<c1:get select="$target/@indent" /><c1:userRegion>*** Begin custom pre-generation actions for <c1:get select="$target/@name" /> (<c1:get select="$target/@id" />)<c1:initialCode>
+
+<c1:get select="$target/@indent" /></c1:initialCode>*** End custom pre-generation actions for <c1:get select="$target/@name" /> (<c1:get select="$target/@id" />)</c1:userRegion>
+
+<c1:iterate select="$target/createProject" var="createProject">
+<c1:get select="$target/@indent" /><ws:project name="<c1:get select="$createProject/@name" />"<c1:if test="$createProject/@hasLocation='true'"> location="<c1:get select="$createProject/@locationExpr" />"</c1:if> />
+</c1:iterate>
+<c1:iterate select="$target/createFolder" var="createFolder">
+<c1:get select="$target/@indent" /><ws:folder path="<c1:get select="$createFolder/@path" />" />
+</c1:iterate>
+<c1:iterate select="$target/createFile" var="createFile">
+<c1:if test="$createFile/@binary='false'">
+<c1:get select="$target/@indent" /><ws:file path="<c1:get select="$createFile/@path" />" template="<c1:get select="$createFile/@template" />" replace="<c1:get select="$createFile/@replace"/>" />
+</c1:if>
+<c1:if test="$createFile/@binary='true'">
+<c1:get select="$target/@indent" /><ws:copyFile target="<c1:get select="$createFile/@path" />" src="<c1:get select="$createFile/@template" />" replace="<c1:get select="$createFile/@replace"/>" />
+</c1:if>
+<ws1:copyFile target="{$xform/@xformId}/{$createFile/@template}" src="{$createFile/@src}" srcContext="workspace" replace="false" binary="true"/>
+</c1:iterate>
+
+<c1:get select="$target/@indent" /><c1:userRegion>*** Begin custom generation updates for <c1:get select="$target/@name" /> (<c1:get select="$target/@id" />)<c1:initialCode>
+
+<c1:get select="$target/@indent" /></c1:initialCode>*** End custom generation updates for <c1:get select="$target/@name" /> (<c1:get select="$target/@id" />)</c1:userRegion>
+
+<c1:iterate select="$xform/group[@parentId=$current/@id]" var="current">
+<c1:set select="$current" name="indent"><c1:get select="$target/@indent"/><c1:get select="$tab"/></c1:set>
+<c1:get select="$target/@indent" /><c:iterate select="$<c1:get select="$target/@name" />/<c1:get select="$current/@name" />" var="<c1:get select="$current/@name" />">
+<c1:include template="templates/recurse/mainJetFile2.jet"  restoreNames="target"  />
+<c1:get select="$target/@indent" /></c:iterate> 
+</c1:iterate>

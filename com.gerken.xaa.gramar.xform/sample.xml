@@ -1,0 +1,37 @@
+<root>
+
+	<xform  id=""  nextID="" >
+	
+		<group  name=""  id=""  parentId=""  root="false" >
+		
+			<createProject   id="" oPath="" projectExpr="" oLocation="" locationExpr=""  />
+			
+			<createFolder    id="" oPath="" projectExpr="" folderExpr="" />
+			
+			<createFile      id="" oPath="" projectExpr="" folderExpr="" nameExpr="" template=""  src=""  replace=""  binary="" />
+			
+			<createToken     select="" name="" >
+			
+				<formulae><![CDATA[fred]]></formulae>
+				
+			</createToken>
+			
+			<inputToken      name=""  >
+			
+				<desc></desc>
+				
+			</inputToken>
+			
+		</group>
+			
+		<replacement >
+				
+			<oldString><![CDATA[fred]]></oldString>
+				
+			<newString><![CDATA[fred]]></newString>
+			
+		</replacement>
+
+	</xform>
+
+</root>
