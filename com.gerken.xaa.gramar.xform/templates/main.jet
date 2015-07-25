@@ -9,6 +9,7 @@
 	</c1:iterate>
 	
 	<c1:set select="$xform" name="xformProject"><c1:get select="$xform/@xformId"/></c1:set>
+	<c1:set select="$xform" name="xformDir"><c1:get select="translate($xform/@xformId,'.','/')"/></c1:set>
 
 	<c1:iterate select="$xform/group" var="group">
 
@@ -27,9 +28,9 @@
 		<c1:iterate select="$group/createFile" var="createFile">
 		
 			<c1:set select="$createFile" name="path"><c1:get select="$createFile/@projectExpr"/><c1:get select="$createFile/@folderExpr"/>/<c1:get select="$createFile/@nameExpr"/></c1:set>
-			<c1:set select="$createFile" name="template">templates/<c1:get select="$group/@name"/>/<c1:get select="$createFile/@purpose"/>.prod</c1:set>
+			<c1:set select="$createFile" name="template">src/main/java/<c1:get select="$xform/@xformDir"/>/<c1:get select="$group/@name"/>/<c1:get select="$createFile/@purpose"/>.prod</c1:set>
 			<c1:if test="$createFile/@binary='true'"> 
-				<c1:set select="$createFile" name="template">templates/<c1:get select="$group/@name"/>/<c1:get select="$createFile/@purpose"/></c1:set>
+				<c1:set select="$createFile" name="template">src/main/java/<c1:get select="$xform/@xformDir"/>/<c1:get select="$group/@name"/>/<c1:get select="$createFile/@purpose"/></c1:set>
 			</c1:if>
 		</c1:iterate>
 
@@ -50,17 +51,18 @@
 
 
 
-	<ws:project name="{$xform/@xformProject}"  />
-	<ws:folder  path="{$xform/@xformProject}/jet2java" />
+ 	<ws:project name="{$xform/@xformProject}"  />
+ 	<ws:folder  path="{$xform/@xformProject}/src/main/java" />
+ 	<ws:folder  path="{$xform/@xformProject}/src/main/resources" />
+ 	<ws:folder  path="{$xform/@xformProject}/src/test/java" />
+ 	<ws:folder  path="{$xform/@xformProject}/src/test/resources" />
     <ws:file    path="{$xform/@xformProject}/.project"  template="templates/xform/xform.project.jet"/>
-    <ws:file    path="{$xform/@xformProject}/.classpath"  template="templates/xform/xform.classpath.jet"/>
-    <ws:file    path="{$xform/@xformProject}/build.properties"  template="templates/xform/xform.buildPropertiesFile.jet"/>
-    <ws:file    path="{$xform/@xformProject}/plugin.xml"  template="templates/xform/xform.pluginXmlFile.jet"/>
-    <ws:file    path="{$xform/@xformProject}/sample.xml"  template="templates/xform/xform.sampleXmlFile.jet" replace="true"/>
-    <ws:file    path="{$xform/@xformProject}/settings/org.eclipse.jet.prefs"  template="templates/xform/xform.orgEclipseJetPrefsFile.jet"/>
-    <ws:file    path="{$xform/@xformProject}/META-INF/MANIFEST.MF"  template="templates/xform/xform.manifestFile.jet"/>
-    <ws:file    path="{$xform/@xformProject}/templates/main.prod"  template="templates/xform/xform.mainJetFile.jet" replace="true"/>
-    <ws:file    path="{$xform/@xformProject}/templates/dump.prod"  template="templates/xform/xform.dumpJetFile.jet"/>
+    <ws:file    path="{$xform/@xformProject}/.gramar"  template="templates/xform/xform.gramar.jet"/>
+    <ws:file    path="{$xform/@xformProject}/pom.xml"  template="templates/xform/xform.pomXml.jet"/>
+    <ws:file    path="{$xform/@xformProject}/models/empty.xml"  template="templates/xform/xform.sampleXmlFile.jet" replace="true"/>
+    <ws:file    path="{$xform/@xformProject}/src/main/java/{$xform/@xformDir}/gramar.config"  template="templates/xform/xform.gramar.config.jet" replace="true"/>
+    <ws:file    path="{$xform/@xformProject}/src/main/java/{$xform/@xformDir}/main.prod"  template="templates/xform/xform.mainJetFile.jet" replace="true"/>
+    <ws:file    path="{$xform/@xformProject}/src/main/java/{$xform/@xformDir}/dump.prod"  template="templates/xform/xform.dumpJetFile.jet"/>
     <ws:file    path="{$xform/@xformProject}/snippets/tags.txt"  template="templates/xform/xform.snippets.jet" replace="true"/>
 
 	<c1:iterate select="$xform/group" var="group">

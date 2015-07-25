@@ -1,0 +1,20 @@
+<gramar>
+
+	<id><c1:get select="$xform/@xformId"/></id>
+	<label><c1:get select="$xform/@xformId"/> from <c1:get select="$xform/@provider"/></label>
+	<provider><c1:get select="$xform/@provider"/></provider>
+	<main>main.prod</main>
+
+	<taglibs>
+	
+		<taglib  prefix="c" extension="org.gramar.base" />
+		
+	</taglibs>
+	
+	<sampleModels>
+	
+		<sampleModel  name="empty"  path="models/empty.xml"  description="Empty model" />
+	
+	</sampleModels>
+
+</gramar>
