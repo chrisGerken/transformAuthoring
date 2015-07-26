@@ -3,7 +3,7 @@
 <plugin
    id="com.gerken.xaa.mpe"
    name="XaForm Model Editor Plug-in"
-   version="1.6.6"
+   version="1.6.7"
    provider-name="CHRIS"
    class="com.gerken.xaa.mpe.Activator">
 

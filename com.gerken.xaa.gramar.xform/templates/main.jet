@@ -59,7 +59,7 @@
     <ws:file    path="{$xform/@xformProject}/.project"  template="templates/xform/xform.project.jet"/>
     <ws:file    path="{$xform/@xformProject}/.gramar"  template="templates/xform/xform.gramar.jet"/>
     <ws:file    path="{$xform/@xformProject}/pom.xml"  template="templates/xform/xform.pomXml.jet"/>
-    <ws:file    path="{$xform/@xformProject}/models/empty.xml"  template="templates/xform/xform.sampleXmlFile.jet" replace="true"/>
+    <ws:file    path="{$xform/@xformProject}/src/main/java/{$xform/@xformDir}/models/empty.xml"  template="templates/xform/xform.sampleXmlFile.jet" replace="true"/>
     <ws:file    path="{$xform/@xformProject}/src/main/java/{$xform/@xformDir}/gramar.config"  template="templates/xform/xform.gramar.config.jet" replace="true"/>
     <ws:file    path="{$xform/@xformProject}/src/main/java/{$xform/@xformDir}/main.prod"  template="templates/xform/xform.mainJetFile.jet" replace="true"/>
     <ws:file    path="{$xform/@xformProject}/src/main/java/{$xform/@xformDir}/dump.prod"  template="templates/xform/xform.dumpJetFile.jet"/>
