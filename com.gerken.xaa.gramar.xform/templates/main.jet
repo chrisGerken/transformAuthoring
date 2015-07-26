@@ -28,9 +28,9 @@
 		<c1:iterate select="$group/createFile" var="createFile">
 		
 			<c1:set select="$createFile" name="path"><c1:get select="$createFile/@projectExpr"/><c1:get select="$createFile/@folderExpr"/>/<c1:get select="$createFile/@nameExpr"/></c1:set>
-			<c1:set select="$createFile" name="template">src/main/java/<c1:get select="$xform/@xformDir"/>/<c1:get select="$group/@name"/>/<c1:get select="$createFile/@purpose"/>.prod</c1:set>
+			<c1:set select="$createFile" name="template">src/main/java/<c1:get select="$xform/@xformDir"/>/templates/<c1:get select="$group/@name"/>/<c1:get select="$createFile/@purpose"/>.prod</c1:set>
 			<c1:if test="$createFile/@binary='true'"> 
-				<c1:set select="$createFile" name="template">src/main/java/<c1:get select="$xform/@xformDir"/>/<c1:get select="$group/@name"/>/<c1:get select="$createFile/@purpose"/></c1:set>
+				<c1:set select="$createFile" name="template">src/main/java/<c1:get select="$xform/@xformDir"/>/templates/<c1:get select="$group/@name"/>/<c1:get select="$createFile/@purpose"/></c1:set>
 			</c1:if>
 		</c1:iterate>
 
@@ -61,8 +61,8 @@
     <ws:file    path="{$xform/@xformProject}/pom.xml"  template="templates/xform/xform.pomXml.jet"/>
     <ws:file    path="{$xform/@xformProject}/src/main/java/{$xform/@xformDir}/models/empty.xml"  template="templates/xform/xform.sampleXmlFile.jet" replace="true"/>
     <ws:file    path="{$xform/@xformProject}/src/main/java/{$xform/@xformDir}/gramar.config"  template="templates/xform/xform.gramar.config.jet" replace="true"/>
-    <ws:file    path="{$xform/@xformProject}/src/main/java/{$xform/@xformDir}/main.prod"  template="templates/xform/xform.mainJetFile.jet" replace="true"/>
-    <ws:file    path="{$xform/@xformProject}/src/main/java/{$xform/@xformDir}/dump.prod"  template="templates/xform/xform.dumpJetFile.jet"/>
+    <ws:file    path="{$xform/@xformProject}/src/main/java/{$xform/@xformDir}/templates/main.prod"  template="templates/xform/xform.mainJetFile.jet" replace="true"/>
+    <ws:file    path="{$xform/@xformProject}/src/main/java/{$xform/@xformDir}/templates/dump.prod"  template="templates/xform/xform.dumpJetFile.jet"/>
     <ws:file    path="{$xform/@xformProject}/snippets/tags.txt"  template="templates/xform/xform.snippets.jet" replace="true"/>
 
 	<c1:iterate select="$xform/group" var="group">
