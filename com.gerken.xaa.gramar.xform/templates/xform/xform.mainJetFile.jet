@@ -1,6 +1,5 @@
-<<%-- --%>%@taglib prefix="ws" id="org.eclipse.jet.workspaceTags" %>
 
-<c:if test="not(isVariableDefined(root))">
+<c:if test="not(c:isVariableDefined('root'))">
     <c:setVariable select="/*" var="root" />
 </c:if>
 
@@ -20,6 +19,6 @@
 
 *******************************
 
-<c:if test="isVariableDefined('org.eclipse.jet.resource.project.name')">
-    <ws:file template="templates/dump.jet" path="{$org.eclipse.jet.resource.project.name}/dump.xml"/>
+<c:if test="c:isVariableDefined('org.eclipse.jet.resource.project.name')">
+    <c:file template="templates/dump.jet" path="{$org.eclipse.jet.resource.project.name}/dump.xml"/>
 </c:if>

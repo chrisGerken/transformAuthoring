@@ -28,9 +28,9 @@
 		<c1:iterate select="$group/createFile" var="createFile">
 		
 			<c1:set select="$createFile" name="path"><c1:get select="$createFile/@projectExpr"/><c1:get select="$createFile/@folderExpr"/>/<c1:get select="$createFile/@nameExpr"/></c1:set>
-			<c1:set select="$createFile" name="template">src/main/java/<c1:get select="$xform/@xformDir"/>/templates/<c1:get select="$group/@name"/>/<c1:get select="$createFile/@purpose"/>.prod</c1:set>
+			<c1:set select="$createFile" name="template">templates/<c1:get select="$group/@name"/>/<c1:get select="$createFile/@purpose"/>.prod</c1:set>
 			<c1:if test="$createFile/@binary='true'"> 
-				<c1:set select="$createFile" name="template">src/main/java/<c1:get select="$xform/@xformDir"/>/templates/<c1:get select="$group/@name"/>/<c1:get select="$createFile/@purpose"/></c1:set>
+				<c1:set select="$createFile" name="template">templates/<c1:get select="$group/@name"/>/<c1:get select="$createFile/@purpose"/></c1:set>
 			</c1:if>
 		</c1:iterate>
 

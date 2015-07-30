@@ -3,7 +3,7 @@
 	<id><c1:get select="$xform/@xformId"/></id>
 	<label><c1:get select="$xform/@xformId"/> from <c1:get select="$xform/@provider"/></label>
 	<provider><c1:get select="$xform/@provider"/></provider>
-	<main>main.prod</main>
+	<main>templates/main.prod</main>
 
 	<taglibs>
 	
