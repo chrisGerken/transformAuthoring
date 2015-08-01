@@ -18,7 +18,7 @@
 <c1:if test="$createFile/@binary='true'">
 <c1:get select="$target/@indent" /><c:copyFile target="<c1:get select="$createFile/@path" />" src="<c1:get select="$createFile/@template" />" replace="<c1:get select="$createFile/@replace"/>" />
 </c1:if>
-<ws1:copyFile target="{$xform/@xformId}/{$createFile/@template}" src="{$createFile/@src}" srcContext="workspace" replace="false" binary="true"/>
+<ws1:copyFile target="{$xform/@xformId}/src/main/java/{$xform/@xformDir}/{$createFile/@template}" src="{$createFile/@src}" srcContext="workspace" replace="false" binary="true"/>
 </c1:iterate>
 
 <c1:get select="$target/@indent" /><c1:userRegion>*** Begin custom generation updates for <c1:get select="$target/@name" /> (<c1:get select="$target/@id" />)<c1:initialCode>
