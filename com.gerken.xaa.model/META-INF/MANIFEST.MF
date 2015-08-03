@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Model Plug-in
 Bundle-SymbolicName: com.gerken.xaa.model
-Bundle-Version: 1.6.7
+Bundle-Version: 1.6.8
 Bundle-Activator: com.gerken.xaa.model.XaaModelPlugin
 Bundle-Vendor: Chris Gerken Consulting, LLC
 Require-Bundle: org.eclipse.ui,

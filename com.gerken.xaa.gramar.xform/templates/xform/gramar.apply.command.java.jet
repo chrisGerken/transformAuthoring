@@ -1,0 +1,33 @@
+package <c1:get select="$xform/@xformId"/>;
+
+import org.gramar.Apply;
+import org.gramar.exception.GramarException;
+import org.gramar.util.PropertiesHelper;
+
+/**
+ *
+ * Command line applicator for gramar <c1:get select="$xform/@xformId"/>
+ *
+ */
+public class <c1:get select="$applyJava"/> extends Apply {
+
+	public <c1:get select="$applyJava"/>() {
+		super();
+	}
+
+	public static void main(String[] args) {
+
+		try {
+			new <c1:get select="$applyJava"/>().apply(args);
+		} catch (GramarException e) {
+			System.err.println(e.getMessage());
+		}
+
+	}
+
+	@Override
+	public void defaultValues(PropertiesHelper pm) {
+		pm.setProperty(PropertiesHelper.PROPERTY_GRAMAR_ID, "<c1:get select="$xform/@xformId"/>", false);
+	}
+
+}
