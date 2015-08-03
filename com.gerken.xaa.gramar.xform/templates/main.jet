@@ -48,7 +48,11 @@
 		
 	</c1:iterate>
 
-
+    - Figure out the name of the first 2nd-level group (ought to be only one) 
+    
+    <c1:setVariable select="/xform/group[@root='true']" var="current" />
+	<c1:setVariable select="/xform/group[$current/@id=@parentId]/@name" var="group2name" />
+	<c1:setVariable select="uppercaseFirst($group2name)" var="applyJava" />
 
 
  	<ws:project name="{$xform/@xformProject}"  />
@@ -56,11 +60,12 @@
  	<ws:folder  path="{$xform/@xformProject}/src/main/resources" />
  	<ws:folder  path="{$xform/@xformProject}/src/test/java" />
  	<ws:folder  path="{$xform/@xformProject}/src/test/resources" />
-    <ws:file    path="{$xform/@xformProject}/.project"  template="templates/xform/xform.project.jet"/>
+    <ws:file    path="{$xform/@xformProject}/.project"  template="templates/xform/xform.project.jet" replace="false"/>
     <ws:file    path="{$xform/@xformProject}/.gramar"  template="templates/xform/xform.gramar.jet"/>
     <ws:file    path="{$xform/@xformProject}/pom.xml"  template="templates/xform/xform.pomXml.jet"/>
     <ws:file    path="{$xform/@xformProject}/src/main/java/{$xform/@xformDir}/models/empty.xml"  template="templates/xform/xform.sampleXmlFile.jet" replace="true"/>
     <ws:file    path="{$xform/@xformProject}/src/main/java/{$xform/@xformDir}/gramar.config"  template="templates/xform/xform.gramar.config.jet" replace="true"/>
+    <ws:file    path="{$xform/@xformProject}/src/main/java/{$xform/@xformDir}/{$applyJava}.java"  template="templates/xform/gramar.apply.command.java.jet" replace="true"/>
     <ws:file    path="{$xform/@xformProject}/src/main/java/{$xform/@xformDir}/templates/main.prod"  template="templates/xform/xform.mainJetFile.jet" replace="true"/>
     <ws:file    path="{$xform/@xformProject}/src/main/java/{$xform/@xformDir}/templates/dump.prod"  template="templates/xform/xform.dumpJetFile.jet"/>
     <ws:file    path="{$xform/@xformProject}/snippets/tags.txt"  template="templates/xform/xform.snippets.jet" replace="true"/>
