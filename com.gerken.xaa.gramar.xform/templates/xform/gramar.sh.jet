@@ -1,0 +1,1 @@
+java -cp ./target/<c1:get select="$xform/@xformId"/>-<c1:get select="$xform/@version"/>-SNAPSHOT-jar-with-dependencies.jar <c1:get select="$xform/@xformId"/>.<c1:get select="$applyJava"/> $@

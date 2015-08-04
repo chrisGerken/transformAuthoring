@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: com.gerken.xaa.gramar.xform
 Bundle-SymbolicName: com.gerken.xaa.gramar.xform;singleton:=true
-Bundle-Version: 1.6.8
+Bundle-Version: 1.6.10
 Bundle-Vendor: 
 Require-Bundle: org.eclipse.jet
 Bundle-ClassPath: .,bin/

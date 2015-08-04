@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Xaa Plug-in
 Bundle-SymbolicName: com.gerken.xaa;singleton:=true
-Bundle-Version: 1.6.8
+Bundle-Version: 1.6.10
 Bundle-Activator: com.gerken.xaa.Activator
 Bundle-Vendor: GERKEN
 Require-Bundle: org.eclipse.ui,
