@@ -7,7 +7,7 @@
     <groupId>org.gramar</groupId>
     <artifactId><c1:get select="$xform/@xformProject" /></artifactId>
     <packaging>jar</packaging>
-    <version>1.0.0-SNAPSHOT</version>
+    <version><c1:get select="/xform/@version" />-SNAPSHOT</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
