@@ -15,10 +15,11 @@ public class MentorHerder {
 	}
 	
 	public IXaaMentor[] getMentors() {
-		IXaaMentor[] result = new IXaaMentor[3];
+		IXaaMentor[] result = new IXaaMentor[4];
 		result[0] = new BasicMentor();
 		result[1] = new JavaMentor();
-		result[2] = new Ios4Mentor();
+		result[2] = new MavenMentor();
+		result[3] = new Ios4Mentor();
 		return result;
 	}
 }

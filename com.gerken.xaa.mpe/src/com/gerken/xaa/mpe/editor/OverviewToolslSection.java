@@ -135,6 +135,8 @@ public class OverviewToolslSection extends AbstractToolSection implements IHyper
 			token.setAttribute("name",purpose);
 			token.setAttribute("desc","variable for "+filename);
 			
+			((Element)cf[n]).setAttribute("purposeAsTokenName", "false");
+			
 		}
 		
 	}

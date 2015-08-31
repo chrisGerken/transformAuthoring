@@ -284,7 +284,21 @@ public class Xform extends ModelElement {
 		Iterator<CreateFile> iter = allFiles().iterator();
 		while (iter.hasNext()) {
 			CreateFile candidate = iter.next();
-			if ((candidate.getProjectId().equals(projectId)) && (candidate.getOPath().startsWith(startString))) {
+			String oPath = candidate.getOPath();
+			if ((candidate.getProjectId().equals(projectId)) && oPath.startsWith(startString)) {
+				result.add(candidate);
+			}
+		}
+		return result;
+	}
+
+	public ArrayList<CreateFolder> getFoldersStartingWith(String projectId,String startString) {
+		ArrayList<CreateFolder> result = new ArrayList<CreateFolder>();
+		Iterator<CreateFolder> iter = allFolders().iterator();
+		while (iter.hasNext()) {
+			CreateFolder candidate = iter.next();
+			String oPath = candidate.getOPath();
+			if ((candidate.getProjectId().equals(projectId)) && oPath.startsWith(startString)) {
 				result.add(candidate);
 			}
 		}
@@ -319,6 +333,17 @@ public class Xform extends ModelElement {
 		}
 		return result;
 	}
+
+	public ArrayList<CreateProject> projects() {
+		ArrayList<CreateProject> result = new ArrayList<CreateProject>();
+		for (int i = 0; i < getGroupArray().length; i++) {
+			CreateProject cp[] = getGroupArray()[i].getCreateProjectArray();
+			for (int p = 0; p < cp.length; p++) {
+				result.add(cp[p]);
+			}
+		}
+		return result;
+	}
 	
 	public Xform getXform() {
 		return this;
@@ -342,6 +367,17 @@ public class Xform extends ModelElement {
 			Group group = getGroupArray()[i];
 			for (int f = 0; f < group.getCreateFileArray().length; f++) {
 				result.add(group.getCreateFileArray()[f]);
+			}
+		}
+		return result;
+	}
+
+	public ArrayList<CreateFolder> allFolders() {
+		ArrayList<CreateFolder> result = new ArrayList<CreateFolder>();
+		for (int i = 0; i < getGroupArray().length; i++) {
+			Group group = getGroupArray()[i];
+			for (int f = 0; f < group.getCreateFolderArray().length; f++) {
+				result.add(group.getCreateFolderArray()[f]);
 			}
 		}
 		return result;

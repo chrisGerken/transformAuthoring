@@ -63,12 +63,12 @@
     <ws:file    path="{$xform/@xformProject}/.project"  template="templates/xform/xform.project.jet" replace="false"/>
     <ws:file    path="{$xform/@xformProject}/.gramar"  template="templates/xform/xform.gramar.jet"/>
     <ws:file    path="{$xform/@xformProject}/pom.xml"  template="templates/xform/xform.pomXml.jet"/>
-    <ws:file    path="{$xform/@xformProject}/src/main/java/{$xform/@xformDir}/models/empty.xml"  template="templates/xform/xform.sampleXmlFile.jet" replace="true"/>
-    <ws:file    path="{$xform/@xformProject}/src/main/java/{$xform/@xformDir}/gramar.config"  template="templates/xform/xform.gramar.config.jet" replace="true"/>
+    <ws:file    path="{$xform/@xformProject}/src/main/resources/{$xform/@xformDir}/models/empty.xml"  template="templates/xform/xform.sampleXmlFile.jet" replace="true"/>
+    <ws:file    path="{$xform/@xformProject}/src/main/resources/{$xform/@xformDir}/gramar.config"  template="templates/xform/xform.gramar.config.jet" replace="true"/>
     <ws:file    path="{$xform/@xformProject}/src/main/java/{$xform/@xformDir}/{$applyJava}.java"  template="templates/xform/gramar.apply.command.java.jet" replace="true"/>
     <ws:file    path="{$xform/@xformProject}/{lowercaseFirst($applyJava)}.sh"  template="templates/xform/gramar.sh.jet" replace="true"/>
-    <ws:file    path="{$xform/@xformProject}/src/main/java/{$xform/@xformDir}/templates/main.prod"  template="templates/xform/xform.mainJetFile.jet" replace="true"/>
-    <ws:file    path="{$xform/@xformProject}/src/main/java/{$xform/@xformDir}/templates/dump.prod"  template="templates/xform/xform.dumpJetFile.jet"/>
+    <ws:file    path="{$xform/@xformProject}/src/main/resources/{$xform/@xformDir}/templates/main.prod"  template="templates/xform/xform.mainJetFile.jet" replace="true"/>
+    <ws:file    path="{$xform/@xformProject}/src/main/resources/{$xform/@xformDir}/templates/dump.prod"  template="templates/xform/xform.dumpJetFile.jet"/>
     <ws:file    path="{$xform/@xformProject}/snippets/tags.txt"  template="templates/xform/xform.snippets.jet" replace="true"/>
 
 	<c1:iterate select="$xform/group" var="group">

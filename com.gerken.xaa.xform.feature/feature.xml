@@ -2,7 +2,7 @@
 <feature
       id="com.gerken.xaa.xform.feature"
       label="XAA Transformations"
-      version="1.6.10"
+      version="1.6.11"
       provider-name="Gerken Intellectual Properties, LLC">
 
    <description url="http://www.example.com/description">
@@ -26,13 +26,13 @@ other than to make a single backup copy.
          id="com.gerken.xaa.xform"
          download-size="0"
          install-size="0"
-         version="1.6.10"
+         version="1.6.11"
          unpack="false"/>
 
    <plugin
          id="com.gerken.xaa.gramar.xform"
          download-size="0"
          install-size="0"
-         version="1.6.10"/>
+         version="1.6.11"/>
 
 </feature>
