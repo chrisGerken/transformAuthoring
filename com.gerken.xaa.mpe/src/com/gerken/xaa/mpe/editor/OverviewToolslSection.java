@@ -64,8 +64,10 @@ public class OverviewToolslSection extends AbstractToolSection implements IHyper
 					ErrorDialog.openError(new Shell(),"Pattern applied with errors",status.getMessage(),status);
 				}
 					// End pattern invoke sample.xform
+			} catch (NullPointerException t) {
+				MessageDialog.openInformation(new Shell(),"Missing Pattern",t.toString());
 			} catch (Throwable t) {
-					MessageDialog.openInformation(new Shell(),"Exception thrown",t.toString());
+				MessageDialog.openInformation(new Shell(),"Exception thrown",t.toString());
 			}
 			return;
 		}
@@ -88,8 +90,10 @@ public class OverviewToolslSection extends AbstractToolSection implements IHyper
 					ErrorDialog.openError(new Shell(),"Pattern applied with errors",status.getMessage(),status);
 				}
 					// End pattern invoke sample.xform
+			} catch (NullPointerException t) {
+				MessageDialog.openInformation(new Shell(),"Missing Pattern",t.toString());
 			} catch (Throwable t) {
-					MessageDialog.openInformation(new Shell(),"Exception thrown",t.toString());
+				MessageDialog.openInformation(new Shell(),"Exception thrown",t.toString());
 			}
 			return;
 		}
