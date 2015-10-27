@@ -1,0 +1,6 @@
+
+Templates can be found in /src/main/resources/<c1:get select="$xform/@xformDir" />/templates
+
+Sample models can be found in  /src/main/resources/<c1:get select="$xform/@xformDir" />/models
+
+    and are configured in /src/main/resources/<c1:get select="$xform/@xformDir" />/gramar.config

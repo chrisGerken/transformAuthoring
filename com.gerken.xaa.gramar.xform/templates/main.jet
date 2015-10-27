@@ -70,6 +70,8 @@
     <ws:file    path="{$xform/@xformProject}/src/main/resources/{$xform/@xformDir}/templates/main.prod"  template="templates/xform/xform.mainJetFile.jet" replace="true"/>
     <ws:file    path="{$xform/@xformProject}/src/main/resources/{$xform/@xformDir}/templates/dump.prod"  template="templates/xform/xform.dumpJetFile.jet"/>
     <ws:file    path="{$xform/@xformProject}/snippets/tags.txt"  template="templates/xform/xform.snippets.jet" replace="true"/>
+    <ws:file    path="{$xform/@xformProject}/author_readme.txt"  template="templates/xform/author.readme.jet" replace="true"/>
+    <ws:file    path="{$xform/@xformProject}/user_readme.txt"  template="templates/xform/user.readme.jet" replace="true"/>
 
 	<c1:iterate select="$xform/group" var="group">
 

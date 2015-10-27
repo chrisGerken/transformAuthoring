@@ -19,9 +19,11 @@
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
-                    <archive>
+                    <finalName><c1:get select="$xform/@xformId" /></finalName>
+        			<appendAssemblyId>false</appendAssemblyId>                    
+        			<archive>
                         <manifest>
-                            <mainClass></mainClass>
+                            <mainClass><c1:get select="$xform/@xformId"/>.<c1:get select="$applyJava"/></mainClass>
                         </manifest>
                     </archive>
                 </configuration>
