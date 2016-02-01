@@ -3,13 +3,18 @@
 <plugin
    id="com.gerken.xaa.mpe"
    name="XaForm Model Editor Plug-in"
-   version="1.6.13"
+   version="1.6.16"
    provider-name="CHRIS"
    class="com.gerken.xaa.mpe.Activator">
 
    <runtime>
       <library name="editor.jar">
          <export name="*"/>
+      </library>
+      <library name="gramars/com.gerken.xaa.gramar.gramar-1.0.0-SNAPSHOT.jar">
+         <export
+               name="*">
+         </export>
       </library>
    </runtime>
 
@@ -23,6 +28,7 @@
       <import plugin="org.eclipse.ui.workbench.texteditor"/>
       <import plugin="org.eclipse.ui.forms"/>
       <import plugin="org.eclipse.jet"/>
+      <import plugin="org.gramar.eclipse.ui" version="0.9.36"/>
    </requires>
 
    <extension
@@ -38,6 +44,10 @@
    <extension
          point="org.eclipse.help.contexts">
       <contexts file="contextHelp.xml" />
+   </extension>
+   <extension
+         point="org.gramar.eclipse.ui.deploy">
+         <deploy  id="com.gerken.xaa.gramar.gramar"  kind="jar" />
    </extension>
 
 </plugin>
