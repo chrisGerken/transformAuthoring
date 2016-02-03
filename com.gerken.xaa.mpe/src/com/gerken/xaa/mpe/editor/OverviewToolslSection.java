@@ -8,8 +8,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.events.IHyperlinkListener;
+import org.eclipse.ui.statushandlers.StatusManager;
 import org.gramar.IGramar;
 import org.gramar.IGramarApplicationStatus;
+import org.gramar.IGramarStatus;
 import org.gramar.eclipse.platform.EclipseFileStore;
 import org.gramar.eclipse.platform.EclipsePlatform;
 import org.gramar.eclipse.ui.util.StatusFactory;
@@ -18,6 +20,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+import com.gerken.xaa.mpe.Activator;
 import com.gerken.xaa.mpe.core.AbstractFormPage;
 import com.gerken.xaa.mpe.core.AbstractToolSection;
 import com.gerken.xaa.mpe.core.ModelAccess;
@@ -112,11 +115,14 @@ public class OverviewToolslSection extends AbstractToolSection implements IHyper
 				EclipsePlatform platform = new EclipsePlatform();
 				IGramar gramar = platform.getGramar("com.gerken.xaa.gramar.gramar");						
 				EclipseFileStore fileStore = (EclipseFileStore) platform.getDefaultFileStore();
+				fileStore.setMinLogLevel(IGramarStatus.SEVERITY_INFO);
 				IGramarApplicationStatus status = platform.apply(new XmlModel(getModel()), gramar, fileStore);
-//				msg = "Apply Gramar was executed.  Model accessed "+result.getModelAccesses()+" times";  
 
 				if (!status.hadErrors()) {
-					MessageDialog.openInformation(new Shell(),"Gramar successfully applied","No errors");
+					String msg = "Model accessed "+status.getModelAccesses()+" times.";  
+					MessageDialog.openInformation(new Shell(),"Gramar successfully generated", "See log for details");
+					MultiStatus ms = StatusFactory.status(status.getContext(), 0, "Gramar applied successfully");
+					Activator.getDefault().getLog().log(ms);
 				} else {
 					MultiStatus ms = StatusFactory.status(status.getContext(), 0, "Gramar applied with errors");
 					String content = status.mainProductionResult();

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Refactor Plug-in
 Bundle-SymbolicName: com.gerken.xaa.refactor; singleton:=true
-Bundle-Version: 1.6.17
+Bundle-Version: 1.6.18
 Bundle-Activator: com.gerken.xaa.refactor.Activator
 Bundle-Vendor: GERKEN
 Require-Bundle: org.eclipse.ui,
