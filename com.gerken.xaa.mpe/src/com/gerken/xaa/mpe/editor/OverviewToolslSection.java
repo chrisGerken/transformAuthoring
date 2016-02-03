@@ -1,9 +1,7 @@
 package com.gerken.xaa.mpe.editor;
 
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.jet.JET2Platform;
+import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Composite;
@@ -14,6 +12,7 @@ import org.gramar.IGramar;
 import org.gramar.IGramarApplicationStatus;
 import org.gramar.eclipse.platform.EclipseFileStore;
 import org.gramar.eclipse.platform.EclipsePlatform;
+import org.gramar.eclipse.ui.util.StatusFactory;
 import org.gramar.model.XmlModel;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -22,7 +21,6 @@ import org.w3c.dom.Node;
 import com.gerken.xaa.mpe.core.AbstractFormPage;
 import com.gerken.xaa.mpe.core.AbstractToolSection;
 import com.gerken.xaa.mpe.core.ModelAccess;
-import com.gerken.xaa.mpe.core.ModelFormatter;
 
 public class OverviewToolslSection extends AbstractToolSection implements IHyperlinkListener {
 
@@ -35,9 +33,9 @@ public class OverviewToolslSection extends AbstractToolSection implements IHyper
 		String patternId = ModelAccess.getAttribute(getModel(), "/xform/@xformId");
 		String content = "<form>" +
 							"<li style=\"text\" bindent=\"5\"><a href=\"purposes.to.tokens\">Build tokens</a> for selected purposes</li>" +
-							"<li style=\"text\" bindent=\"5\"><a href=\"invoke.xaa.xform\">Generate</a> "+patternId+" xform</li>" +
-							"<li style=\"text\" bindent=\"5\"><a href=\"invoke.xaa.gramar\">Generate</a> "+patternId+" gramar</li>" +
-							"<li style=\"text\" bindent=\"5\"><a href=\"invoke.xaa.gramar2\">Gramerate</a> "+patternId+" gramar</li>" +
+//							"<li style=\"text\" bindent=\"5\"><a href=\"invoke.xaa.xform\">Generate</a> "+patternId+" xform</li>" +
+//							"<li style=\"text\" bindent=\"5\"><a href=\"invoke.xaa.gramar\">Generate</a> "+patternId+" gramar</li>" +
+							"<li style=\"text\" bindent=\"5\"><a href=\"invoke.xaa.gramar2\">Generate</a> "+patternId+" gramar</li>" +
 							"</form>";
 
 		return content;
@@ -47,57 +45,57 @@ public class OverviewToolslSection extends AbstractToolSection implements IHyper
 		String href = e.getHref().toString();
 
 
-		if (href.equals("invoke.xaa.xform")) {
-			if (getPage().getMpeEditor().getConstraintManager().getCurrentProblems().size() > 0) {
-				boolean goon = MessageDialog.openConfirm(new Shell(),"Errors Exist in Model","Errors in the model may cause the generation to fail.  Do you wish to continue?");
-				if (!goon) { return; }
-			}
-			try {
-				String patternId = ModelAccess.getAttribute(getModel(), "/xform/@xformId");
-				boolean goon = MessageDialog.openConfirm(new Shell(),"Begin Generation","Generate "+patternId+" xform?");
-				if (!goon) { return; }
-					// Begin pattern invoke sample.xform
-				String contents = ModelFormatter.getInstance().format(getModel());
-				IStatus status = JET2Platform.runTransformOnString("com.gerken.xaa.xform", contents, new NullProgressMonitor());
-				if ((status.getSeverity() == IStatus.OK) | (status.getSeverity() == IStatus.INFO)) {
-					MessageDialog.openInformation(new Shell(),"Pattern successfully applied",status.getMessage());
-				} else {
-					ErrorDialog.openError(new Shell(),"Pattern applied with errors",status.getMessage(),status);
-				}
-					// End pattern invoke sample.xform
-			} catch (NullPointerException t) {
-				MessageDialog.openInformation(new Shell(),"Missing Pattern",t.toString());
-			} catch (Throwable t) {
-				MessageDialog.openInformation(new Shell(),"Exception thrown",t.toString());
-			}
-			return;
-		}
-
-		if (href.equals("invoke.xaa.gramar")) {
-			if (getPage().getMpeEditor().getConstraintManager().getCurrentProblems().size() > 0) {
-				boolean goon = MessageDialog.openConfirm(new Shell(),"Errors Exist in Model","Errors in the model may cause the generation to fail.  Do you wish to continue?");
-				if (!goon) { return; }
-			}
-			try {
-				String patternId = ModelAccess.getAttribute(getModel(), "/xform/@xformId");
-				boolean goon = MessageDialog.openConfirm(new Shell(),"Begin Generation","Generate "+patternId+" gramar?");
-				if (!goon) { return; }
-					// Begin pattern invoke sample.xform
-				String contents = ModelFormatter.getInstance().format(getModel());
-				IStatus status = JET2Platform.runTransformOnString("com.gerken.xaa.gramar.xform", contents, new NullProgressMonitor());
-				if ((status.getSeverity() == IStatus.OK) | (status.getSeverity() == IStatus.INFO)) {
-					MessageDialog.openInformation(new Shell(),"Pattern successfully applied",status.getMessage());
-				} else {
-					ErrorDialog.openError(new Shell(),"Pattern applied with errors",status.getMessage(),status);
-				}
-					// End pattern invoke sample.xform
-			} catch (NullPointerException t) {
-				MessageDialog.openInformation(new Shell(),"Missing Pattern",t.toString());
-			} catch (Throwable t) {
-				MessageDialog.openInformation(new Shell(),"Exception thrown",t.toString());
-			}
-			return;
-		}
+//		if (href.equals("invoke.xaa.xform")) {
+//			if (getPage().getMpeEditor().getConstraintManager().getCurrentProblems().size() > 0) {
+//				boolean goon = MessageDialog.openConfirm(new Shell(),"Errors Exist in Model","Errors in the model may cause the generation to fail.  Do you wish to continue?");
+//				if (!goon) { return; }
+//			}
+//			try {
+//				String patternId = ModelAccess.getAttribute(getModel(), "/xform/@xformId");
+//				boolean goon = MessageDialog.openConfirm(new Shell(),"Begin Generation","Generate "+patternId+" xform?");
+//				if (!goon) { return; }
+//					// Begin pattern invoke sample.xform
+//				String contents = ModelFormatter.getInstance().format(getModel());
+//				IStatus status = JET2Platform.runTransformOnString("com.gerken.xaa.xform", contents, new NullProgressMonitor());
+//				if ((status.getSeverity() == IStatus.OK) | (status.getSeverity() == IStatus.INFO)) {
+//					MessageDialog.openInformation(new Shell(),"Pattern successfully applied",status.getMessage());
+//				} else {
+//					ErrorDialog.openError(new Shell(),"Pattern applied with errors",status.getMessage(),status);
+//				}
+//					// End pattern invoke sample.xform
+//			} catch (NullPointerException t) {
+//				MessageDialog.openInformation(new Shell(),"Missing Pattern",t.toString());
+//			} catch (Throwable t) {
+//				MessageDialog.openInformation(new Shell(),"Exception thrown",t.toString());
+//			}
+//			return;
+//		}
+//
+//		if (href.equals("invoke.xaa.gramar")) {
+//			if (getPage().getMpeEditor().getConstraintManager().getCurrentProblems().size() > 0) {
+//				boolean goon = MessageDialog.openConfirm(new Shell(),"Errors Exist in Model","Errors in the model may cause the generation to fail.  Do you wish to continue?");
+//				if (!goon) { return; }
+//			}
+//			try {
+//				String patternId = ModelAccess.getAttribute(getModel(), "/xform/@xformId");
+//				boolean goon = MessageDialog.openConfirm(new Shell(),"Begin Generation","Generate "+patternId+" gramar?");
+//				if (!goon) { return; }
+//					// Begin pattern invoke sample.xform
+//				String contents = ModelFormatter.getInstance().format(getModel());
+//				IStatus status = JET2Platform.runTransformOnString("com.gerken.xaa.gramar.xform", contents, new NullProgressMonitor());
+//				if ((status.getSeverity() == IStatus.OK) | (status.getSeverity() == IStatus.INFO)) {
+//					MessageDialog.openInformation(new Shell(),"Pattern successfully applied",status.getMessage());
+//				} else {
+//					ErrorDialog.openError(new Shell(),"Pattern applied with errors",status.getMessage(),status);
+//				}
+//					// End pattern invoke sample.xform
+//			} catch (NullPointerException t) {
+//				MessageDialog.openInformation(new Shell(),"Missing Pattern",t.toString());
+//			} catch (Throwable t) {
+//				MessageDialog.openInformation(new Shell(),"Exception thrown",t.toString());
+//			}
+//			return;
+//		}
 
 		if (href.equals("invoke.xaa.gramar2")) {
 			if (getPage().getMpeEditor().getConstraintManager().getCurrentProblems().size() > 0) {
@@ -114,15 +112,15 @@ public class OverviewToolslSection extends AbstractToolSection implements IHyper
 				EclipsePlatform platform = new EclipsePlatform();
 				IGramar gramar = platform.getGramar("com.gerken.xaa.gramar.gramar");						
 				EclipseFileStore fileStore = (EclipseFileStore) platform.getDefaultFileStore();
-				IGramarApplicationStatus result = platform.apply(new XmlModel(getModel()), gramar, fileStore);
+				IGramarApplicationStatus status = platform.apply(new XmlModel(getModel()), gramar, fileStore);
 //				msg = "Apply Gramar was executed.  Model accessed "+result.getModelAccesses()+" times";  
 
-				String contents = ModelFormatter.getInstance().format(getModel());
-				IStatus status = JET2Platform.runTransformOnString("com.gerken.xaa.gramar.xform", contents, new NullProgressMonitor());
-				if ((status.getSeverity() == IStatus.OK) | (status.getSeverity() == IStatus.INFO)) {
-					MessageDialog.openInformation(new Shell(),"Gramar successfully applied",status.getMessage());
+				if (!status.hadErrors()) {
+					MessageDialog.openInformation(new Shell(),"Gramar successfully applied","No errors");
 				} else {
-					ErrorDialog.openError(new Shell(),"Gramar applied with errors",status.getMessage(),status);
+					MultiStatus ms = StatusFactory.status(status.getContext(), 0, "Gramar applied with errors");
+					String content = status.mainProductionResult();
+					ErrorDialog.openError(new Shell(),"Gramar applied with errors",ms.getMessage(),ms);
 				}
 					// End pattern invoke sample.xform
 			} catch (NullPointerException t) {

@@ -3,22 +3,16 @@ package com.gerken.xaa.mpe.editor;
 
 import java.util.Hashtable;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.jet.JET2Platform;
-import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.events.IHyperlinkListener;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import com.gerken.xaa.mpe.core.AbstractFormPage;
 import com.gerken.xaa.mpe.core.AbstractToolSection;
 import com.gerken.xaa.mpe.core.ModelAccess;
-import com.gerken.xaa.mpe.core.ModelFormatter;
 
 public class PackageToolsSection extends AbstractToolSection implements IHyperlinkListener {
 

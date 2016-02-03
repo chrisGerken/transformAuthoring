@@ -3,7 +3,7 @@
 <plugin
    id="com.gerken.xaa.mpe"
    name="XaForm Model Editor Plug-in"
-   version="1.6.16"
+   version="1.6.17"
    provider-name="CHRIS"
    class="com.gerken.xaa.mpe.Activator">
 
@@ -27,7 +27,6 @@
       <import plugin="org.eclipse.ui.ide"/>
       <import plugin="org.eclipse.ui.workbench.texteditor"/>
       <import plugin="org.eclipse.ui.forms"/>
-      <import plugin="org.eclipse.jet"/>
       <import plugin="org.gramar.eclipse.ui" version="0.9.36"/>
    </requires>
 
