@@ -1,0 +1,31 @@
+<xform id="2" nextID="11" provider="Chris" version="0.9" xformDir="org/cecil/gramar" xformId="org.cecil.gramar" xformProject="org.cecil.gramar">
+	<group id="4" name="lion" parentId="3" root="false">
+		<createProject id="5" locationExpr="" name="{$lion/@srcProject}" oLocation="" oPath="cecil" projectExpr="{$lion/@srcProject}" purpose="src">
+		</createProject>
+		<createFile binary="false" changeableName="false" folderExpr="" id="6" nameExpr=".project" oPath=".project" path="{$lion/@srcProject}/.project" projectExpr="{$lion/@srcProject}" projectId="5" purpose="project" purposeAsTokenName="false" replace="true" src="org.cecil/refimpl/art000002" template="templates/lion/project.prod">
+		</createFile>
+		<token derived="false" desc="Name of the artifact collection to be generated" formula="" id="" name="name">
+		</token>
+		<token derived="true" desc="Token representing the new generated name for project cecil" formula="{$lion/@name}src" id="" name="srcProject">
+		</token>
+		</group>
+	<group id="3" name="root" parentId="" root="true">
+		</group>
+	<replacement newString="{$lion/@srcProject}" oldString="cecil">
+		</replacement>
+	<group id="9" name="color" parentId="4">
+		<createFile binary="false" changeableName="true" folderExpr="/colors" id="8" nameExpr="color.txt" oPath="colors/color.txt" path="{$lion/@srcProject}/colors/color.txt" projectExpr="{$lion/@srcProject}" projectId="5" purpose="colorTxt" purposeAsTokenName="false" replace="true" src="org.cecil/refimpl/art000004" template="templates/color/colorTxt.prod">
+		</createFile>
+		<token derived="false" desc="" formula="" name="name" optional="false"/>
+		<token derived="false" desc="" formula="{c:lower-case($color/@name)}" name="id" optional="true"/>
+		</group>
+	<group id="10" name="fruit" parentId="4">
+		<createFile binary="false" changeableName="true" folderExpr="" id="7" nameExpr="fruit.txt" oPath="fruit.txt" path="{$lion/@srcProject}/fruit.txt" projectExpr="{$lion/@srcProject}" projectId="5" purpose="fruitTxt" purposeAsTokenName="false" replace="true" src="org.cecil/refimpl/art000003" template="templates/fruit/fruitTxt.prod">
+		</createFile>
+		</group>
+	<ignored>
+		<createFolder folderExpr="/colors" id="9" oPath="/colors" projectExpr="{$lion/@srcProject}" projectId="5" purpose="/colors">
+		</createFolder>
+		</ignored>
+	</xform>
+

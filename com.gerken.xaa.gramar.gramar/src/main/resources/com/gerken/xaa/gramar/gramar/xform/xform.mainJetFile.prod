@@ -1,0 +1,20 @@
+
+<c:if test="not(c:isVariableDefined('root'))">
+    <c:setVariable select="/*" var="root" />
+</c:if>
+
+*******************************
+
+<c1:setVariable select="$xform/group[@root='true']" var="current" />
+<c1:set select="$current" name="indent"></c1:set>
+<c1:setVariable select=" '    ' " var="tab" />
+<c1:include template="recurse/mainJetFile1.prod"  />
+
+*******************************
+
+<c1:setVariable select="$xform/group[@root='true']" var="current" />
+<c1:set select="$current" name="indent"></c1:set>
+<c1:setVariable select=" '    ' " var="tab" />
+<c1:include template="recurse/mainJetFile2.prod"  />
+
+*******************************

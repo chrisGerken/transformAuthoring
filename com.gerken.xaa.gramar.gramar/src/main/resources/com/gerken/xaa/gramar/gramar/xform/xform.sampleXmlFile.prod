@@ -1,0 +1,4 @@
+<c1:setVariable select="$xform/group[@root='true']" var="current" />
+<c1:set select="$current" name="indent"></c1:set>
+<c1:setVariable select=" '    ' " var="tab" />
+<c1:include template="recurse/sampleXmlFile.prod"  />

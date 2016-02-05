@@ -1,0 +1,198 @@
+set variable newline = 
+
+set variable tab = 	
+set variable xform = <xform  id="2"  nextID="11"  provider="Chris"  version="0.9"  xformId="org.cecil.gramar" >
+set variable group = <group  id="4"  name="lion"  parentId="3"  root="false" >
+set variable createProject = <createProject  id="5"  locationExpr=""  oLocation=""  oPath="cecil"  projectExpr="{$lion/@srcProject}"  purpose="src" >
+unset variable createProject
+set variable createFile = <createFile  binary="false"  changeableName="false"  folderExpr=""  id="6"  nameExpr=".project"  oPath=".project"  projectExpr="{$lion/@srcProject}"  projectId="5"  purpose="project"  purposeAsTokenName="false"  replace="true"  src="org.cecil/refimpl/art000002" >
+unset variable createFile
+unset variable group
+set variable group = <group  id="3"  name="root"  parentId=""  root="true" >
+unset variable group
+set variable group = <group  id="9"  name="color"  parentId="4" >
+set variable createFile = <createFile  binary="false"  changeableName="true"  folderExpr="/colors"  id="8"  nameExpr="color.txt"  oPath="colors/color.txt"  projectExpr="{$lion/@srcProject}"  projectId="5"  purpose="colorTxt"  purposeAsTokenName="false"  replace="true"  src="org.cecil/refimpl/art000004" >
+unset variable createFile
+unset variable group
+set variable group = <group  id="10"  name="fruit"  parentId="4" >
+set variable createFile = <createFile  binary="false"  changeableName="true"  folderExpr=""  id="7"  nameExpr="fruit.txt"  oPath="fruit.txt"  projectExpr="{$lion/@srcProject}"  projectId="5"  purpose="fruitTxt"  purposeAsTokenName="false"  replace="true"  src="org.cecil/refimpl/art000003" >
+unset variable createFile
+unset variable group
+set variable replacement = <replacement  newString="{$lion/@srcProject}"  oldString="cecil" >
+unset variable replacement
+
+
+set variable current = <group  id="3"  name="root"  parentId=""  root="true" >
+set variable group2name = lion
+set variable applyJava = Lion
+set variable current = <group  id="3"  name="root"  parentId=""  root="true" >
+set variable tab =     
+begin include recurse/sampleXmlFile.prod
+set variable target = <group  id="3"  indent=""  name="root"  parentId=""  root="true" >
+set variable current = <group  id="4"  name="lion"  parentId="3"  root="false" >
+store target = <group  id="3"  indent=""  name="root"  parentId=""  root="true" >
+	begin include recurse/sampleXmlFile.prod
+	set variable target = <group  id="4"  indent="    "  name="lion"  parentId="3"  root="false" >
+	set variable token = <token  derived="false"  desc="Name of the artifact collection to be generated"  formula=""  id=""  name="name" >
+	unset variable token
+	set variable token = <token  derived="false"  desc="Name of the artifact collection to be generated"  formula=""  id=""  name="name" >
+	unset variable token
+	set variable current = <group  id="9"  name="color"  parentId="4" >
+	store target = <group  id="4"  indent="    "  name="lion"  parentId="3"  root="false" >
+		begin include recurse/sampleXmlFile.prod
+		set variable target = <group  id="9"  indent="        "  name="color"  parentId="4" >
+		set variable token = <token  derived="false"  desc=""  formula=""  name="name"  optional="false" >
+		unset variable token
+		set variable token = <token  derived="false"  desc=""  formula="{c:lower-case($color/@name)}"  name="id"  optional="true" >
+		unset variable token
+		set variable token = <token  derived="false"  desc=""  formula=""  name="name"  optional="false" >
+		unset variable token
+		set variable token = <token  derived="false"  desc=""  formula="{c:lower-case($color/@name)}"  name="id"  optional="true" >
+		unset variable token
+		end include recurse/sampleXmlFile.prod
+	restore target = <group  id="4"  indent="    "  name="lion"  parentId="3"  root="false" >
+	set variable target = <group  id="4"  indent="    "  name="lion"  parentId="3"  root="false" >
+	unset variable current
+	set variable current = <group  id="10"  name="fruit"  parentId="4" >
+	store target = <group  id="4"  indent="    "  name="lion"  parentId="3"  root="false" >
+		begin include recurse/sampleXmlFile.prod
+		set variable target = <group  id="10"  indent="        "  name="fruit"  parentId="4" >
+		end include recurse/sampleXmlFile.prod
+	restore target = <group  id="4"  indent="    "  name="lion"  parentId="3"  root="false" >
+	set variable target = <group  id="4"  indent="    "  name="lion"  parentId="3"  root="false" >
+	unset variable current
+Unresolved variable: current
+javax.xml.transform.TransformerException: resolveVariable for variable current returning null
+In recurse/sampleXmlFile.prod
+	[11,38] : <c1:get select="$current/@name" />
+end include recurse/sampleXmlFile.prod
+restore target = <group  id="3"  indent=""  name="root"  parentId=""  root="true" >
+set variable target = <group  id="3"  indent=""  name="root"  parentId=""  root="true" >
+unset variable current
+Unresolved variable: current
+javax.xml.transform.TransformerException: resolveVariable for variable current returning null
+In recurse/sampleXmlFile.prod
+	[11,38] : <c1:get select="$current/@name" />
+end include recurse/sampleXmlFile.prod
+set variable current = <group  id="3"  indent=""  name="root"  parentId=""  root="true" >
+set variable tab =     
+begin include recurse/mainJetFile1.prod
+set variable target = <group  id="3"  indent=""  name="root"  parentId=""  root="true" >
+set variable current = <group  id="4"  indent="    "  name="lion"  parentId="3"  root="false" >
+store target = <group  id="3"  indent=""  name="root"  parentId=""  root="true" >
+begin include recurse/mainJetFile1.prod
+set variable target = <group  id="4"  indent="    "  name="lion"  parentId="3"  root="false" >
+set variable token = <token  derived="true"  desc="Token representing the new generated name for project cecil"  formula="{$lion/@name}src"  id=""  name="srcProject" >
+set variable  = <formula >
+unset variable 
+unset variable token
+set variable current = <group  id="9"  indent="        "  name="color"  parentId="4" >
+store target = <group  id="4"  indent="    "  name="lion"  parentId="3"  root="false" >
+begin include recurse/mainJetFile1.prod
+set variable target = <group  id="9"  indent="        "  name="color"  parentId="4" >
+end include recurse/mainJetFile1.prod
+restore target = <group  id="4"  indent="    "  name="lion"  parentId="3"  root="false" >
+set variable target = <group  id="4"  indent="    "  name="lion"  parentId="3"  root="false" >
+unset variable current
+set variable current = <group  id="10"  indent="        "  name="fruit"  parentId="4" >
+store target = <group  id="4"  indent="    "  name="lion"  parentId="3"  root="false" >
+begin include recurse/mainJetFile1.prod
+set variable target = <group  id="10"  indent="        "  name="fruit"  parentId="4" >
+end include recurse/mainJetFile1.prod
+restore target = <group  id="4"  indent="    "  name="lion"  parentId="3"  root="false" >
+set variable target = <group  id="4"  indent="    "  name="lion"  parentId="3"  root="false" >
+unset variable current
+end include recurse/mainJetFile1.prod
+restore target = <group  id="3"  indent=""  name="root"  parentId=""  root="true" >
+set variable target = <group  id="3"  indent=""  name="root"  parentId=""  root="true" >
+unset variable current
+end include recurse/mainJetFile1.prod
+set variable current = <group  id="3"  indent=""  name="root"  parentId=""  root="true" >
+set variable tab =     
+begin include recurse/mainJetFile2.prod
+set variable target = <group  id="3"  indent=""  name="root"  parentId=""  root="true" >
+set variable current = <group  id="4"  indent="    "  name="lion"  parentId="3"  root="false" >
+store target = <group  id="3"  indent=""  name="root"  parentId=""  root="true" >
+begin include recurse/mainJetFile2.prod
+set variable target = <group  id="4"  indent="    "  name="lion"  parentId="3"  root="false" >
+set variable createProject = <createProject  id="5"  locationExpr=""  name="{$lion/@srcProject}"  oLocation=""  oPath="cecil"  projectExpr="{$lion/@srcProject}"  purpose="src" >
+unset variable createProject
+set variable createFile = <createFile  binary="false"  changeableName="false"  folderExpr=""  id="6"  nameExpr=".project"  oPath=".project"  path="{$lion/@srcProject}/.project"  projectExpr="{$lion/@srcProject}"  projectId="5"  purpose="project"  purposeAsTokenName="false"  replace="true"  src="org.cecil/refimpl/art000002"  template="templates/lion/project.prod" >
+unset variable createFile
+set variable current = <group  id="9"  indent="        "  name="color"  parentId="4" >
+store target = <group  id="4"  indent="    "  name="lion"  parentId="3"  root="false" >
+begin include recurse/mainJetFile2.prod
+set variable target = <group  id="9"  indent="        "  name="color"  parentId="4" >
+set variable createFile = <createFile  binary="false"  changeableName="true"  folderExpr="/colors"  id="8"  nameExpr="color.txt"  oPath="colors/color.txt"  path="{$lion/@srcProject}/colors/color.txt"  projectExpr="{$lion/@srcProject}"  projectId="5"  purpose="colorTxt"  purposeAsTokenName="false"  replace="true"  src="org.cecil/refimpl/art000004"  template="templates/color/colorTxt.prod" >
+unset variable createFile
+end include recurse/mainJetFile2.prod
+restore target = <group  id="4"  indent="    "  name="lion"  parentId="3"  root="false" >
+set variable target = <group  id="4"  indent="    "  name="lion"  parentId="3"  root="false" >
+unset variable current
+set variable current = <group  id="10"  indent="        "  name="fruit"  parentId="4" >
+store target = <group  id="4"  indent="    "  name="lion"  parentId="3"  root="false" >
+begin include recurse/mainJetFile2.prod
+set variable target = <group  id="10"  indent="        "  name="fruit"  parentId="4" >
+set variable createFile = <createFile  binary="false"  changeableName="true"  folderExpr=""  id="7"  nameExpr="fruit.txt"  oPath="fruit.txt"  path="{$lion/@srcProject}/fruit.txt"  projectExpr="{$lion/@srcProject}"  projectId="5"  purpose="fruitTxt"  purposeAsTokenName="false"  replace="true"  src="org.cecil/refimpl/art000003"  template="templates/fruit/fruitTxt.prod" >
+unset variable createFile
+end include recurse/mainJetFile2.prod
+restore target = <group  id="4"  indent="    "  name="lion"  parentId="3"  root="false" >
+set variable target = <group  id="4"  indent="    "  name="lion"  parentId="3"  root="false" >
+unset variable current
+end include recurse/mainJetFile2.prod
+restore target = <group  id="3"  indent=""  name="root"  parentId=""  root="true" >
+set variable target = <group  id="3"  indent=""  name="root"  parentId=""  root="true" >
+unset variable current
+end include recurse/mainJetFile2.prod
+set variable group = <group  id="4"  indent="    "  name="lion"  parentId="3"  root="false" >
+set variable token = <token  derived="false"  desc="Name of the artifact collection to be generated"  formula=""  id=""  name="name" >
+unset variable token
+set variable token = <token  derived="true"  desc="Token representing the new generated name for project cecil"  formula="{$lion/@name}src"  id=""  name="srcProject" >
+unset variable token
+unset variable group
+set variable group = <group  id="3"  indent=""  name="root"  parentId=""  root="true" >
+unset variable group
+set variable group = <group  id="9"  indent="        "  name="color"  parentId="4" >
+set variable token = <token  derived="false"  desc=""  formula=""  name="name"  optional="false" >
+unset variable token
+set variable token = <token  derived="false"  desc=""  formula="{c:lower-case($color/@name)}"  name="id"  optional="true" >
+unset variable token
+unset variable group
+set variable group = <group  id="10"  indent="        "  name="fruit"  parentId="4" >
+unset variable group
+set variable group = <group  id="4"  indent="    "  name="lion"  parentId="3"  root="false" >
+set variable createProject = <createProject  id="5"  locationExpr=""  name="{$lion/@srcProject}"  oLocation=""  oPath="cecil"  projectExpr="{$lion/@srcProject}"  purpose="src" >
+unset variable createProject
+set variable createFile = <createFile  binary="false"  changeableName="false"  folderExpr=""  id="6"  nameExpr=".project"  oPath=".project"  path="{$lion/@srcProject}/.project"  projectExpr="{$lion/@srcProject}"  projectId="5"  purpose="project"  purposeAsTokenName="false"  replace="true"  src="org.cecil/refimpl/art000002"  template="templates/lion/project.prod" >
+unset variable createFile
+unset variable group
+set variable group = <group  id="3"  indent=""  name="root"  parentId=""  root="true" >
+unset variable group
+set variable group = <group  id="9"  indent="        "  name="color"  parentId="4" >
+set variable createFile = <createFile  binary="false"  changeableName="true"  folderExpr="/colors"  id="8"  nameExpr="color.txt"  oPath="colors/color.txt"  path="{$lion/@srcProject}/colors/color.txt"  projectExpr="{$lion/@srcProject}"  projectId="5"  purpose="colorTxt"  purposeAsTokenName="false"  replace="true"  src="org.cecil/refimpl/art000004"  template="templates/color/colorTxt.prod" >
+unset variable createFile
+unset variable group
+set variable group = <group  id="10"  indent="        "  name="fruit"  parentId="4" >
+set variable createFile = <createFile  binary="false"  changeableName="true"  folderExpr=""  id="7"  nameExpr="fruit.txt"  oPath="fruit.txt"  path="{$lion/@srcProject}/fruit.txt"  projectExpr="{$lion/@srcProject}"  projectId="5"  purpose="fruitTxt"  purposeAsTokenName="false"  replace="true"  src="org.cecil/refimpl/art000003"  template="templates/fruit/fruitTxt.prod" >
+unset variable createFile
+unset variable group
+created project org.cecil.gramar
+created file org.cecil.gramar/.gramar
+created file org.cecil.gramar/.project
+created file org.cecil.gramar/author_readme.txt
+created file org.cecil.gramar/lion.sh
+created file org.cecil.gramar/pom.xml
+created file org.cecil.gramar/snippets/tags.txt
+created folder org.cecil.gramar/src/main/java
+created file org.cecil.gramar/src/main/java/org/cecil/gramar/Lion.java
+created folder org.cecil.gramar/src/main/resources
+created file org.cecil.gramar/src/main/resources/org/cecil/gramar/gramar.config
+created file org.cecil.gramar/src/main/resources/org/cecil/gramar/models/empty.xml
+created file org.cecil.gramar/src/main/resources/org/cecil/gramar/templates/color/colorTxt.prod
+created file org.cecil.gramar/src/main/resources/org/cecil/gramar/templates/dump.prod
+created file org.cecil.gramar/src/main/resources/org/cecil/gramar/templates/fruit/fruitTxt.prod
+created file org.cecil.gramar/src/main/resources/org/cecil/gramar/templates/lion/project.prod
+created file org.cecil.gramar/src/main/resources/org/cecil/gramar/templates/main.prod
+created folder org.cecil.gramar/src/test/java
+created folder org.cecil.gramar/src/test/resources
+created file org.cecil.gramar/user_readme.txt

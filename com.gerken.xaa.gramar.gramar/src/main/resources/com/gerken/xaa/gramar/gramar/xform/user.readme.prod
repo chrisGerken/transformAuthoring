@@ -1,0 +1,21 @@
+
+To use in command line mode:
+
+    java  -jar  <c1:get select="$xform/@xformId"/>.jar  options
+
+
+
+where options can be:
+
+  model=<file-name>  workspace=<directory-name>
+
+      applies the <c1:get select="$xform/@xformId"/> gramar to the given model 
+      and writes the results to the specified directory.
+      
+  list-samples
+
+      lists all of the deployed sample models, giving name and description
+      
+  sample-name=<model-name>
+  
+      writes the specified model to the console.  Use >> to write to a text file 

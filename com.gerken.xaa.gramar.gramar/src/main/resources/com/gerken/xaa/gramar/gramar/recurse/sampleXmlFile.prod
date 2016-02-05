@@ -1,0 +1,11 @@
+<c1:setVariable select="$current" var="target" />
+<c1:iterate select="$target/token[(@derived='false') or (@optional='true')]" var="token">
+<c1:get select="$target/@indent" /><!--  <c1:get select="$token/@name" /> : <c1:if test="$token/desc" var="desc"><c1:get select="$desc" /></c1:if> -->
+</c1:iterate>
+<c1:get select="$target/@indent" /><<c1:get select="$target/@name" /><c1:iterate select="$target/token[@derived='false']" var="token">  <c1:get select="$token/@name"/>=""</c1:iterate>>
+<c1:iterate select="$xform/group[@parentId=$current/@id]" var="current">
+<c1:set select="$current" name="indent"><c1:get select="$target/@indent"/><c1:get select="$tab"/></c1:set>
+<c1:include template="recurse/sampleXmlFile.prod"  restore="target"  />
+</c1:iterate>
+
+<c1:get select="$target/@indent" /></<c1:get select="$current/@name" />>

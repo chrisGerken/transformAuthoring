@@ -61,7 +61,7 @@ public class RefImplChoicelWizardPage extends WizardPage {
 				int sel = exemplarCombo.getSelectionIndex();
 				selectedExemplar = exemplarProject[sel];
 				if (projectName.length() == 0) {
-					projectName = selectedExemplar.getName() + ".xform";
+					projectName = selectedExemplar.getName() + ".gramar";
 					projectText.setText(projectName);
 				}
 				dialogChanged();
