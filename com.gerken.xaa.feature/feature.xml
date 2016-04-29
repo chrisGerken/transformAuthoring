@@ -2,7 +2,7 @@
 <feature
       id="com.gerken.xaa.feature"
       label="XAA UI and Framework"
-      version="1.6.18"
+      version="1.6.19"
       provider-name="Gerken Intellectual Properties, LLC">
 
    <description url="http://www.example.com/description">
@@ -27,41 +27,41 @@ other than to make a single backup copy.
          id="com.gerken.xaa.model"
          download-size="0"
          install-size="0"
-         version="1.6.18"
+         version="1.6.19"
          unpack="false"/>
 
    <plugin
          id="com.gerken.xaa.wizard"
          download-size="0"
          install-size="0"
-         version="1.6.18"
+         version="1.6.19"
          unpack="false"/>
 
    <plugin
          id="com.gerken.xaa.refactor"
          download-size="0"
          install-size="0"
-         version="1.6.18"
+         version="1.6.19"
          unpack="false"/>
 
    <plugin
          id="com.gerken.xaa"
          download-size="0"
          install-size="0"
-         version="1.6.18"
+         version="1.6.19"
          unpack="false"/>
 
    <plugin
          id="com.gerken.xaa.constants"
          download-size="0"
          install-size="0"
-         version="1.6.18"
+         version="1.6.19"
          unpack="false"/>
 
    <plugin
          id="com.gerken.xaa.mpe"
          download-size="0"
          install-size="0"
-         version="1.6.18"/>
+         version="1.6.19"/>
 
 </feature>
