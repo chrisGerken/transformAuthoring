@@ -76,7 +76,7 @@ public class TokenToolsSection extends AbstractToolSection implements IHyperlink
 			if (trd.requestVanilla()) {
 				Element replacement = xform.getOwnerDocument().createElement("replacement");
 				xform.appendChild(replacement);
-				replacement.setAttribute("newString","{$"+groupName+"/@"+tokenName+")}");
+				replacement.setAttribute("newString","{$"+groupName+"/@"+tokenName+"}");
 				replacement.setAttribute("oldString",trd.replacementVanilla());
 			}
 		}
