@@ -16,9 +16,9 @@ public class ReplacementPage extends AbstractFormPage {
 	ReplacementListSection sectionReplacementListSection;
 	ReplacementDetailsSection sectionReplacementDetailsSection;
 	ReplacementToolsSection sectionReplacementToolsSection;
-	
+
 	public static String PAGE_ID = "REPLACEMENT";
-	
+
 	public ReplacementPage(FormEditor editor) {
 		super(editor, PAGE_ID, "Replacements");
 	}
@@ -26,16 +26,16 @@ public class ReplacementPage extends AbstractFormPage {
 	protected String getHelpResource() {
 		return "/com.gerken.xaa.mpe/html/guide/mp_editor/Replacement.htm"; //$NON-NLS-1$
 	}
-	
+
 	protected void createFormContent(IManagedForm managedForm) {
 		super.createFormContent(managedForm);
 		ScrolledForm form = managedForm.getForm();
 		FormToolkit toolkit = managedForm.getToolkit();
-		form.setText("Replacement"); 
+		form.setText("Replacement");
 		fillBody(managedForm, toolkit);
-//		PlatformUI.getWorkbench().getHelpSystem().setHelp(form.getBody(), "com.gerken.xaa.mpe.Xaa.Replacement_page");		
+//		PlatformUI.getWorkbench().getHelpSystem().setHelp(form.getBody(), "com.gerken.xaa.mpe.Xaa.Replacement_page");
 	}
-	
+
 	private void fillBody(IManagedForm managedForm, FormToolkit toolkit) {
 		Composite body = managedForm.getForm().getBody();
 		TableWrapLayout layout = new TableWrapLayout();
@@ -47,56 +47,62 @@ public class ReplacementPage extends AbstractFormPage {
 		layout.horizontalSpacing = 10;
 		body.setLayout(layout);
 
-		Composite column;	
+		Composite column;
 
-			// Populate column 1
-			
+		// Populate column 1
+
 		column = toolkit.createComposite(body);
 		layout = new TableWrapLayout();
 		layout.verticalSpacing = 20;
 		column.setLayout(layout);
 		column.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
 
-		sectionReplacementListSection = new ReplacementListSection(this,column);
+		sectionReplacementListSection = new ReplacementListSection(this, column);
 		managedForm.addPart(sectionReplacementListSection);
 
 		// Populate column 2
-		
+
 		column = toolkit.createComposite(body);
 		layout = new TableWrapLayout();
 		layout.verticalSpacing = 20;
 		column.setLayout(layout);
 		column.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
 
-		sectionReplacementDetailsSection = new ReplacementDetailsSection(this,column);
+		sectionReplacementDetailsSection = new ReplacementDetailsSection(this,
+				column);
 		managedForm.addPart(sectionReplacementDetailsSection);
 
-		sectionReplacementToolsSection = new ReplacementToolsSection(this,column);
+		sectionReplacementToolsSection = new ReplacementToolsSection(this,
+				column);
 		managedForm.addPart(sectionReplacementToolsSection);
-		
+
 	}
-	
+
 	public ReplacementListSection getReplacementListSection() {
 		return sectionReplacementListSection;
 	}
-	
+
 	public ReplacementDetailsSection getReplacementDetailsSection() {
 		return sectionReplacementDetailsSection;
 	}
-	
+
 	public ReplacementToolsSection getReplacementToolsSection() {
 		return sectionReplacementToolsSection;
 	}
 
 	public void markStale() {
-		if (sectionReplacementListSection != null) { sectionReplacementListSection.markStale(); }
-		if (sectionReplacementDetailsSection != null) { sectionReplacementDetailsSection.markStale(); }
-	}		
-	
+		if (sectionReplacementListSection != null) {
+			sectionReplacementListSection.markStale();
+		}
+		if (sectionReplacementDetailsSection != null) {
+			sectionReplacementDetailsSection.markStale();
+		}
+	}
+
 	public void setSelection(Node node) {
 
 		sectionReplacementListSection.setSelection(node);
-		
-	}				
-			
+
+	}
+
 }

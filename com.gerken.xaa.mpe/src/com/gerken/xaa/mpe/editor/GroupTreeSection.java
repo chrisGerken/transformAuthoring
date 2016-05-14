@@ -8,58 +8,74 @@ import com.gerken.xaa.mpe.core.AbstractSection;
 
 public class GroupTreeSection extends AbstractGroupTreeSection {
 
-	public GroupTreeSection(AbstractFormPage page, Composite parent) {
-		super(page, parent);
-		// TODO Auto-generated constructor stub
-	}
+    public GroupTreeSection(AbstractFormPage page, Composite parent) {
+        super(page, parent);
+        // TODO Auto-generated constructor stub
+    }
 
-	public void notifyDependents(Node node, Node selected) { 
-		String name = node.getNodeName();
-		AbstractSection section;
-		if (name.equals("group")) {
+    public void notifyDependents(Node node, Node selected) {
+        String name = node.getNodeName();
+        AbstractSection section;
+        if (name.equals("group")) {
 //			((GroupPage)getPage()).getGroupDetailsSection().loadFrom(node);
-			section = ((GroupPage)getPage()).getGroupDetailsSection();
-			section.loadFrom(node);
-			if (section.navigates()) { section.setSelection(selected); }
+            section = ((GroupPage) getPage()).getGroupDetailsSection();
+            section.loadFrom(node);
+            if (section.navigates()) {
+                section.setSelection(selected);
+            }
 
 //			((GroupPage)getPage()).getGroupTextSection().loadFrom(node);
-			section = ((GroupPage)getPage()).getGroupTextSection();
-			section.loadFrom(node);
-			if (section.navigates()) { section.setSelection(selected); }
+            section = ((GroupPage) getPage()).getGroupTextSection();
+            section.loadFrom(node);
+            if (section.navigates()) {
+                section.setSelection(selected);
+            }
 
-		} else {
-			((GroupPage)getPage()).getGroupDetailsSection().clear();
-			((GroupPage)getPage()).getGroupTextSection().clear();
-		}
-	}
-	
-	public int getHeight() {
-		return 300;
-	}
-	
-	public void clearDependents() {
-				// dependents for group
-		((GroupPage)getPage()).getGroupDetailsSection().clear();
-		((GroupPage)getPage()).getGroupTextSection().clear();
-	}
+        } else {
+            if (getPage().isDirty()) {
+                ((GroupPage) getPage()).getGroupDetailsSection().clear();
+                ((GroupPage) getPage()).getGroupTextSection().clear();
+            }
+        }
+    }
 
-	public void setDependentSelection(Node node, Node selected) {
-		String name = node.getNodeName();
-		AbstractSection section;
-		if (name.equals("group")) {
+    public int getHeight() {
+        return 300;
+    }
 
-			section = ((GroupPage)getPage()).getGroupDetailsSection();
-			if (section.navigates()) { section.setSelection(selected); }
-			else { section.setSelection(node); }
+    public void clearDependents() {
+        // dependents for group
+        if (getPage().isDirty()) {
+            ((GroupPage) getPage()).getGroupDetailsSection().clear();
+            ((GroupPage) getPage()).getGroupTextSection().clear();
+        }
+    }
 
-			section = ((GroupPage)getPage()).getGroupTextSection();
-			if (section.navigates()) { section.setSelection(selected); }
-			else { section.setSelection(node); }
+    public void setDependentSelection(Node node, Node selected) {
+        String name = node.getNodeName();
+        AbstractSection section;
+        if (name.equals("group")) {
 
-		} else {
-			((GroupPage)getPage()).getGroupDetailsSection().clear();
-			((GroupPage)getPage()).getGroupTextSection().clear();
-		}
-	}
+            section = ((GroupPage) getPage()).getGroupDetailsSection();
+            if (section.navigates()) {
+                section.setSelection(selected);
+            } else {
+                section.setSelection(node);
+            }
+
+            section = ((GroupPage) getPage()).getGroupTextSection();
+            if (section.navigates()) {
+                section.setSelection(selected);
+            } else {
+                section.setSelection(node);
+            }
+
+        } else {
+            if (getPage().isDirty()) {
+                ((GroupPage) getPage()).getGroupDetailsSection().clear();
+                ((GroupPage) getPage()).getGroupTextSection().clear();
+            }
+        }
+    }
 
 }

@@ -18,13 +18,13 @@ import org.w3c.dom.Document;
 public class SourcePage extends TextEditor implements IFormPage {
 
 	public static String PAGE_ID = "SOURCE_PAGE";
-	
-	private XaaEditor	editor;
-	private int				index;
-	private boolean			active;
-	private Control			control;
-	private boolean			error = false;
-	
+
+	private XaaEditor editor;
+	private int index;
+	private boolean active;
+	private Control control;
+	private boolean error = false;
+
 	public SourcePage(XaaEditor editor) {
 		this.editor = editor;
 	}
@@ -32,17 +32,24 @@ public class SourcePage extends TextEditor implements IFormPage {
 	public boolean canLeaveThePage() {
 		return writeToModel();
 	}
-	
+
 	public boolean writeToModel() {
-		error = false;
-		try {
-			getEditor().setModel(getDocumentProvider().getDocument(getEditorInput()).get());
-			getEditor().markStale();
-		} catch (Exception e) {
-			MessageDialog.openError(Display.getDefault().getActiveShell(), "Model Error", e.getMessage());
-			error = true;
+		if (!isDirty()) {
+			return true;
+		} else {
+			error = false;
+			try {
+				getEditor().setModel(
+						getDocumentProvider().getDocument(getEditorInput())
+								.get());
+				getEditor().markStale();
+			} catch (Exception e) {
+				MessageDialog.openError(Display.getDefault().getActiveShell(),
+						"Model Error", e.getMessage());
+				error = true;
+			}
+			return !error;
 		}
-		return !error;
 	}
 
 	public XaaEditor getEditor() {
@@ -76,7 +83,7 @@ public class SourcePage extends TextEditor implements IFormPage {
 	}
 
 	public void initialize(FormEditor editor) {
-		this.editor = (XaaEditor)editor;
+		this.editor = (XaaEditor) editor;
 	}
 
 	public boolean isActive() {
@@ -92,29 +99,32 @@ public class SourcePage extends TextEditor implements IFormPage {
 	}
 
 	private Document getModel() {
-		return ((XaaEditor)getEditor()).getModel();
+		return ((XaaEditor) getEditor()).getModel();
 	}
-	
+
 	public void writeModel() {
 		String contents = ModelFormatter.getInstance().format(getModel());
 		getDocumentProvider().getDocument(getEditorInput()).set(contents);
 	}
-	
+
 	public void setActive(boolean active) {
-		if (error) {return; }
+		if (error) {
+			return;
+		}
 		this.active = active;
 		if (active) {
 			writeModel();
 		} else {
 			try {
-//				getEditor().setModel(getDocumentProvider().getDocument(getEditorInput()).get());
+				// getEditor().setModel(getDocumentProvider().getDocument(getEditorInput()).get());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 	}
 
-	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
+	public void init(IEditorSite site, IEditorInput input)
+			throws PartInitException {
 		super.init(site, input);
 		setPartName("Source");
 	}

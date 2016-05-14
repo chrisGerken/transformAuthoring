@@ -29,7 +29,7 @@ public class TokenPage extends AbstractFormPage {
 	protected String getHelpResource() {
 		return "/com.gerken.xaa.mpe/html/guide/mp_editor/Token.htm"; //$NON-NLS-1$
 	}
-	
+
 	protected void createFormContent(IManagedForm managedForm) {
 		super.createFormContent(managedForm);
 		ScrolledForm form = managedForm.getForm();

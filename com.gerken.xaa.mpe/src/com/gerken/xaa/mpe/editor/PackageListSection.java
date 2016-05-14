@@ -60,8 +60,10 @@ public class PackageListSection extends AbstractListSection implements IConstrai
 	}
 
 	protected void clearDependents() {
-		((PackagePage)getPage()).getPackageDetailsSection().clear();
-		((PackagePage)getPage()).getPackageToolsSection().clear();
+		if (getPage().isDirty()) {
+			((PackagePage)getPage()).getPackageDetailsSection().clear();
+			((PackagePage)getPage()).getPackageToolsSection().clear();
+		}
 	}
 
 	protected boolean isPrimary() {
