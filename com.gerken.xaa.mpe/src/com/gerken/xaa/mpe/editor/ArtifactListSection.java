@@ -31,49 +31,53 @@ import com.gerken.xaa.mpe.core.AbstractFormPage;
 import com.gerken.xaa.mpe.core.AbstractListSection;
 import com.gerken.xaa.mpe.core.ModelAccess;
 
-public class ArtifactListSection extends AbstractListSection implements IConstraintListener {
+public class ArtifactListSection extends AbstractListSection implements
+		IConstraintListener {
 
 	private Button ignoreButton;
 	private Button moveButton;
 	private Button copyButton;
-	private Node   lastGroup = null;
-	
+	private Node lastGroup = null;
+
 	public ArtifactListSection(AbstractFormPage page, Composite parent) {
 		super(page, parent);
 	}
 
 	protected void createClient(Section section, FormToolkit toolkit) {
 
-		section.setText(getListTitle()); 
+		section.setText(getListTitle());
 		section.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
-		section.setDescription(getListDescription()); 
+		section.setDescription(getListDescription());
 		section.setExpanded(isSectionExpanded());
 
 		Composite container = toolkit.createComposite(section);
 
 		TableWrapLayout tl = new TableWrapLayout();
-		tl.leftMargin = tl.rightMargin = toolkit.getBorderStyle() != SWT.NULL ? 0 : 2;
+		tl.leftMargin = tl.rightMargin = toolkit.getBorderStyle() != SWT.NULL ? 0
+				: 2;
 		tl.numColumns = 2;
 		container.setLayout(tl);
-		
+
 		TableWrapData td = new TableWrapData(TableWrapData.FILL_GRAB);
 		container.setLayoutData(td);
 
-		// table viewer 
+		// table viewer
 
-		nodesViewer = new TableViewer(container, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | toolkit.getBorderStyle());
-		nodesViewer.addSelectionChangedListener(new ISelectionChangedListener () {
-			public void selectionChanged(SelectionChangedEvent e) {
-				nodeSelected((IStructuredSelection)e.getSelection());
-			}
-		});
-		
+		nodesViewer = new TableViewer(container, SWT.MULTI | SWT.H_SCROLL
+				| SWT.V_SCROLL | toolkit.getBorderStyle());
+		nodesViewer
+				.addSelectionChangedListener(new ISelectionChangedListener() {
+					public void selectionChanged(SelectionChangedEvent e) {
+						nodeSelected((IStructuredSelection) e.getSelection());
+					}
+				});
+
 		td = new TableWrapData(TableWrapData.FILL_GRAB);
 		td.heightHint = getTableHightHint();
 		nodesViewer.getTable().setLayoutData(td);
-		
-		// buttons 
-		
+
+		// buttons
+
 		Composite buttonContainer = toolkit.createComposite(container);
 		td = new TableWrapData(TableWrapData.FILL);
 		buttonContainer.setLayoutData(td);
@@ -81,18 +85,21 @@ public class ArtifactListSection extends AbstractListSection implements IConstra
 		layout.marginWidth = layout.marginHeight = 0;
 		buttonContainer.setLayout(layout);
 
-		ignoreButton = toolkit.createButton(buttonContainer, "Ignore", SWT.PUSH);
+		ignoreButton = toolkit
+				.createButton(buttonContainer, "Ignore", SWT.PUSH);
 		ignoreButton.addSelectionListener(new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent arg0) {
 				exec();
 			}
+
 			public void widgetSelected(SelectionEvent arg0) {
 				exec();
 			}
+
 			private void exec() {
 				ignoreNode();
 			}
-			
+
 		});
 		ignoreButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
@@ -101,13 +108,15 @@ public class ArtifactListSection extends AbstractListSection implements IConstra
 			public void widgetDefaultSelected(SelectionEvent arg0) {
 				exec();
 			}
+
 			public void widgetSelected(SelectionEvent arg0) {
 				exec();
 			}
+
 			private void exec() {
 				moveNode();
 			}
-			
+
 		});
 		moveButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
@@ -116,13 +125,15 @@ public class ArtifactListSection extends AbstractListSection implements IConstra
 			public void widgetDefaultSelected(SelectionEvent arg0) {
 				exec();
 			}
+
 			public void widgetSelected(SelectionEvent arg0) {
 				exec();
 			}
+
 			private void exec() {
 				copyNode();
 			}
-			
+
 		});
 		copyButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
@@ -137,36 +148,38 @@ public class ArtifactListSection extends AbstractListSection implements IConstra
 			private void exec() {
 				moveDown();
 			}
-			
+
 		});
 		downButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-*/
-		
+		 */
+
 		nodesViewer.setContentProvider(new NodesContentProvider());
 		nodesViewer.setLabelProvider(new NodesLabelProvider());
 		toolkit.paintBordersFor(container);
 		section.setClient(container);
-		
-		nodesViewer.setInput(getModel());
-        updateButtons();
 
-		getPage().getMpeEditor().getConstraintManager().addConstraintListener(this);
+		nodesViewer.setInput(getModel());
+		updateButtons();
+
+		getPage().getMpeEditor().getConstraintManager()
+				.addConstraintListener(this);
 
 	}
 
 	protected void ignoreNode() {
-		
+
 		Node ignored = null;
-		Node[] node = ModelAccess.getNodes(getPage().getModel(),"/xform/ignored");
+		Node[] node = ModelAccess.getNodes(getPage().getModel(),
+				"/xform/ignored");
 		if (node.length == 0) {
-			node = ModelAccess.getNodes(getPage().getModel(),"/xform");
-			ignored = ModelAccess.addNewChild(node[0],"ignored");
+			node = ModelAccess.getNodes(getPage().getModel(), "/xform");
+			ignored = ModelAccess.addNewChild(node[0], "ignored");
 		} else {
 			ignored = node[0];
-		}		
-		
+		}
+
 		int sels[] = nodesViewer.getTable().getSelectionIndices();
-//		int nextSel = sels[sels.length-1] - sels.length + 1;
+		// int nextSel = sels[sels.length-1] - sels.length + 1;
 		Table table = nodesViewer.getTable();
 		TableItem[] selection = table.getSelection();
 		for (int i = 0; i < selection.length; i++) {
@@ -175,28 +188,29 @@ public class ArtifactListSection extends AbstractListSection implements IConstra
 			ignored.appendChild(art);
 		}
 		refreshList();
-//		nodesViewer.getTable().setSelection(nextSel);
-		
+		// nodesViewer.getTable().setSelection(nextSel);
+
 		int items = nodesViewer.getTable().getItemCount();
 		if (items > 0) {
-			if (items < (sels[0]+2)) {
+			if (items < (sels[0] + 2)) {
 				nodesViewer.getTable().setSelection(sels[0]);
 			} else {
-				nodesViewer.getTable().setSelection(items-1);
+				nodesViewer.getTable().setSelection(items - 1);
 			}
 		}
 	}
 
 	protected void moveNode() {
-		DestinationGroupDialog dgd = new DestinationGroupDialog(new Shell(),getSourceNode());
+		DestinationGroupDialog dgd = new DestinationGroupDialog(new Shell(),
+				getSourceNode());
 		dgd.setBlockOnOpen(true);
 		if (dgd.open() == dgd.OK) {
 			lastGroup = dgd.getDestinationGroup();
 			moveToLastGroup();
 		}
-	
+
 	}
-	
+
 	protected void moveToLastGroup() {
 		int sels[] = nodesViewer.getTable().getSelectionIndices();
 		Table table = nodesViewer.getTable();
@@ -208,27 +222,27 @@ public class ArtifactListSection extends AbstractListSection implements IConstra
 		}
 
 		refreshList();
-		
+
 		int items = nodesViewer.getTable().getItemCount();
 		if (items > 0) {
-			if (items < (sels[0]+2)) {
+			if (items < (sels[0] + 2)) {
 				nodesViewer.getTable().setSelection(sels[0]);
 			} else {
-				nodesViewer.getTable().setSelection(items-1);
+				nodesViewer.getTable().setSelection(items - 1);
 			}
 		}
 	}
-	
+
 	protected void updateButtons() {
 		Table table = nodesViewer.getTable();
 		TableItem[] selection = table.getSelection();
 		boolean hasSelection = selection.length > 0;
 		boolean hasOneSelection = selection.length == 1;
-        ignoreButton.setEnabled(hasSelection);
-        moveButton.setEnabled(hasSelection);
-        copyButton.setEnabled(hasOneSelection);
+		ignoreButton.setEnabled(hasSelection);
+		moveButton.setEnabled(hasSelection);
+		copyButton.setEnabled(hasOneSelection);
 	}
-	
+
 	protected String getListTitle() {
 		return "Artifacts";
 	}
@@ -242,13 +256,13 @@ public class ArtifactListSection extends AbstractListSection implements IConstra
 	}
 
 	protected String getItemName(Object element) {
-		return bind((Node)element,"{@purpose}");  // was oPath
+		return bind((Node) element, "{@purpose}"); // was oPath
 	}
-	
+
 	protected void refreshList() {
-		Node l1[] = ModelAccess.getNodes(getSourceNode(),"createProject");
-		Node l2[] = ModelAccess.getNodes(getSourceNode(),"createFolder");
-		Node l3[] = ModelAccess.getNodes(getSourceNode(),"createFile");
+		Node l1[] = ModelAccess.getNodes(getSourceNode(), "createProject");
+		Node l2[] = ModelAccess.getNodes(getSourceNode(), "createFolder");
+		Node l3[] = ModelAccess.getNodes(getSourceNode(), "createFile");
 		listObjects = new Node[l1.length + l2.length + l3.length];
 		int offset = 0;
 		for (int i = 0; i < l1.length; i++) {
@@ -278,50 +292,55 @@ public class ArtifactListSection extends AbstractListSection implements IConstra
 	protected boolean isSectionExpanded() {
 		return true;
 	}
-	
+
 	public int getTableHightHint() {
 		return 350;
 	}
-	
+
 	protected void copyNode() {
 
 		TableItem[] selection = nodesViewer.getTable().getSelection();
-		if (selection.length != 1) { return; }
+		if (selection.length != 1) {
+			return;
+		}
 
 		Node sourceNode = (Node) selection[0].getData();
 
-		Element kid = getSourceNode().getOwnerDocument().createElement(sourceNode.getNodeName());
+		Element kid = getSourceNode().getOwnerDocument().createElement(
+				sourceNode.getNodeName());
 		getSourceNode().appendChild(kid);
-		
+
 		NamedNodeMap map = sourceNode.getAttributes();
 		for (int i = 0; i < map.getLength(); i++) {
 			Node attr = map.item(i);
-			kid.setAttribute(attr.getNodeName(),attr.getNodeValue());
+			kid.setAttribute(attr.getNodeName(), attr.getNodeValue());
 		}
 
-		kid.setAttribute("id",getPage().getMpeEditor().getNextID());
+		kid.setAttribute("id", getPage().getMpeEditor().getNextID());
 		getPage().getMpeEditor().elementAdded(kid);
-				
-			// src="com.ravel.metrics/refimpl/art000205"
-		
+
+		// src="com.ravel.metrics/refimpl/art000205"
+
 		refreshList();
 		select(kid);
 		updateButtons();
 
-	} 
+	}
 
-	protected void notifyDependents(Node node) { 
-		((ArtifactPage)getPage()).getNamingDetailsSection().loadFrom(node);
-		((ArtifactPage)getPage()).getFileDetailsSection().loadFrom(node);
-		((ArtifactPage)getPage()).getOriginDetailsSection().loadFrom(node);
-		((ArtifactPage)getPage()).getArtifactTextSection().loadFrom(node);
+	protected void notifyDependents(Node node) {
+		((ArtifactPage) getPage()).getNamingDetailsSection().loadFrom(node);
+		((ArtifactPage) getPage()).getFileDetailsSection().loadFrom(node);
+		((ArtifactPage) getPage()).getOriginDetailsSection().loadFrom(node);
+		((ArtifactPage) getPage()).getArtifactTextSection().loadFrom(node);
 	}
 
 	protected void clearDependents() {
-		((ArtifactPage)getPage()).getNamingDetailsSection().clear();
-		((ArtifactPage)getPage()).getFileDetailsSection().clear();
-		((ArtifactPage)getPage()).getOriginDetailsSection().clear();
-		((ArtifactPage)getPage()).getArtifactTextSection().clear();
+		if (getPage().isDirty()) {
+			((ArtifactPage) getPage()).getNamingDetailsSection().clear();
+			((ArtifactPage) getPage()).getFileDetailsSection().clear();
+			((ArtifactPage) getPage()).getOriginDetailsSection().clear();
+			((ArtifactPage) getPage()).getArtifactTextSection().clear();
+		}
 	}
 
 	protected boolean isPrimary() {
@@ -329,14 +348,14 @@ public class ArtifactListSection extends AbstractListSection implements IConstra
 	}
 
 	public void setDependentSelection(Node node) {
-		((ArtifactPage)getPage()).getNamingDetailsSection().setSelection(node);
-		((ArtifactPage)getPage()).getFileDetailsSection().setSelection(node);
-		((ArtifactPage)getPage()).getOriginDetailsSection().setSelection(node);
-		((ArtifactPage)getPage()).getArtifactTextSection().setSelection(node);
+		((ArtifactPage) getPage()).getNamingDetailsSection().setSelection(node);
+		((ArtifactPage) getPage()).getFileDetailsSection().setSelection(node);
+		((ArtifactPage) getPage()).getOriginDetailsSection().setSelection(node);
+		((ArtifactPage) getPage()).getArtifactTextSection().setSelection(node);
 	}
-	
+
 	public void constraintsChecked(ArrayList<ConstraintFailure> problems) {
-	
+
 	}
 
 	public void enableSection(boolean enable) {
@@ -349,7 +368,7 @@ public class ArtifactListSection extends AbstractListSection implements IConstra
 	@Override
 	protected void addNode() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
