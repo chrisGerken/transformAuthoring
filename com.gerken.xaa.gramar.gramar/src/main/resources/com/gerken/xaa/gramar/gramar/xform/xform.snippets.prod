@@ -11,7 +11,11 @@ Snippets for <c1:get select="$group/@name"/>
     <c1:if test="$group/@name!='root'" >
     <c:iterate select="$<c1:get select="/xform/group[@id=$group/@parentId]/@name"/>/<c1:get select="$group/@name"/>" var="<c1:get select="$group/@name"/>"  > 
     </c1:if>
-	    
+
+	<c1:userRegion>Author notes and scratchpad:<c1:initialCode>
+	
+	
+			</c1:initialCode>(End notes)</c1:userRegion>	    
 </c1:iterate>
 
 
