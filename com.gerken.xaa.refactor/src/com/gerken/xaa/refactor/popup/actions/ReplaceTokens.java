@@ -67,7 +67,7 @@ public class ReplaceTokens implements IObjectActionDelegate {
 		if (file.length == 0) { return result; }
 		
 		IProject project = file[0].getProject();
-		Xform xform = XaaModelPlugin.getXformAccess().readModel(project); 
+		Xform xform = XaaModelPlugin.getXformAccess().xformFor(project.getName()); 
 //		Xform xform = Xform.loadFrom(project);
 		Replacement[] rep = xform.getReplacementArray();
 		for (int i = 0; i < rep.length; i++) {

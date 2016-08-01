@@ -18,6 +18,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+import com.gerken.xaa.model.XaaModelPlugin;
 import com.gerken.xaa.mpe.constraint.ConstraintManager;
 import com.gerken.xaa.mpe.core.ModelAccess;
 import com.gerken.xaa.mpe.core.ModelLoader;
@@ -147,7 +148,7 @@ public class XaaEditor extends FormEditor {
 		if (input instanceof IFileEditorInput) {
 			setPartName(((IFileEditorInput)input).getFile().getProject().getName());
 		} else {
-			setPartName("JET Transformation");
+			setPartName("Gramar");
 		}
 	}
 
@@ -192,6 +193,7 @@ public class XaaEditor extends FormEditor {
 	public void propertyChanged(Node target, String field) {
 		if (target == null) { return; }
 		constraintManager.modelChanged(getModel());
+		XaaModelPlugin.getXformAccess().setModel(getXformProject(),getXformNode()); 
 	}
 
 	public void elementAdded(Node target) {
@@ -210,7 +212,11 @@ public class XaaEditor extends FormEditor {
 	public boolean isDirty() {
 		return true;
 	}
-
+	
+	private Node getXformNode() {
+		return ModelAccess.getNodes(getModel(),"xform")[0];
+	}
+	
 	public String getNextID() {
 		Node xform = getModel();
 		xform = ModelAccess.getNodes(xform,"xform")[0];
@@ -220,6 +226,13 @@ public class XaaEditor extends FormEditor {
 		String nextNextID = String.valueOf(val);
 		ModelAccess.setAttribute(xform, "nextID", nextNextID);
 		return nextID;
+	}
+
+	public String getXformProject() {
+		Node xform = getModel();
+		xform = ModelAccess.getNodes(xform,"xform")[0];
+		String id = ModelAccess.getAttribute(xform, "@xformProject");
+		return id;
 	}
 
 		// Begin custom editor logic

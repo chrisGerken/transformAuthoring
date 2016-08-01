@@ -1,5 +1,7 @@
 package com.gerken.xaa.model;
 
+import java.util.HashMap;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -16,7 +18,7 @@ public class XaaModelPlugin extends AbstractUIPlugin {
 	public static final String PLUGIN_ID = "com.gerken.xaa.model";
 
 	// The shared instance
-	private static XaaModelPlugin plugin;
+	public static XaaModelPlugin plugin;
 
 	private XformAccess	xformAccess = null;
 	/**

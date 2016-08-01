@@ -10,12 +10,15 @@ import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 
 import com.gerken.xaa.model.xform.Xform;
 
 public class XformAccess implements IResourceChangeListener {
 
 	private static Hashtable<String,Xform> models = new Hashtable<String, Xform>();
+	private static Hashtable<String,Node> docs = new Hashtable<String, Node>();
 	
 	public XformAccess() {
 		super();
@@ -55,6 +58,21 @@ public class XformAccess implements IResourceChangeListener {
 		} catch (CoreException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void setModel(String xformProject, Node model) {
+		if ((xformProject == null) | (model == null)) {
+			return;
+		}
+		docs.put(xformProject, model);
+	}
+
+	public Xform xformFor(String name) {
+		Node xform = docs.get(name);
+		if (xform==null) {
+			return readModel(ResourcesPlugin.getWorkspace().getRoot().getProject(name));
+		}
+		return new Xform(xform);
 	}
 
 }
