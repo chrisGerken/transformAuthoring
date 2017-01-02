@@ -20,7 +20,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-import com.gerken.xaa.mpe.Activator;
 import com.gerken.xaa.mpe.core.AbstractFormPage;
 import com.gerken.xaa.mpe.core.AbstractToolSection;
 import com.gerken.xaa.mpe.core.ModelAccess;
@@ -122,7 +121,7 @@ public class OverviewToolslSection extends AbstractToolSection implements IHyper
 					String msg = "Model accessed "+status.getModelAccesses()+" times.";  
 					MessageDialog.openInformation(new Shell(),"Gramar successfully generated", "See log for details");
 					MultiStatus ms = StatusFactory.status(status.getContext(), 0, "Gramar applied successfully");
-					Activator.getDefault().getLog().log(ms);
+//					Activator.getDefault().getLog().log(ms);
 				} else {
 					MultiStatus ms = StatusFactory.status(status.getContext(), 0, "Gramar applied with errors");
 					String content = status.mainProductionResult();

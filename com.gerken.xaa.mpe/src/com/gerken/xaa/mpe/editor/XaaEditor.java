@@ -1,14 +1,9 @@
 package com.gerken.xaa.mpe.editor;
 
-import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
@@ -22,9 +17,9 @@ import com.gerken.xaa.model.XaaModelPlugin;
 import com.gerken.xaa.mpe.constraint.ConstraintManager;
 import com.gerken.xaa.mpe.core.ModelAccess;
 import com.gerken.xaa.mpe.core.ModelLoader;
-import com.gerken.xaa.mpe.core.ModelFormatter;
 import com.gerken.xaa.mpe.core.SourcePage;
-import com.gerken.xaa.mpe.domain.*;
+import com.gerken.xaa.mpe.domain.PolymorphicKeysEnumeration;
+import com.gerken.xaa.mpe.domain.ProjectsEnumeration;
 
 public class XaaEditor extends FormEditor {
 	

@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: com.gerken.xaa.mpe
+Bundle-SymbolicName: com.gerken.xaa.mpe;singleton:=true
+Bundle-Version: 1.7.1
+Require-Bundle: org.eclipse.jface.text,
+ org.eclipse.core.resources,
+ org.eclipse.ui,
+ org.eclipse.ui.editors,
+ org.eclipse.ui.ide,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.workbench.texteditor,
+ org.eclipse.ui.forms,
+ org.gramar.eclipse.ui,
+ com.gerken.xaa.model
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
